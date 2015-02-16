@@ -19,29 +19,25 @@ public class Conexion {
     String connectionUrl="jdbc:postgresql://localhost:5432/Hospital";
     String user="postgres";
     String password="101";
-    
-    private static Conexion conexion=null;
-    
-    private Conexion(){
-        try{
-            Class.forName(driverClassName);
-        }catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-        }
-        
-    }
-    
-        public Connection getConnection() throws SQLException {
-                Connection conn = null;
-                conn = DriverManager.getConnection(connectionUrl, user, password);
-                return conn;
-        }
 
-        public static Conexion getInstance() {
-                if (conexion == null) {
-                        conexion = new Conexion();
-                }
-                return conexion;
+    private static final Conexion _conexion=new Conexion();
+
+    private Conexion(){
+        try {
+            Class.forName(driverClassName);
+        } catch (ClassNotFoundException e) {
+		e.printStackTrace();
         }
-    
+    }
+
+    public Connection getConnection() throws SQLException {
+        Connection conn = null;
+        conn = DriverManager.getConnection(connectionUrl, user, password);
+        return conn;
+    }
+
+    public static Conexion getInstance() {
+        return _conexion;
+    }
+
 }
