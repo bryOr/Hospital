@@ -20,11 +20,12 @@ public class QueryHospital {
         boolean res=false;
         PreparedStatement stmt=null;
         Connection conn=null;
-        
         try {
             conn=Conexion.getInstance().getConnection();
        
-        stmt=conn.prepareStatement("INSERT INTO hospital(cod_hospital,name,address,phone,numberofbeds) VALUES (?,?,?,?,?)");
+        stmt=conn.prepareStatement("INSERT INTO hospital(cod_hospital,name,address,phone,numberofbeds) "
+                                 + "VALUES "
+                                 + "(?,?,?,?,?)");
         stmt.setInt(1, h.getCode());
         stmt.setString(2, h.getName());
         stmt.setString(3, h.getAddress());

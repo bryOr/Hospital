@@ -47,6 +47,7 @@ public class addHospital extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         bedsField = new javax.swing.JTextField();
         addHospitalButon = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
 
         jLabel1.setText("Codigo:");
 
@@ -83,6 +84,13 @@ public class addHospital extends javax.swing.JInternalFrame {
             }
         });
 
+        botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,8 +114,10 @@ public class addHospital extends javax.swing.JInternalFrame {
                             .addComponent(bedsField)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
-                        .addComponent(addHospitalButon)))
-                .addContainerGap(374, Short.MAX_VALUE))
+                        .addComponent(addHospitalButon)
+                        .addGap(47, 47, 47)
+                        .addComponent(botonSalir)))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +143,9 @@ public class addHospital extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(bedsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(addHospitalButon)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addHospitalButon)
+                    .addComponent(botonSalir))
                 .addGap(26, 26, 26))
         );
 
@@ -153,24 +165,42 @@ public class addHospital extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_phoneFieldActionPerformed
 
     private void addHospitalButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalButonActionPerformed
-        // TODO add your handling code here:
-        int code=Integer.parseInt(codeField.getText());
-        String name_h=nameField.getText();
-        String address=addressField.getText();
-        int phone=(Integer.parseInt(phoneField.getText()));
-        int number_of_beds=(Integer.parseInt(bedsField.getText()));
-        Hospital h=new Hospital(code, name_h, address, phone, number_of_beds);
-        c_h.addHospital(h);
-        JOptionPane.showMessageDialog(this, "Hospital se ha registrado con exito");
-        
+        if(codeField.getText().isEmpty() ||
+                nameField.getText().isEmpty() || 
+                addressField.getText().isEmpty() || 
+                phoneField.getText().isEmpty() || 
+                bedsField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese bien todos los datos");
+        }else{
+            int code=Integer.parseInt(codeField.getText());
+            String name_h=nameField.getText();
+            String address=addressField.getText();
+            int phone=(Integer.parseInt(phoneField.getText()));
+            int number_of_beds=(Integer.parseInt(bedsField.getText()));
+            Hospital h=new Hospital(code, name_h, address, phone, number_of_beds);
+            c_h.addHospital(h);
+            JOptionPane.showMessageDialog(this, "Hospital se ha registrado con exito");
+        }
+        cleanFields();
         
     }//GEN-LAST:event_addHospitalButonActionPerformed
 
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+    public void cleanFields(){
+        codeField.setText("");
+        nameField.setText("");
+        addressField.setText("");
+        phoneField.setText("");
+        bedsField.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addHospitalButon;
     private javax.swing.JTextField addressField;
     private javax.swing.JTextField bedsField;
+    private javax.swing.JButton botonSalir;
     private javax.swing.JTextField codeField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
