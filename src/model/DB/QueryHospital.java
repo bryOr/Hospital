@@ -8,7 +8,12 @@ package model.DB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Caracteristics.Hospital;
 
 /**
@@ -38,5 +43,28 @@ public class QueryHospital {
            System.out.println(ex);
         }
         return res;
+    }
+    public String getHospitalName(String hospital_name){
+        String aux_name_hospital="";
+        Connection conn=null;
+        ResultSet rs=null;
+        
+        try {
+            conn=Conexion.getInstance().getConnection();
+            Statement stmt=conn.createStatement();
+            rs=stmt.executeQuery("SELECT name "
+                               + "FROM hospital "
+                               + "WHERE name='"+hospital_name+"'");
+            while(rs.next()){
+                aux_name_hospital=rs.getString("name");
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return aux_name_hospital;
     }
 }

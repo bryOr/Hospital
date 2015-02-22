@@ -23,4 +23,12 @@ public class ControllerHospital {
     public boolean  addHospital(Hospital h){
         return q_h.registerHospital(h);
     }
+    public boolean compareHospitalNames(String nameH){
+        boolean res=false;
+        String name_HospitalBD=q_h.getHospitalName(nameH);
+        if(nameH.equals(name_HospitalBD)){
+            res=true;
+        }
+        return res;
+    }
 }
