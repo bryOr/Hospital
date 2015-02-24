@@ -6,8 +6,9 @@
 
 package control.Hospital;
 
-import model.DB.QueryHospital;
+import java.util.ArrayList;
 import model.Caracteristics.Hospital;
+import model.DB.QueryHospital;
 
 /**
  *
@@ -30,5 +31,11 @@ public class ControllerHospital {
             res=true;
         }
         return res;
+    }
+    public ArrayList<String> getAllHospitalNames(){
+        return (ArrayList)q_h.List_of_Hospitals();
+    }
+    public int List_Size_(){
+        return getAllHospitalNames().size();
     }
 }
