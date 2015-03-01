@@ -188,8 +188,8 @@ public class addPatient extends javax.swing.JFrame {
     }//GEN-LAST:event_registrationNumberFieldActionPerformed
 
     public void getRooms(){
+        int id_h=getHospital_ID();
         for(int c=0;c<hospital.numberOfHospitalNames();c++){
-            int id_h=getHospital_ID();
             String hospital_rooms=c_h.getAllHospitalRooms(id_h).get(c);
             option_rooms.addItem(hospital_rooms);
         }

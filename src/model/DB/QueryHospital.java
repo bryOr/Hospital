@@ -100,9 +100,9 @@ public class QueryHospital {
             Statement stmt=conn.createStatement();
             rs=stmt.executeQuery("SELECT id_h FROM hospital "
                     + "WHERE name='"+hospitalName+"'");
-            
-            hospital_ID=rs.getInt("id_h");
-            
+            if(rs.next()){
+                hospital_ID=rs.getInt("id_h");
+            }
             rs.close();
             stmt.close();
             conn.close();
@@ -112,14 +112,15 @@ public class QueryHospital {
         return hospital_ID;
     }
     
-    public ArrayList<String> room_list(int id_h){
+    public List<String> room_list(int id_h){
         Connection conn=null;
         ResultSet rs=null;
-        ArrayList<String> rooms=new ArrayList<String>();
+        List<String> rooms=new ArrayList<String>();
         try {
             conn=Conexion.getInstance().getConnection();
             Statement stmt=conn.createStatement();
-            stmt.executeQuery("SELECT nameroom FROM hospitalroom WHERE id_h='"+id_h+"'");
+            String query="SELECT nameroom FROM hospitalroom WHERE id_h='"+id_h+"'";
+            rs=stmt.executeQuery(query);
             
             while(rs.next()){
                 String room_name=rs.getString("nameroom");

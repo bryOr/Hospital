@@ -44,6 +44,6 @@ public class ControllerHospital {
         return id;
     }
     public ArrayList<String> getAllHospitalRooms(int id_hospital){
-        return q_h.room_list(id_hospital);
+        return (ArrayList)q_h.room_list(id_hospital);
     }
 }
