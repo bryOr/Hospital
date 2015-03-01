@@ -19,8 +19,8 @@ public class LookForHospital extends javax.swing.JInternalFrame {
     /**
      * Creates new form addPatient
      */
-    private String hospitalName;
-    private String room;
+    private String hospital_Name;
+    private int hospital_id;
     private ControllerHospital c_h;
     public LookForHospital() {
         initComponents();
@@ -41,8 +41,6 @@ public class LookForHospital extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         botonIngresar = new javax.swing.JButton();
         option_hospitalName = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        option_room = new javax.swing.JComboBox();
 
         jLabel1.setText("jLabel1");
 
@@ -61,38 +59,28 @@ public class LookForHospital extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Habitación:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel9))
+                .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(option_hospitalName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(option_room, 0, 155, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addComponent(option_hospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonIngresar)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(option_hospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(option_room, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addComponent(option_hospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonIngresar))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,6 +88,7 @@ public class LookForHospital extends javax.swing.JInternalFrame {
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // TODO add your handling code here:
+        
         addPatient patient=new addPatient();
         patient.setVisible(true);
         this.setVisible(false);
@@ -119,17 +108,14 @@ public class LookForHospital extends javax.swing.JInternalFrame {
         }
     }
     public String getHospitalName(){
-        return (String)option_hospitalName.getSelectedItem();
+        hospital_Name=(String)option_hospitalName.getSelectedItem();
+        return this.hospital_Name;
     }
-    public String getRoom(){
-        return (String)option_room.getSelectedItem();
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIngresar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox option_hospitalName;
-    private javax.swing.JComboBox option_room;
     // End of variables declaration//GEN-END:variables
 }

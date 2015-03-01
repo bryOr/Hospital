@@ -91,4 +91,46 @@ public class QueryHospital {
         }
         return names;
     }
+    public int getID_Hospital(String hospitalName){
+        int hospital_ID=0;
+        Connection conn=null;
+        ResultSet rs=null;
+        try {
+            conn=Conexion.getInstance().getConnection();
+            Statement stmt=conn.createStatement();
+            rs=stmt.executeQuery("SELECT id_h FROM hospital "
+                    + "WHERE name='"+hospitalName+"'");
+            
+            hospital_ID=rs.getInt("id_h");
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return hospital_ID;
+    }
+    
+    public ArrayList<String> room_list(int id_h){
+        Connection conn=null;
+        ResultSet rs=null;
+        ArrayList<String> rooms=new ArrayList<String>();
+        try {
+            conn=Conexion.getInstance().getConnection();
+            Statement stmt=conn.createStatement();
+            stmt.executeQuery("SELECT nameroom FROM hospitalroom WHERE id_h='"+id_h+"'");
+            
+            while(rs.next()){
+                String room_name=rs.getString("nameroom");
+                rooms.add(room_name);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return rooms;
+    }
 }

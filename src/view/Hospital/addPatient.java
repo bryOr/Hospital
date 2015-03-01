@@ -6,6 +6,8 @@
 
 package view.Hospital;
 
+import control.Hospital.ControllerHospital;
+
 /**
  *
  * @author Oscar
@@ -15,8 +17,13 @@ public class addPatient extends javax.swing.JFrame {
     /**
      * Creates new form addPatient
      */
+    private LookForHospital hospital;
+    private ControllerHospital c_h;
     public addPatient() {
         initComponents();
+        c_h=new ControllerHospital();
+        hospital=new LookForHospital();
+        getRooms();
     }
 
     /**
@@ -46,6 +53,8 @@ public class addPatient extends javax.swing.JFrame {
         registrationNumberField = new javax.swing.JTextField();
         bedNumerField = new javax.swing.JTextField();
         registerButton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        option_rooms = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +88,8 @@ public class addPatient extends javax.swing.JFrame {
 
         registerButton.setText("Registrar Paciente");
 
+        jLabel10.setText("Cuarto:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,7 +106,8 @@ public class addPatient extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -108,9 +120,10 @@ public class addPatient extends javax.swing.JFrame {
                             .addComponent(sexField)
                             .addComponent(dateOfBirthField)
                             .addComponent(registrationNumberField)
-                            .addComponent(bedNumerField)))
+                            .addComponent(bedNumerField)
+                            .addComponent(option_rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(83, 83, 83)
                         .addComponent(registerButton)))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
@@ -154,9 +167,13 @@ public class addPatient extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel6)))
-                .addGap(35, 35, 35)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(option_rooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(registerButton)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,6 +187,17 @@ public class addPatient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_registrationNumberFieldActionPerformed
 
+    public void getRooms(){
+        for(int c=0;c<hospital.numberOfHospitalNames();c++){
+            int id_h=getHospital_ID();
+            String hospital_rooms=c_h.getAllHospitalRooms(id_h).get(c);
+            option_rooms.addItem(hospital_rooms);
+        }
+    }
+    public int getHospital_ID(){
+        int h_id=c_h.getID_hospital(hospital.getHospitalName());
+        return h_id;
+    }
     /**
      * @param args the command line arguments
      */
@@ -204,6 +232,8 @@ public class addPatient extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NameField;
@@ -212,6 +242,7 @@ public class addPatient extends javax.swing.JFrame {
     private javax.swing.JTextField ciField;
     private javax.swing.JTextField dateOfBirthField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -221,6 +252,7 @@ public class addPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField lastNameField;
+    private javax.swing.JComboBox option_rooms;
     private javax.swing.JButton registerButton;
     private javax.swing.JTextField registrationNumberField;
     private javax.swing.JTextField sexField;
