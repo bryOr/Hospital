@@ -7,20 +7,25 @@
 package view.Hospital;
 
 import control.Hospital.ControllerHospital;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author Oscar
  */
+
 public class LookForHospital extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form addPatient
      */
+    private String hospitalName;
+    private String room;
     private ControllerHospital c_h;
     public LookForHospital() {
         initComponents();
         c_h=new ControllerHospital();
+        getAllHospitalNames();
     }
 
     /**
@@ -34,8 +39,10 @@ public class LookForHospital extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        fieldNameHospital = new javax.swing.JTextField();
         botonIngresar = new javax.swing.JButton();
+        option_hospitalName = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        option_room = new javax.swing.JComboBox();
 
         jLabel1.setText("jLabel1");
 
@@ -48,28 +55,44 @@ public class LookForHospital extends javax.swing.JInternalFrame {
             }
         });
 
+        option_hospitalName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                option_hospitalNameActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Habitación:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(fieldNameHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(option_hospitalName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(option_room, 0, 155, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(botonIngresar)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(fieldNameHospital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(option_hospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(option_room, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(botonIngresar))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -77,20 +100,36 @@ public class LookForHospital extends javax.swing.JInternalFrame {
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // TODO add your handling code here:
-        String res="";
-        if(c_h.compareHospitalNames(fieldNameHospital.getText())){
-                res="Encontrado";
-        }else{
-            res="No_Encontrado";
-        }
-        System.out.println(res);
+        addPatient patient=new addPatient();
+        patient.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_botonIngresarActionPerformed
 
+    private void option_hospitalNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option_hospitalNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_option_hospitalNameActionPerformed
 
+    public int numberOfHospitalNames(){
+        return c_h.List_Size_();
+    }
+    public void getAllHospitalNames(){
+        for(int c=0;c<numberOfHospitalNames();c++){
+            String name=c_h.getAllHospitalNames().get(c);
+            option_hospitalName.addItem(name);
+        }
+    }
+    public String getHospitalName(){
+        return (String)option_hospitalName.getSelectedItem();
+    }
+    public String getRoom(){
+        return (String)option_room.getSelectedItem();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIngresar;
-    private javax.swing.JTextField fieldNameHospital;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox option_hospitalName;
+    private javax.swing.JComboBox option_room;
     // End of variables declaration//GEN-END:variables
 }
