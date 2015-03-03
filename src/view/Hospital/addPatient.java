@@ -19,13 +19,14 @@ public class addPatient extends javax.swing.JFrame {
      */
     private LookForHospital hospital;
     private ControllerHospital c_h;
-    private int id_h;
+    private String hospital_name;
     public addPatient() {
         initComponents();
         c_h=new ControllerHospital();
         hospital=new LookForHospital();
-        id_h=0;
+        hospital_name=hospital.getHospitalName();
         getRooms();
+        
     }
 
     /**
@@ -200,20 +201,15 @@ public class addPatient extends javax.swing.JFrame {
 
     
     public void getRooms(){
-        id_h=getHospital_ID();
+        System.out.println(hospital_name);
         for(int c=0;c<number_of_HospitalRooms();c++){
-            String hospital_rooms=c_h.getAllHospitalRooms(id_h).get(c);
-            option_rooms.addItem(hospital_rooms);
+            option_rooms.addItem(c_h.getAllHospitalRooms(hospital_name).get(c));
         }
-        System.out.println(id_h);
     }
     public int number_of_HospitalRooms(){
-        return c_h.getAllHospitalRooms(id_h).size();
+        return c_h.getAllHospitalRooms(hospital.getHospitalName()).size();
     }
-    public int getHospital_ID(){
-        id_h=c_h.getID_hospital(hospital.getHospitalName());
-        return id_h;
-    }
+    
     /**
      * @param args the command line arguments
      */

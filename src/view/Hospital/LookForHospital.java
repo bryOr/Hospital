@@ -92,6 +92,7 @@ public class LookForHospital extends javax.swing.JInternalFrame {
         addPatient patient=new addPatient();
         patient.setVisible(true);
         this.setVisible(false);
+        //System.out.println(getHospitalName());
     }//GEN-LAST:event_botonIngresarActionPerformed
 
     private void option_hospitalNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option_hospitalNameActionPerformed
@@ -107,9 +108,16 @@ public class LookForHospital extends javax.swing.JInternalFrame {
             option_hospitalName.addItem(name);
         }
     }
+    public String chooseHospitalName(){
+        String hosp_name=(String)option_hospitalName.getSelectedItem();
+        setHospitalName(hosp_name);
+        return hospital_Name;
+    }
+    public void setHospitalName(String hosp_name){
+        this.hospital_Name=hosp_name;
+    }
     public String getHospitalName(){
-        hospital_Name=(String)option_hospitalName.getSelectedItem();
-        return this.hospital_Name;
+        return hospital_Name;
     }
     
     
