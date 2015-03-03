@@ -100,7 +100,7 @@ public class QueryHospital {
             Statement stmt=conn.createStatement();
             rs=stmt.executeQuery("SELECT id_h FROM hospital "
                     + "WHERE name='"+hospitalName+"'");
-            if(rs.next()){
+            while(rs.next()){
                 hospital_ID=rs.getInt("id_h");
             }
             rs.close();

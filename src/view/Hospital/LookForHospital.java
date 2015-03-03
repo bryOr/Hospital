@@ -112,6 +112,7 @@ public class LookForHospital extends javax.swing.JInternalFrame {
         return this.hospital_Name;
     }
     
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIngresar;
     private javax.swing.JLabel jLabel1;

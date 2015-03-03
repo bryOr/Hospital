@@ -19,10 +19,12 @@ public class addPatient extends javax.swing.JFrame {
      */
     private LookForHospital hospital;
     private ControllerHospital c_h;
+    private int id_h;
     public addPatient() {
         initComponents();
         c_h=new ControllerHospital();
         hospital=new LookForHospital();
+        id_h=0;
         getRooms();
     }
 
@@ -87,6 +89,11 @@ public class addPatient extends javax.swing.JFrame {
         });
 
         registerButton.setText("Registrar Paciente");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Cuarto:");
 
@@ -187,16 +194,25 @@ public class addPatient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_registrationNumberFieldActionPerformed
 
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registerButtonActionPerformed
+
+    
     public void getRooms(){
-        int id_h=getHospital_ID();
-        for(int c=0;c<hospital.numberOfHospitalNames();c++){
+        id_h=getHospital_ID();
+        for(int c=0;c<number_of_HospitalRooms();c++){
             String hospital_rooms=c_h.getAllHospitalRooms(id_h).get(c);
             option_rooms.addItem(hospital_rooms);
         }
+        System.out.println(id_h);
+    }
+    public int number_of_HospitalRooms(){
+        return c_h.getAllHospitalRooms(id_h).size();
     }
     public int getHospital_ID(){
-        int h_id=c_h.getID_hospital(hospital.getHospitalName());
-        return h_id;
+        id_h=c_h.getID_hospital(hospital.getHospitalName());
+        return id_h;
     }
     /**
      * @param args the command line arguments
