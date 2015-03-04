@@ -17,16 +17,15 @@ public class addPatient extends javax.swing.JFrame {
     /**
      * Creates new form addPatient
      */
-    private LookForHospital hospital;
+    
     private ControllerHospital c_h;
-    private String hospital_name;
+    private LookForHospital hospital;
     public addPatient() {
         initComponents();
         c_h=new ControllerHospital();
         hospital=new LookForHospital();
-        hospital_name=hospital.getHospitalName();
-        getRooms();
         
+        getRooms();
     }
 
     /**
@@ -201,13 +200,17 @@ public class addPatient extends javax.swing.JFrame {
 
     
     public void getRooms(){
-        System.out.println(hospital_name);
+        String hospital_name=hospital.chosenHospitalName();
+        //System.out.println(hospital_name);//devuelve solo la primera opcion
         for(int c=0;c<number_of_HospitalRooms();c++){
-            option_rooms.addItem(c_h.getAllHospitalRooms(hospital_name).get(c));
+            String name=c_h.getAllHospitalRooms(hospital_name).get(c);
+            option_rooms.addItem(name);
         }
     }
     public int number_of_HospitalRooms(){
-        return c_h.getAllHospitalRooms(hospital.getHospitalName()).size();
+       String hospital_name=hospital.chosenHospitalName();
+       int number_of_rooms=c_h.getAllHospitalRooms(hospital_name).size();
+       return number_of_rooms;
     }
     
     /**
