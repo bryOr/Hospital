@@ -7,7 +7,6 @@
 package Principal;
 
 import view.Hospital.Menu;
-import view.Hospital.addHospital;
 
 /**
  *

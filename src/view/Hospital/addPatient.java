@@ -19,13 +19,16 @@ public class addPatient extends javax.swing.JFrame {
      */
     
     private ControllerHospital c_h;
-    private LookForHospital hospital;
-    public addPatient() {
+    private String hospital_name;
+    //private LookForHospital hospital;
+    public addPatient(String hospital) {
         initComponents();
         c_h=new ControllerHospital();
-        hospital=new LookForHospital();
+        hospital_name = hospital;
+        //hospital=new LookForHospital();
         
         getRooms();
+        setVisible(true);
     }
 
     /**
@@ -200,7 +203,7 @@ public class addPatient extends javax.swing.JFrame {
 
     
     public void getRooms(){
-        String hospital_name=hospital.chosenHospitalName();
+        //String hospital_name=hospital.chosenHospitalName();
         //System.out.println(hospital_name);//devuelve solo la primera opcion
         for(int c=0;c<number_of_HospitalRooms();c++){
             String name=c_h.getAllHospitalRooms(hospital_name).get(c);
@@ -208,47 +211,10 @@ public class addPatient extends javax.swing.JFrame {
         }
     }
     public int number_of_HospitalRooms(){
-       String hospital_name=hospital.chosenHospitalName();
+       //String hospital_name=hospital.chosenHospitalName();
        int number_of_rooms=c_h.getAllHospitalRooms(hospital_name).size();
        return number_of_rooms;
     }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new addPatient().setVisible(true);
-            }
-        });
-    }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NameField;

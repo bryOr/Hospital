@@ -29,7 +29,7 @@ public class QueryHospital {
         try {
             conn=Conexion.getInstance().getConnection();
        
-        stmt=conn.prepareStatement("INSERT INTO hospital(cod_hospital,name,address,phone,numberofbeds) "
+        stmt=conn.prepareStatement("INSERT INTO hospital(hospital_id,name,address,phone,numberofbeds) "
                                  + "VALUES "
                                  + "(?,?,?,?,?)");
         stmt.setInt(1, h.getCode());

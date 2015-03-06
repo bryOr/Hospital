@@ -22,8 +22,11 @@ public class LookForHospital extends javax.swing.JInternalFrame {
     private String hospital_Name;
     private int hospital_id;
     private ControllerHospital c_h;
-    public LookForHospital() {
+    private Menu menu;
+    
+    public LookForHospital(Menu menu) {
         initComponents();
+        this.menu = menu;
         c_h=new ControllerHospital();
         getAllHospitalNames();
     }
@@ -89,10 +92,11 @@ public class LookForHospital extends javax.swing.JInternalFrame {
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // TODO add your handling code here:
         
-        addPatient patient=new addPatient();
-        patient.setVisible(true);
-        this.setVisible(false);
-        chosenHospitalName();
+        //addPatient patient=new addPatient();
+        //patient.setVisible(true);
+        //this.setVisible(false);
+        menu.regPatient(chosenHospitalName());
+        this.dispose();
     }//GEN-LAST:event_botonIngresarActionPerformed
 
     private void option_hospitalNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option_hospitalNameActionPerformed
