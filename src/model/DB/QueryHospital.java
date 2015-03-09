@@ -45,30 +45,7 @@ public class QueryHospital {
         }
         return res;
     }
-    public String getHospitalName(String hospital_name){
-        String aux_name_hospital="";
-        Connection conn=null;
-        ResultSet rs=null;
-        
-        try {
-            conn=Conexion.getInstance().getConnection();
-            Statement stmt=conn.createStatement();
-            rs=stmt.executeQuery("SELECT name "
-                               + "FROM hospital "
-                               + "WHERE name='"+hospital_name+"'");
-            while(rs.next()){
-                aux_name_hospital=rs.getString("name");
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-            
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return aux_name_hospital;
-    }
-    public List<String> List_of_Hospitals(){
+    public List<String> ListofHospitals(){
         Connection conn=null;
         ResultSet rs=null;
         List<String> names=new ArrayList<String>();

@@ -12,21 +12,28 @@ import control.Hospital.ControllerHospital;
  *
  * @author Oscar
  */
-public class addPatient extends javax.swing.JFrame {
+public class PatientRegister extends javax.swing.JFrame {
 
     /**
-     * Creates new form addPatient
+     * Creates new form PatientRegister
      */
     
-    private ControllerHospital c_h;
-    private LookForHospital hospital;
-    public addPatient() {
+    private  ControllerHospital control;
+    
+    private String hospital_name;
+    public PatientRegister(String hosp) {
         initComponents();
-        c_h=new ControllerHospital();
-        hospital=new LookForHospital();
+        hospital_name=hosp;
+        control=new ControllerHospital();
         
         getRooms();
     }
+
+    private PatientRegister() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,17 +53,17 @@ public class addPatient extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        NameField = new javax.swing.JTextField();
-        lastNameField = new javax.swing.JTextField();
-        ciField = new javax.swing.JTextField();
-        addressField = new javax.swing.JTextField();
-        sexField = new javax.swing.JTextField();
-        dateOfBirthField = new javax.swing.JTextField();
-        registrationNumberField = new javax.swing.JTextField();
-        bedNumerField = new javax.swing.JTextField();
-        registerButton = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
+        txtSex = new javax.swing.JTextField();
+        txtDateOfBird = new javax.swing.JTextField();
+        txtRegistration = new javax.swing.JTextField();
+        txtBedNumber = new javax.swing.JTextField();
+        btnRegister = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        option_rooms = new javax.swing.JComboBox();
+        cmbRoom = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,22 +83,22 @@ public class addPatient extends javax.swing.JFrame {
 
         jLabel9.setText("Sexo:");
 
-        lastNameField.addActionListener(new java.awt.event.ActionListener() {
+        txtLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameFieldActionPerformed(evt);
+                txtLastNameActionPerformed(evt);
             }
         });
 
-        registrationNumberField.addActionListener(new java.awt.event.ActionListener() {
+        txtRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrationNumberFieldActionPerformed(evt);
+                txtRegistrationActionPerformed(evt);
             }
         });
 
-        registerButton.setText("Registrar Paciente");
-        registerButton.addActionListener(new java.awt.event.ActionListener() {
+        btnRegister.setText("Registrar Paciente");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
+                btnRegisterActionPerformed(evt);
             }
         });
 
@@ -120,18 +127,18 @@ public class addPatient extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6))
-                            .addComponent(NameField, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(lastNameField)
-                            .addComponent(ciField)
-                            .addComponent(addressField)
-                            .addComponent(sexField)
-                            .addComponent(dateOfBirthField)
-                            .addComponent(registrationNumberField)
-                            .addComponent(bedNumerField)
-                            .addComponent(option_rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(txtLastName)
+                            .addComponent(txtID)
+                            .addComponent(txtAddress)
+                            .addComponent(txtSex)
+                            .addComponent(txtDateOfBird)
+                            .addComponent(txtRegistration)
+                            .addComponent(txtBedNumber)
+                            .addComponent(cmbRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
-                        .addComponent(registerButton)))
+                        .addComponent(btnRegister)))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,76 +147,76 @@ public class addPatient extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(ciField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sexField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(dateOfBirthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDateOfBird, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(registrationNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(bedNumerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtBedNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel6)))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(option_rooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(registerButton)
+                .addComponent(btnRegister)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lastNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameFieldActionPerformed
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameFieldActionPerformed
+    }//GEN-LAST:event_txtLastNameActionPerformed
 
-    private void registrationNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrationNumberFieldActionPerformed
+    private void txtRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegistrationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_registrationNumberFieldActionPerformed
+    }//GEN-LAST:event_txtRegistrationActionPerformed
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_registerButtonActionPerformed
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     
     public void getRooms(){
-        String hospital_name=hospital.chosenHospitalName();
-        //System.out.println(hospital_name);//devuelve solo la primera opcion
-        for(int c=0;c<number_of_HospitalRooms();c++){
-            String name=c_h.getAllHospitalRooms(hospital_name).get(c);
-            option_rooms.addItem(name);
+        
+        System.out.println(hospital_name);//devuelve solo la primera opcion
+        for(int c=0;c<numberOfRooms();c++){
+            String name=control.getAllHospitalRooms(hospital_name).get(c);
+            cmbRoom.addItem(name);
         }
     }
-    public int number_of_HospitalRooms(){
-       String hospital_name=hospital.chosenHospitalName();
-       int number_of_rooms=c_h.getAllHospitalRooms(hospital_name).size();
+    public int numberOfRooms(){
+        
+       int number_of_rooms=control.getAllHospitalRooms(hospital_name).size();
        return number_of_rooms;
     }
     
@@ -230,20 +237,20 @@ public class addPatient extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addPatient().setVisible(true);
+                new PatientRegister().setVisible(true);
             }
         });
     }
@@ -251,11 +258,8 @@ public class addPatient extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField NameField;
-    private javax.swing.JTextField addressField;
-    private javax.swing.JTextField bedNumerField;
-    private javax.swing.JTextField ciField;
-    private javax.swing.JTextField dateOfBirthField;
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JComboBox cmbRoom;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -266,10 +270,13 @@ public class addPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField lastNameField;
-    private javax.swing.JComboBox option_rooms;
-    private javax.swing.JButton registerButton;
-    private javax.swing.JTextField registrationNumberField;
-    private javax.swing.JTextField sexField;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtBedNumber;
+    private javax.swing.JTextField txtDateOfBird;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtRegistration;
+    private javax.swing.JTextField txtSex;
     // End of variables declaration//GEN-END:variables
 }

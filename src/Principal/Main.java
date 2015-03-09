@@ -6,6 +6,7 @@
 
 package Principal;
 
+import view.Hospital.HospitalFinder;
 import view.Hospital.Menu;
 import view.Hospital.addHospital;
 
@@ -22,6 +23,7 @@ public class Main {
         // TODO code application logic here
         Menu m=new Menu();
         m.setVisible(true);
+        
     }
     
 }
