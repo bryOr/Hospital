@@ -25,7 +25,6 @@ public class PatientRegister extends javax.swing.JFrame {
         initComponents();
         hospital_name=hosp;
         control=new ControllerHospital();
-        
         getRooms();
     }
 
@@ -208,7 +207,7 @@ public class PatientRegister extends javax.swing.JFrame {
     
     public void getRooms(){
         
-        System.out.println(hospital_name);//devuelve solo la primera opcion
+        
         for(int c=0;c<numberOfRooms();c++){
             String name=control.getAllHospitalRooms(hospital_name).get(c);
             cmbRoom.addItem(name);
