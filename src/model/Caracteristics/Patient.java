@@ -14,6 +14,7 @@ import java.util.Date;
  */
 public class Patient {
     private int id_r;
+    private int id_p;
     private int CI;
     private int registrationNumber;
     private String name;
@@ -23,8 +24,9 @@ public class Patient {
     private Date dateofBirth;
     private boolean sex;
     
-    public Patient(int id_r,int CI, int registrationNumber, String name, String lastname, int bednumber, String address, Date dateofBirth, boolean sex) {
+    public Patient(int id_r,int id_p,int CI, int registrationNumber, String name, String lastname, int bednumber, String address, Date dateofBirth, boolean sex) {
         this.id_r=id_r;
+        this.id_p=id_p;
         this.CI = CI;
         this.registrationNumber = registrationNumber;
         this.name = name;
@@ -42,7 +44,12 @@ public class Patient {
     public void setId_r(int id_r) {
         this.id_r = id_r;
     }
-    
+    public int getId_p(){
+        return id_p;
+    }
+    public void setId_p(int id_p){
+        this.id_p = id_p;
+    }
     public int getCI() {
         return CI;
     }

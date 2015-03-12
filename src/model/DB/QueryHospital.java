@@ -94,4 +94,5 @@ public class QueryHospital {
         }
         return rooms;
     }
+    
 }

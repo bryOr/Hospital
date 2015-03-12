@@ -7,30 +7,40 @@
 package model.DB;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Statement;
+
 
 /**
  *
  * @author Oscar
  */
 public class QueryPatient {
-    public boolean registerPatient(String room){
-        boolean registrado=false;
-        
-        PreparedStatement stmt=null;
+    
+    public int getID_Room(String hospital,String room){
+        int id=0;
         Connection conn=null;
+        ResultSet rs=null;
         
         try {
             conn=Conexion.getInstance().getConnection();
-           
+            Statement stmt=conn.createStatement();
+            String query="SELECT hr.id_r "
+                       + "FROM hospitalroom hr, hospital h "
+                       + "WHERE h.id_h=hr.id_h AND hr.nameroom='"+room+"' AND h.name='"+hospital+"'";
+            rs=stmt.executeQuery(query);
+            while(rs.next()){
+                id=rs.getInt("id_r");
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            
         }
-        
-        return registrado;
-        
+        return id;
     }
 }
