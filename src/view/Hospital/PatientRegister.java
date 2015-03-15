@@ -8,9 +8,13 @@ package view.Hospital;
 
 import com.toedter.calendar.demo.DateChooserPanelBeanInfo;
 import control.Hospital.ControllerHospital;
+import control.Hospital.ControllerPatient;
+import control.Hospital.ControllerRoom;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import model.Caracteristics.Patient;
 
 /**
  *
@@ -22,13 +26,16 @@ public class PatientRegister extends javax.swing.JFrame {
      * Creates new form PatientRegister
      */
     
-    private  ControllerHospital control;
-    
-    private String hospital_name;
+    private  ControllerHospital controlHospital;
+    private  ControllerRoom controlRoom;
+    private  ControllerPatient controlPatient;
+    private String hospitalName;
     public PatientRegister(String hosp) {
         initComponents();
-        hospital_name=hosp;
-        control=new ControllerHospital();
+        hospitalName=hosp;
+        controlHospital=new ControllerHospital();
+        controlRoom=new ControllerRoom();
+        controlPatient=new ControllerPatient();
         getRooms();
     }
 
@@ -216,11 +223,17 @@ public class PatientRegister extends javax.swing.JFrame {
         int ci=Integer.parseInt(txtID.getText());
         String address=txtAddress.getText();
         String sex=txtSex.getText();
-        String registration_number=txtRegistration.getText();
+        int registration_number=Integer.parseInt(txtRegistration.getText());
         int bedNumber=Integer.parseInt(txtBedNumber.getText());
         String room=String.valueOf(cmbRoom.getSelectedItem());
         String date=dateSelected();
+        int idRoom=controlRoom.getIdRoom(hospitalName, room);
         
+        Patient p=new Patient(idRoom, ci, registration_number, name, lastname, bedNumber, address, date, sex);
+        boolean confirmacion=controlPatient.patient_inserted(p);
+        if(confirmacion){
+            JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
+        }
         /*Date date=new Date();
         DateFormat var=new SimpleDateFormat("yyyy-MM-dd");
         date=dateFecha.getDate();
@@ -239,13 +252,13 @@ public class PatientRegister extends javax.swing.JFrame {
         
         
         for(int c=0;c<numberOfRooms();c++){
-            String name=control.getAllHospitalRooms(hospital_name).get(c);
+            String name=controlHospital.getAllHospitalRooms(hospitalName).get(c);
             cmbRoom.addItem(name);
         }
     }
     public int numberOfRooms(){
         
-       int number_of_rooms=control.getAllHospitalRooms(hospital_name).size();
+       int number_of_rooms=controlHospital.getAllHospitalRooms(hospitalName).size();
        return number_of_rooms;
     }
     

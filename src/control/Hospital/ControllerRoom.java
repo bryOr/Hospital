@@ -13,7 +13,7 @@ import model.DB.QueryPatient;
  * @author Oscar
  */
 
-public class controlRoom {
+public class ControllerRoom {
     private QueryPatient q_p;
     public int getIdRoom(String hospitalName,String roomName){
         return q_p.getID_Room(hospitalName, roomName);
