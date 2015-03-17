@@ -16,6 +16,9 @@ import model.DB.QueryPatient;
 public class ControllerPatient {
     private QueryPatient q_p;
     
+    public ControllerPatient(){
+        q_p=new QueryPatient();
+    }
     public boolean patient_inserted(Patient p){
         boolean res=q_p.insertPatient(p);
         return res;

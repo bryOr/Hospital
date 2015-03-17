@@ -15,6 +15,9 @@ import model.DB.QueryPatient;
 
 public class ControllerRoom {
     private QueryPatient q_p;
+    public ControllerRoom(){
+        q_p=new QueryPatient();
+    }
     public int getIdRoom(String hospitalName,String roomName){
         return q_p.getID_Room(hospitalName, roomName);
     }

@@ -218,6 +218,7 @@ public class PatientRegister extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        String auxHospName=hospitalName;
         String name=txtName.getText();
         String lastname=txtLastName.getText();
         int ci=Integer.parseInt(txtID.getText());
@@ -227,11 +228,12 @@ public class PatientRegister extends javax.swing.JFrame {
         int bedNumber=Integer.parseInt(txtBedNumber.getText());
         String room=String.valueOf(cmbRoom.getSelectedItem());
         String date=dateSelected();
-        int idRoom=controlRoom.getIdRoom(hospitalName, room);
-        
+        System.out.println(auxHospName+" "+room);
+        int idRoom=controlRoom.getIdRoom(auxHospName, room);
+        //System.out.println(idRoom);
         Patient p=new Patient(idRoom, ci, registration_number, name, lastname, bedNumber, address, date, sex);
-        boolean confirmacion=controlPatient.patient_inserted(p);
-        if(confirmacion){
+        boolean confirmed=controlPatient.patient_inserted(p);
+        if(confirmed){
             JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
         }
         /*Date date=new Date();
