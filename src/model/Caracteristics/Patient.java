@@ -21,10 +21,10 @@ public class Patient {
     private String lastname;
     private  int bednumber;
     private String address;
-    private String dateofBirth;
+    private Date dateofBirth;
     private String sex;
     
-    public Patient(int id_r,int CI, int registrationNumber, String name, String lastname, int bednumber, String address, String dateofBirth, String sex) {
+    public Patient(int id_r,int CI, int registrationNumber, String name, String lastname, int bednumber, String address, Date dateofBirth, String sex) {
         this.id_r=id_r;
         
         this.CI = CI;
@@ -93,11 +93,11 @@ public class Patient {
         this.address = address;
     }
 
-    public String getDateofBirth() {
+    public Date getDateofBirth() {
         return dateofBirth;
     }
 
-    public void setDateofBirth(String dateofBirth) {
+    public void setDateofBirth(Date dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 
