@@ -225,7 +225,7 @@ public class PatientRegister extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Uno de los camposse encuentra vacio");
         }else{
 
-            
+            String aux_hospName=hospitalName;
             String name=txtName.getText();
             String lastname=txtLastName.getText();
             int ci=Integer.parseInt(txtID.getText());
@@ -235,9 +235,9 @@ public class PatientRegister extends javax.swing.JFrame {
             int bedNumber=Integer.parseInt(txtBedNumber.getText());
             String room=String.valueOf(cmbRoom.getSelectedItem());
             Date date=dateSelected();
-            //System.out.println(name+" "+room);
-            int idRoom=controlRoom.getIdRoom(name, room);
-            //System.out.println(idRoom);
+            
+            int idRoom=controlRoom.getIdRoom(aux_hospName, room);
+            
             Patient p=new Patient(idRoom, ci, registration_number, name, lastname, bedNumber, address, date, sex);
             boolean confirmed=controlPatient.patient_inserted(p);
             if(confirmed){

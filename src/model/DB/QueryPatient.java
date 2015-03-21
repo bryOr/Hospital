@@ -50,7 +50,7 @@ public class QueryPatient {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return false;
+        return res;
     }
     
     public int getID_Room(String hospital,String room){
