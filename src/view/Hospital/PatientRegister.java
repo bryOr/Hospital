@@ -220,10 +220,6 @@ public class PatientRegister extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        if(txtName.getText().equals("")|| txtLastName.getText().equals("") || txtID.getText().equals("") || txtAddress.getText().equals("")
-                || txtSex.getText().equals("") || txtRegistration.equals("")|| txtBedNumber.getText().equals("")|| dateFecha.equals("") ){
-            JOptionPane.showMessageDialog(this, "Uno de los camposse encuentra vacio");
-        }else{
 
             String aux_hospName=hospitalName;
             String name=txtName.getText();
@@ -239,11 +235,14 @@ public class PatientRegister extends javax.swing.JFrame {
             int idRoom=controlRoom.getIdRoom(aux_hospName, room);
             
             Patient p=new Patient(idRoom, ci, registration_number, name, lastname, bedNumber, address, date, sex);
-            boolean confirmed=controlPatient.patient_inserted(p);
-            if(confirmed){
-                JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
+            if(controlPatient.validate_patient(p)){
+                boolean confirmed=controlPatient.patient_inserted(p);
+                if(confirmed){
+                    JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Ingreso mal los datos...");
             }
-        }
         /*Date date=new Date();
         DateFormat var=new SimpleDateFormat("yyyy-MM-dd");
         date=dateFecha.getDate();
