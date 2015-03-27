@@ -23,4 +23,17 @@ public class ControllerPatient {
         boolean res=q_p.insertPatient(p);
         return res;
     }
+    public boolean validate_patient(Patient p){
+        boolean res=true;
+        if(p.getName().isEmpty() || 
+                p.getLastname().isEmpty() || 
+                p.getAddress().isEmpty() || 
+                p.getCI()<0 || 
+                p.getRegistrationNumber()<0 || 
+                p.getBednumber()<0 || 
+                p.isSex().isEmpty()){
+            res=false;
+        }
+        return res;
+    }
 }
