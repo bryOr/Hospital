@@ -20,6 +20,7 @@ public class HospitalFinder extends javax.swing.JFrame {
     ControllerHospital control;
     public HospitalFinder() {
         initComponents();
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         control=new ControllerHospital();
         getAllHospitalNames();
@@ -82,6 +83,7 @@ public class HospitalFinder extends javax.swing.JFrame {
         String aux_name=chosenHospitalName();
         PatientRegister patient=new PatientRegister(aux_name);
         patient.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNextActionPerformed
 
     

@@ -28,10 +28,10 @@ public class ControllerPatient {
         if(p.getName().isEmpty() || 
                 p.getLastname().isEmpty() || 
                 p.getAddress().isEmpty() || 
-                p.getCI()<0 || 
+                p.getCI()<10000 || 
                 p.getRegistrationNumber()<0 || 
                 p.getBednumber()<0 || 
-                p.isSex().isEmpty()){
+                p.isSex().equals("Escoja una opcion")){
             res=false;
         }
         return res;

@@ -10,8 +10,7 @@ import com.toedter.calendar.demo.DateChooserPanelBeanInfo;
 import control.Hospital.ControllerHospital;
 import control.Hospital.ControllerPatient;
 import control.Hospital.ControllerRoom;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Caracteristics.Patient;
@@ -32,10 +31,13 @@ public class PatientRegister extends javax.swing.JFrame {
     private String hospitalName;
     public PatientRegister(String hosp) {
         initComponents();
+        this.setResizable(false);
         hospitalName=hosp;
         controlHospital=new ControllerHospital();
         controlRoom=new ControllerRoom();
         controlPatient=new ControllerPatient();
+        addOptionsSex();
+        cmbRoom.addItem("--");
         getRooms();
     }
 
@@ -67,7 +69,6 @@ public class PatientRegister extends javax.swing.JFrame {
         txtLastName = new javax.swing.JTextField();
         txtID = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
-        txtSex = new javax.swing.JTextField();
         txtRegistration = new javax.swing.JTextField();
         txtBedNumber = new javax.swing.JTextField();
         btnRegister = new javax.swing.JButton();
@@ -75,6 +76,7 @@ public class PatientRegister extends javax.swing.JFrame {
         cmbRoom = new javax.swing.JComboBox();
         dateFecha = new com.toedter.calendar.JDateChooser();
         btnCancelar = new javax.swing.JButton();
+        cmbSex = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +120,11 @@ public class PatientRegister extends javax.swing.JFrame {
         dateFecha.setDateFormatString("yyyy-MM-dd");
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,8 +156,8 @@ public class PatientRegister extends javax.swing.JFrame {
                             .addComponent(txtRegistration)
                             .addComponent(txtBedNumber)
                             .addComponent(cmbRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSex)
-                            .addComponent(dateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(dateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbSex, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(btnRegister)
@@ -179,9 +186,9 @@ public class PatientRegister extends javax.swing.JFrame {
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel9)
+                    .addComponent(cmbSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -226,7 +233,7 @@ public class PatientRegister extends javax.swing.JFrame {
             String lastname=txtLastName.getText();
             int ci=Integer.parseInt(txtID.getText());
             String address=txtAddress.getText();
-            String sex=txtSex.getText();
+            String sex=String.valueOf(cmbSex.getSelectedItem());
             int registration_number=Integer.parseInt(txtRegistration.getText());
             int bedNumber=Integer.parseInt(txtBedNumber.getText());
             String room=String.valueOf(cmbRoom.getSelectedItem());
@@ -235,20 +242,31 @@ public class PatientRegister extends javax.swing.JFrame {
             int idRoom=controlRoom.getIdRoom(aux_hospName, room);
             
             Patient p=new Patient(idRoom, ci, registration_number, name, lastname, bedNumber, address, date, sex);
-            if(controlPatient.validate_patient(p)){
+            if(controlPatient.validate_patient(p) || room.equals("--")){
                 boolean confirmed=controlPatient.patient_inserted(p);
                 if(confirmed){
                     JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
+                    Menu m = new Menu();
+                    m.setVisible(true);
+                    this.dispose();
                 }
             }else{
                 JOptionPane.showMessageDialog(this, "Ingreso mal los datos...");
             }
+            
         /*Date date=new Date();
         DateFormat var=new SimpleDateFormat("yyyy-MM-dd");
         date=dateFecha.getDate();
         String aux_date=var.format(date);
         */
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        Menu m=new Menu();
+        m.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
     public Date dateSelected(){
         Date date=new Date();
         
@@ -268,6 +286,11 @@ public class PatientRegister extends javax.swing.JFrame {
         
        int number_of_rooms=controlHospital.getAllHospitalRooms(hospitalName).size();
        return number_of_rooms;
+    }
+    public void addOptionsSex(){
+        cmbSex.addItem("Escoja una opcion");
+        cmbSex.addItem("Masculino");
+        cmbSex.addItem("Femenino");
     }
     
     /**
@@ -304,13 +327,14 @@ public class PatientRegister extends javax.swing.JFrame {
             }
         });
     }
-    
+   
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegister;
     private javax.swing.JComboBox cmbRoom;
+    private javax.swing.JComboBox cmbSex;
     private com.toedter.calendar.JDateChooser dateFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -328,6 +352,5 @@ public class PatientRegister extends javax.swing.JFrame {
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtRegistration;
-    private javax.swing.JTextField txtSex;
     // End of variables declaration//GEN-END:variables
 }
