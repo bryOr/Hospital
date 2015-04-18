@@ -4,7 +4,7 @@ package view.Hospital;
 import java.awt.Dimension;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import view.Hospital.addHospital;
+import view.Hospital.HospitalRegister;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,9 +37,6 @@ public class Menu extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jButton1 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,23 +61,9 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(jButton1)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
         escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jMenu1.setText("Hospitales");
-
-        jMenuItem1.setText("Registrar Hospital");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,11 +94,6 @@ public class Menu extends javax.swing.JFrame {
         nombreInternal.setLocation(width, height);// se posiciona
         nombreInternal.show(); // se muestra
     }
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        agregarInternalFrame(escritorio, new addHospital());
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //agregarInternalFrame(escritorio, new HospitalFinder());
@@ -161,8 +139,5 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

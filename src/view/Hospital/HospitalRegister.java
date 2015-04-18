@@ -15,13 +15,13 @@ import model.Caracteristics.Hospital;
  * @author Oscar
  */
 
-public class addHospital extends javax.swing.JInternalFrame {
+public class HospitalRegister extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form addHospital
+     * Creates new form HospitalRegister
      */
     private ControllerHospital c_h;
-    public addHospital() {
+    public HospitalRegister() {
         initComponents();
         setTitle("Registrar Hospital Nuevo");
         c_h=new ControllerHospital();

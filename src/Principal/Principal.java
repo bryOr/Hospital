@@ -6,23 +6,23 @@
 
 package Principal;
 
-import view.Hospital.HospitalFinder;
-import view.Hospital.Menu;
-import view.Hospital.addHospital;
+import view.Hospital.PrincipalMenu;
+
 
 /**
  *
  * @author Oscar
  */
-public class Main {
+public class Principal {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Menu m=new Menu();
-        m.setVisible(true);
+        PrincipalMenu pm=new PrincipalMenu();
+        pm.setVisible(true);
+        
         
     }
     

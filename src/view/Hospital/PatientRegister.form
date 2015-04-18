@@ -51,8 +51,8 @@
                           <Component id="txtRegistration" max="32767" attributes="0"/>
                           <Component id="txtBedNumber" alignment="0" max="32767" attributes="0"/>
                           <Component id="cmbRoom" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="txtSex" alignment="0" max="32767" attributes="0"/>
                           <Component id="dateFecha" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbSex" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -91,10 +91,10 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtSex" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbSex" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -182,8 +182,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAddress">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtSex">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtRegistration">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRegistrationActionPerformed"/>
@@ -212,10 +210,23 @@
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dateFecha">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbSex">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
