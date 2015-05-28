@@ -1,894 +1,257 @@
---
--- PostgreSQL database dump
---
 
--- Dumped from database version 9.2.4
--- Dumped by pg_dump version 9.2.4
--- Started on 2015-03-10 23:30:45
-
-SET statement_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
---
--- TOC entry 184 (class 3079 OID 11727)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- TOC entry 2032 (class 0 OID 0)
--- Dependencies: 184
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
-SET search_path = public, pg_catalog;
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
---
--- TOC entry 169 (class 1259 OID 16761)
--- Name: diagnosis; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE diagnosis (
-    id_diag integer NOT NULL,
-    id_p integer NOT NULL,
-    diagnosis_id integer,
-    diagnosistype character varying(200),
-    complications character varying(300),
-    diagnosisdate date
+/*==============================================================*/
+/* Table: DIAGNOSIS                                             */
+/*==============================================================*/
+create table DIAGNOSIS (
+   ID_DIAG              INT4                 not null,
+   ID_P                 INT4                 not null,
+   DIAGNOSIS_ID         INT4                 null,
+   DIAGNOSISTYPE        VARCHAR(200)         null,
+   COMPLICATIONS        VARCHAR(300)         null,
+   DIAGNOSISDATE        DATE                 null,
+   constraint PK_DIAGNOSIS primary key (ID_DIAG)
 );
 
-
-ALTER TABLE public.diagnosis OWNER TO postgres;
-
---
--- TOC entry 168 (class 1259 OID 16759)
--- Name: diagnosis_id_diag_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE diagnosis_id_diag_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.diagnosis_id_diag_seq OWNER TO postgres;
-
---
--- TOC entry 2033 (class 0 OID 0)
--- Dependencies: 168
--- Name: diagnosis_id_diag_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE diagnosis_id_diag_seq OWNED BY diagnosis.id_diag;
-
-
---
--- TOC entry 171 (class 1259 OID 16774)
--- Name: doctor; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE doctor (
-    id_d integer NOT NULL,
-    id_h integer NOT NULL,
-    doctor_id integer,
-    ci integer,
-    namedoctor character varying(100),
-    specialty character varying(60)
+/*==============================================================*/
+/* Index: DIAGNOSIS_PK                                          */
+/*==============================================================*/
+create unique index DIAGNOSIS_PK on DIAGNOSIS (
+ID_DIAG
 );
 
-
-ALTER TABLE public.doctor OWNER TO postgres;
-
---
--- TOC entry 170 (class 1259 OID 16772)
--- Name: doctor_id_d_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE doctor_id_d_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.doctor_id_d_seq OWNER TO postgres;
-
---
--- TOC entry 2034 (class 0 OID 0)
--- Dependencies: 170
--- Name: doctor_id_d_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE doctor_id_d_seq OWNED BY doctor.id_d;
-
-
---
--- TOC entry 173 (class 1259 OID 16784)
--- Name: doctorvisit; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE doctorvisit (
-    id_dv integer NOT NULL,
-    id_p integer NOT NULL,
-    id_d integer NOT NULL,
-    doctorvisit_id integer,
-    visitdate date
+/*==============================================================*/
+/* Index: RELATIONSHIP_6_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_6_FK on DIAGNOSIS (
+ID_P
 );
 
-
-ALTER TABLE public.doctorvisit OWNER TO postgres;
-
---
--- TOC entry 172 (class 1259 OID 16782)
--- Name: doctorvisit_id_dv_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE doctorvisit_id_dv_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.doctorvisit_id_dv_seq OWNER TO postgres;
-
---
--- TOC entry 2035 (class 0 OID 0)
--- Dependencies: 172
--- Name: doctorvisit_id_dv_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE doctorvisit_id_dv_seq OWNED BY doctorvisit.id_dv;
-
-
---
--- TOC entry 175 (class 1259 OID 16795)
--- Name: hospital; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE hospital (
-    id_h integer NOT NULL,
-    cod_hospital integer,
-    name character varying(100),
-    address character varying(200),
-    phone numeric,
-    numberofbeds integer
+/*==============================================================*/
+/* Table: DOCTOR                                                */
+/*==============================================================*/
+create table DOCTOR (
+   ID_D                 INT4                 not null,
+   ID_H                 INT4                 not null,
+   DOCTOR_ID            INT4                 null,
+   CI                   INT4                 null,
+   NAMEDOCTOR           VARCHAR(100)         null,
+   SPECIALTY            VARCHAR(60)          null,
+   constraint PK_DOCTOR primary key (ID_D)
 );
 
-
-ALTER TABLE public.hospital OWNER TO postgres;
-
---
--- TOC entry 174 (class 1259 OID 16793)
--- Name: hospital_id_h_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE hospital_id_h_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.hospital_id_h_seq OWNER TO postgres;
-
---
--- TOC entry 2036 (class 0 OID 0)
--- Dependencies: 174
--- Name: hospital_id_h_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE hospital_id_h_seq OWNED BY hospital.id_h;
-
-
---
--- TOC entry 177 (class 1259 OID 16807)
--- Name: hospitalroom; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE hospitalroom (
-    id_r integer NOT NULL,
-    id_h integer NOT NULL,
-    room_id integer,
-    nameroom character varying(200),
-    numberofbeds integer
+/*==============================================================*/
+/* Index: DOCTOR_PK                                             */
+/*==============================================================*/
+create unique index DOCTOR_PK on DOCTOR (
+ID_D
 );
 
-
-ALTER TABLE public.hospitalroom OWNER TO postgres;
-
---
--- TOC entry 176 (class 1259 OID 16805)
--- Name: hospitalroom_id_r_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE hospitalroom_id_r_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.hospitalroom_id_r_seq OWNER TO postgres;
-
---
--- TOC entry 2037 (class 0 OID 0)
--- Dependencies: 176
--- Name: hospitalroom_id_r_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE hospitalroom_id_r_seq OWNED BY hospitalroom.id_r;
-
-
---
--- TOC entry 179 (class 1259 OID 16817)
--- Name: lab; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE lab (
-    id_l integer NOT NULL,
-    lab_id integer,
-    name_lab character varying(150),
-    address_lab character varying(150),
-    phone_lab integer
+/*==============================================================*/
+/* Index: RELATIONSHIP_1_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_1_FK on DOCTOR (
+ID_H
 );
 
-
-ALTER TABLE public.lab OWNER TO postgres;
-
---
--- TOC entry 178 (class 1259 OID 16815)
--- Name: lab_id_l_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE lab_id_l_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.lab_id_l_seq OWNER TO postgres;
-
---
--- TOC entry 2038 (class 0 OID 0)
--- Dependencies: 178
--- Name: lab_id_l_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE lab_id_l_seq OWNED BY lab.id_l;
-
-
---
--- TOC entry 181 (class 1259 OID 16826)
--- Name: labtest; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE labtest (
-    id_lt integer NOT NULL,
-    id_h integer NOT NULL,
-    id_l integer NOT NULL,
-    labtest_id integer,
-    servicedescription character varying(200),
-    testdate date
+/*==============================================================*/
+/* Table: DOCTORVISIT                                           */
+/*==============================================================*/
+create table DOCTORVISIT (
+   ID_DV                INT4                 not null,
+   ID_P                 INT4                 not null,
+   ID_D                 INT4                 not null,
+   DOCTORVISIT_ID       INT4                 null,
+   VISITDATE            DATE                 null,
+   constraint PK_DOCTORVISIT primary key (ID_DV)
 );
 
-
-ALTER TABLE public.labtest OWNER TO postgres;
-
---
--- TOC entry 180 (class 1259 OID 16824)
--- Name: labtest_id_lt_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE labtest_id_lt_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.labtest_id_lt_seq OWNER TO postgres;
-
---
--- TOC entry 2039 (class 0 OID 0)
--- Dependencies: 180
--- Name: labtest_id_lt_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE labtest_id_lt_seq OWNED BY labtest.id_lt;
-
-
---
--- TOC entry 183 (class 1259 OID 16837)
--- Name: patient; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE patient (
-    id_p integer NOT NULL,
-    id_r integer,
-    ci integer,
-    registrationnumber integer,
-    name character varying(100),
-    lastname character varying(150),
-    bednumber integer,
-    address character varying(200),
-    dateofbirth date,
-    sex character(1)
+/*==============================================================*/
+/* Index: DOCTORVISIT_PK                                        */
+/*==============================================================*/
+create unique index DOCTORVISIT_PK on DOCTORVISIT (
+ID_DV
 );
 
-
-ALTER TABLE public.patient OWNER TO postgres;
-
---
--- TOC entry 182 (class 1259 OID 16835)
--- Name: patient_id_p_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE patient_id_p_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.patient_id_p_seq OWNER TO postgres;
-
---
--- TOC entry 2040 (class 0 OID 0)
--- Dependencies: 182
--- Name: patient_id_p_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE patient_id_p_seq OWNED BY patient.id_p;
-
-
---
--- TOC entry 1961 (class 2604 OID 16764)
--- Name: id_diag; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY diagnosis ALTER COLUMN id_diag SET DEFAULT nextval('diagnosis_id_diag_seq'::regclass);
-
-
---
--- TOC entry 1962 (class 2604 OID 16777)
--- Name: id_d; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY doctor ALTER COLUMN id_d SET DEFAULT nextval('doctor_id_d_seq'::regclass);
-
-
---
--- TOC entry 1963 (class 2604 OID 16787)
--- Name: id_dv; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY doctorvisit ALTER COLUMN id_dv SET DEFAULT nextval('doctorvisit_id_dv_seq'::regclass);
-
-
---
--- TOC entry 1964 (class 2604 OID 16798)
--- Name: id_h; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY hospital ALTER COLUMN id_h SET DEFAULT nextval('hospital_id_h_seq'::regclass);
-
-
---
--- TOC entry 1965 (class 2604 OID 16810)
--- Name: id_r; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY hospitalroom ALTER COLUMN id_r SET DEFAULT nextval('hospitalroom_id_r_seq'::regclass);
-
-
---
--- TOC entry 1966 (class 2604 OID 16820)
--- Name: id_l; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY lab ALTER COLUMN id_l SET DEFAULT nextval('lab_id_l_seq'::regclass);
-
-
---
--- TOC entry 1967 (class 2604 OID 16829)
--- Name: id_lt; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY labtest ALTER COLUMN id_lt SET DEFAULT nextval('labtest_id_lt_seq'::regclass);
-
-
---
--- TOC entry 1968 (class 2604 OID 16840)
--- Name: id_p; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY patient ALTER COLUMN id_p SET DEFAULT nextval('patient_id_p_seq'::regclass);
-
-
---
--- TOC entry 2010 (class 0 OID 16761)
--- Dependencies: 169
--- Data for Name: diagnosis; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY diagnosis (id_diag, id_p, diagnosis_id, diagnosistype, complications, diagnosisdate) FROM stdin;
-\.
-
-
---
--- TOC entry 2041 (class 0 OID 0)
--- Dependencies: 168
--- Name: diagnosis_id_diag_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('diagnosis_id_diag_seq', 1, false);
-
-
---
--- TOC entry 2012 (class 0 OID 16774)
--- Dependencies: 171
--- Data for Name: doctor; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY doctor (id_d, id_h, doctor_id, ci, namedoctor, specialty) FROM stdin;
-\.
-
-
---
--- TOC entry 2042 (class 0 OID 0)
--- Dependencies: 170
--- Name: doctor_id_d_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('doctor_id_d_seq', 1, false);
-
-
---
--- TOC entry 2014 (class 0 OID 16784)
--- Dependencies: 173
--- Data for Name: doctorvisit; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY doctorvisit (id_dv, id_p, id_d, doctorvisit_id, visitdate) FROM stdin;
-\.
-
-
---
--- TOC entry 2043 (class 0 OID 0)
--- Dependencies: 172
--- Name: doctorvisit_id_dv_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('doctorvisit_id_dv_seq', 1, false);
-
-
---
--- TOC entry 2016 (class 0 OID 16795)
--- Dependencies: 175
--- Data for Name: hospital; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY hospital (id_h, cod_hospital, name, address, phone, numberofbeds) FROM stdin;
-11	100	Viedma	Av. Aniceto Arce #465	35753	200
-12	101	San Andres	C. Villavicencio #67	4675662	100
-13	102	Caja Nacional de Salud	Av. Ayacuho #568	4574578	120
-\.
-
-
---
--- TOC entry 2044 (class 0 OID 0)
--- Dependencies: 174
--- Name: hospital_id_h_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('hospital_id_h_seq', 13, true);
-
-
---
--- TOC entry 2018 (class 0 OID 16807)
--- Dependencies: 177
--- Data for Name: hospitalroom; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY hospitalroom (id_r, id_h, room_id, nameroom, numberofbeds) FROM stdin;
-1	11	200	A1	7
-3	11	201	A2	7
-4	11	202	A3	7
-5	11	203	A4	7
-6	11	204	B1	7
-7	11	205	B2	7
-8	11	206	B3	7
-9	11	207	B4	7
-10	11	208	C1	7
-11	11	209	C2	7
-12	13	210	A1	8
-13	13	211	A2	3
-14	13	212	A3	1
-15	13	213	A4	5
-16	13	214	A5	2
-17	13	215	B1	1
-18	13	216	B2	5
-19	13	217	B3	3
-20	13	218	B4	2
-\.
-
-
---
--- TOC entry 2045 (class 0 OID 0)
--- Dependencies: 176
--- Name: hospitalroom_id_r_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('hospitalroom_id_r_seq', 20, true);
-
-
---
--- TOC entry 2020 (class 0 OID 16817)
--- Dependencies: 179
--- Data for Name: lab; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY lab (id_l, lab_id, name_lab, address_lab, phone_lab) FROM stdin;
-\.
-
-
---
--- TOC entry 2046 (class 0 OID 0)
--- Dependencies: 178
--- Name: lab_id_l_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('lab_id_l_seq', 1, false);
-
-
---
--- TOC entry 2022 (class 0 OID 16826)
--- Dependencies: 181
--- Data for Name: labtest; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY labtest (id_lt, id_h, id_l, labtest_id, servicedescription, testdate) FROM stdin;
-\.
-
-
---
--- TOC entry 2047 (class 0 OID 0)
--- Dependencies: 180
--- Name: labtest_id_lt_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('labtest_id_lt_seq', 1, false);
-
-
---
--- TOC entry 2024 (class 0 OID 16837)
--- Dependencies: 183
--- Data for Name: patient; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY patient (id_p, id_r, ci, registrationnumber, name, lastname, bednumber, address, dateofbirth, sex) FROM stdin;
-\.
-
-
---
--- TOC entry 2048 (class 0 OID 0)
--- Dependencies: 182
--- Name: patient_id_p_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('patient_id_p_seq', 1, false);
-
-
---
--- TOC entry 1971 (class 2606 OID 16769)
--- Name: pk_diagnosis; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY diagnosis
-    ADD CONSTRAINT pk_diagnosis PRIMARY KEY (id_diag);
-
-
---
--- TOC entry 1975 (class 2606 OID 16779)
--- Name: pk_doctor; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY doctor
-    ADD CONSTRAINT pk_doctor PRIMARY KEY (id_d);
-
-
---
--- TOC entry 1979 (class 2606 OID 16789)
--- Name: pk_doctorvisit; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY doctorvisit
-    ADD CONSTRAINT pk_doctorvisit PRIMARY KEY (id_dv);
-
-
---
--- TOC entry 1984 (class 2606 OID 16803)
--- Name: pk_hospital; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY hospital
-    ADD CONSTRAINT pk_hospital PRIMARY KEY (id_h);
-
-
---
--- TOC entry 1987 (class 2606 OID 16812)
--- Name: pk_hospitalroom; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY hospitalroom
-    ADD CONSTRAINT pk_hospitalroom PRIMARY KEY (id_r);
-
-
---
--- TOC entry 1991 (class 2606 OID 16822)
--- Name: pk_lab; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY lab
-    ADD CONSTRAINT pk_lab PRIMARY KEY (id_l);
-
-
---
--- TOC entry 1994 (class 2606 OID 16831)
--- Name: pk_labtest; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY labtest
-    ADD CONSTRAINT pk_labtest PRIMARY KEY (id_lt);
-
-
---
--- TOC entry 1999 (class 2606 OID 16842)
--- Name: pk_patient; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY patient
-    ADD CONSTRAINT pk_patient PRIMARY KEY (id_p);
-
-
---
--- TOC entry 1969 (class 1259 OID 16770)
--- Name: diagnosis_pk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE UNIQUE INDEX diagnosis_pk ON diagnosis USING btree (id_diag);
-
-
---
--- TOC entry 1973 (class 1259 OID 16780)
--- Name: doctor_pk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE UNIQUE INDEX doctor_pk ON doctor USING btree (id_d);
-
-
---
--- TOC entry 1977 (class 1259 OID 16790)
--- Name: doctorvisit_pk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE UNIQUE INDEX doctorvisit_pk ON doctorvisit USING btree (id_dv);
-
-
---
--- TOC entry 1982 (class 1259 OID 16804)
--- Name: hospital_pk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE UNIQUE INDEX hospital_pk ON hospital USING btree (id_h);
-
-
---
--- TOC entry 1985 (class 1259 OID 16813)
--- Name: hospitalroom_pk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE UNIQUE INDEX hospitalroom_pk ON hospitalroom USING btree (id_r);
-
-
---
--- TOC entry 1989 (class 1259 OID 16823)
--- Name: lab_pk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE UNIQUE INDEX lab_pk ON lab USING btree (id_l);
-
-
---
--- TOC entry 1992 (class 1259 OID 16832)
--- Name: labtest_pk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE UNIQUE INDEX labtest_pk ON labtest USING btree (id_lt);
-
-
---
--- TOC entry 1997 (class 1259 OID 16843)
--- Name: patient_pk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE UNIQUE INDEX patient_pk ON patient USING btree (id_p);
-
-
---
--- TOC entry 1976 (class 1259 OID 16781)
--- Name: relationship_1_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX relationship_1_fk ON doctor USING btree (id_h);
-
-
---
--- TOC entry 1988 (class 1259 OID 16814)
--- Name: relationship_2_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX relationship_2_fk ON hospitalroom USING btree (id_h);
-
-
---
--- TOC entry 1980 (class 1259 OID 16791)
--- Name: relationship_3_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX relationship_3_fk ON doctorvisit USING btree (id_d);
-
-
---
--- TOC entry 1995 (class 1259 OID 16833)
--- Name: relationship_4_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX relationship_4_fk ON labtest USING btree (id_l);
-
-
---
--- TOC entry 1996 (class 1259 OID 16834)
--- Name: relationship_5_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX relationship_5_fk ON labtest USING btree (id_h);
-
-
---
--- TOC entry 1972 (class 1259 OID 16771)
--- Name: relationship_6_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX relationship_6_fk ON diagnosis USING btree (id_p);
-
-
---
--- TOC entry 1981 (class 1259 OID 16792)
--- Name: relationship_7_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX relationship_7_fk ON doctorvisit USING btree (id_p);
-
-
---
--- TOC entry 2000 (class 1259 OID 16844)
--- Name: relationship_8_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX relationship_8_fk ON patient USING btree (id_r);
-
-
---
--- TOC entry 2001 (class 2606 OID 16845)
--- Name: fk_diagnosi_relations_patient; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY diagnosis
-    ADD CONSTRAINT fk_diagnosi_relations_patient FOREIGN KEY (id_p) REFERENCES patient(id_p) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- TOC entry 2002 (class 2606 OID 16850)
--- Name: fk_doctor_relations_hospital; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY doctor
-    ADD CONSTRAINT fk_doctor_relations_hospital FOREIGN KEY (id_h) REFERENCES hospital(id_h) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- TOC entry 2003 (class 2606 OID 16855)
--- Name: fk_doctorvi_relations_doctor; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY doctorvisit
-    ADD CONSTRAINT fk_doctorvi_relations_doctor FOREIGN KEY (id_d) REFERENCES doctor(id_d) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- TOC entry 2004 (class 2606 OID 16860)
--- Name: fk_doctorvi_relations_patient; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY doctorvisit
-    ADD CONSTRAINT fk_doctorvi_relations_patient FOREIGN KEY (id_p) REFERENCES patient(id_p) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- TOC entry 2005 (class 2606 OID 16865)
--- Name: fk_hospital_relations_hospital; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY hospitalroom
-    ADD CONSTRAINT fk_hospital_relations_hospital FOREIGN KEY (id_h) REFERENCES hospital(id_h) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- TOC entry 2007 (class 2606 OID 16875)
--- Name: fk_labtest_relations_hospital; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY labtest
-    ADD CONSTRAINT fk_labtest_relations_hospital FOREIGN KEY (id_h) REFERENCES hospital(id_h) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- TOC entry 2006 (class 2606 OID 16870)
--- Name: fk_labtest_relations_lab; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY labtest
-    ADD CONSTRAINT fk_labtest_relations_lab FOREIGN KEY (id_l) REFERENCES lab(id_l) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- TOC entry 2008 (class 2606 OID 16880)
--- Name: fk_patient_relations_hospital; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY patient
-    ADD CONSTRAINT fk_patient_relations_hospital FOREIGN KEY (id_r) REFERENCES hospitalroom(id_r) ON UPDATE RESTRICT ON DELETE RESTRICT;
-
-
---
--- TOC entry 2031 (class 0 OID 0)
--- Dependencies: 5
--- Name: public; Type: ACL; Schema: -; Owner: postgres
---
-
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
--- Completed on 2015-03-10 23:30:48
-
---
--- PostgreSQL database dump complete
---
-
+/*==============================================================*/
+/* Index: RELATIONSHIP_3_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_3_FK on DOCTORVISIT (
+ID_D
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_7_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_7_FK on DOCTORVISIT (
+ID_P
+);
+
+/*==============================================================*/
+/* Table: HOSPITAL                                              */
+/*==============================================================*/
+create table HOSPITAL (
+   ID_H                 INT4                 not null,
+   HOSPITAL_ID          INT4                 null,
+   NAME                 VARCHAR(100)         null,
+   ADDRESS              VARCHAR(200)         null,
+   PHONE                NUMERIC              null,
+   NUMBEROFBEDS         INT4                 null,
+   constraint PK_HOSPITAL primary key (ID_H)
+);
+
+/*==============================================================*/
+/* Index: HOSPITAL_PK                                           */
+/*==============================================================*/
+create unique index HOSPITAL_PK on HOSPITAL (
+ID_H
+);
+
+/*==============================================================*/
+/* Table: HOSPITALROOM                                          */
+/*==============================================================*/
+create table HOSPITALROOM (
+   ID_R                 INT4                 not null,
+   ID_H                 INT4                 not null,
+   ROOM_ID              INT4                 null,
+   NAMEROOM             VARCHAR(200)         null,
+   NUMBEROFBEDS         INT4                 null,
+   constraint PK_HOSPITALROOM primary key (ID_R)
+);
+
+/*==============================================================*/
+/* Index: HOSPITALROOM_PK                                       */
+/*==============================================================*/
+create unique index HOSPITALROOM_PK on HOSPITALROOM (
+ID_R
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_2_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_2_FK on HOSPITALROOM (
+ID_H
+);
+
+/*==============================================================*/
+/* Table: LAB                                                   */
+/*==============================================================*/
+create table LAB (
+   ID_L                 INT4                 not null,
+   LAB_ID               INT4                 null,
+   NAME_LAB             VARCHAR(150)         null,
+   ADDRESS_LAB          VARCHAR(150)         null,
+   PHONE_LAB            INT4                 null,
+   constraint PK_LAB primary key (ID_L)
+);
+
+/*==============================================================*/
+/* Index: LAB_PK                                                */
+/*==============================================================*/
+create unique index LAB_PK on LAB (
+ID_L
+);
+
+/*==============================================================*/
+/* Table: LABTEST                                               */
+/*==============================================================*/
+create table LABTEST (
+   ID_LT                INT4                 not null,
+   ID_H                 INT4                 not null,
+   ID_L                 INT4                 not null,
+   LABTEST_ID           INT4                 null,
+   SERVICEDESCRIPTION   VARCHAR(200)         null,
+   TESTDATE             DATE                 null,
+   constraint PK_LABTEST primary key (ID_LT)
+);
+
+/*==============================================================*/
+/* Index: LABTEST_PK                                            */
+/*==============================================================*/
+create unique index LABTEST_PK on LABTEST (
+ID_LT
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_4_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_4_FK on LABTEST (
+ID_L
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_5_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_5_FK on LABTEST (
+ID_H
+);
+
+/*==============================================================*/
+/* Table: PATIENT                                               */
+/*==============================================================*/
+create table PATIENT (
+   ID_P                 INT4                 not null,
+   ID_R                 INT4                 null,
+   PATIENT_ID           INT4                 null,
+   CI                   INT4                 null,
+   REGISTRATIONNUMBER   INT4                 null,
+   NAME                 VARCHAR(100)         null,
+   BEDNUMBER            INT4                 null,
+   ADDRESS              VARCHAR(200)         null,
+   DATEOFBIRTH          DATE                 null,
+   SEX                  CHAR(1)              null,
+   constraint PK_PATIENT primary key (ID_P)
+);
+
+/*==============================================================*/
+/* Index: PATIENT_PK                                            */
+/*==============================================================*/
+create unique index PATIENT_PK on PATIENT (
+ID_P
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_8_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_8_FK on PATIENT (
+ID_R
+);
+
+alter table DIAGNOSIS
+   add constraint FK_DIAGNOSI_RELATIONS_PATIENT foreign key (ID_P)
+      references PATIENT (ID_P)
+      on delete restrict on update restrict;
+
+alter table DOCTOR
+   add constraint FK_DOCTOR_RELATIONS_HOSPITAL foreign key (ID_H)
+      references HOSPITAL (ID_H)
+      on delete restrict on update restrict;
+
+alter table DOCTORVISIT
+   add constraint FK_DOCTORVI_RELATIONS_DOCTOR foreign key (ID_D)
+      references DOCTOR (ID_D)
+      on delete restrict on update restrict;
+
+alter table DOCTORVISIT
+   add constraint FK_DOCTORVI_RELATIONS_PATIENT foreign key (ID_P)
+      references PATIENT (ID_P)
+      on delete restrict on update restrict;
+
+alter table HOSPITALROOM
+   add constraint FK_HOSPITAL_RELATIONS_HOSPITAL foreign key (ID_H)
+      references HOSPITAL (ID_H)
+      on delete restrict on update restrict;
+
+alter table LABTEST
+   add constraint FK_LABTEST_RELATIONS_LAB foreign key (ID_L)
+      references LAB (ID_L)
+      on delete restrict on update restrict;
+
+alter table LABTEST
+   add constraint FK_LABTEST_RELATIONS_HOSPITAL foreign key (ID_H)
+      references HOSPITAL (ID_H)
+      on delete restrict on update restrict;
+
+alter table PATIENT
+   add constraint FK_PATIENT_RELATIONS_HOSPITAL foreign key (ID_R)
+      references HOSPITALROOM (ID_R)
+      on delete restrict on update restrict;
