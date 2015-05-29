@@ -31,7 +31,7 @@ ID_P
 /*==============================================================*/
 create table DOCTOR (
    ID_D                 INT4                 not null,
-   ID_H                 INT4                 not null,
+   ID_S                 INT4                 not null,
    DOCTOR_ID            INT4                 null,
    CI                   INT4                 null,
    NAMEDOCTOR           VARCHAR(100)         null,
@@ -50,7 +50,7 @@ ID_D
 /* Index: RELATIONSHIP_1_FK                                     */
 /*==============================================================*/
 create  index RELATIONSHIP_1_FK on DOCTOR (
-ID_H
+ID_S
 );
 
 /*==============================================================*/
@@ -90,12 +90,10 @@ ID_P
 /* Table: HOSPITAL                                              */
 /*==============================================================*/
 create table HOSPITAL (
-   ID_H                 INT4                 not null,
-   HOSPITAL_ID          INT4                 null,
+   ID_H                 SERIAL not null,
    NAME                 VARCHAR(100)         null,
    ADDRESS              VARCHAR(200)         null,
    PHONE                NUMERIC              null,
-   NUMBEROFBEDS         INT4                 null,
    constraint PK_HOSPITAL primary key (ID_H)
 );
 
@@ -103,32 +101,6 @@ create table HOSPITAL (
 /* Index: HOSPITAL_PK                                           */
 /*==============================================================*/
 create unique index HOSPITAL_PK on HOSPITAL (
-ID_H
-);
-
-/*==============================================================*/
-/* Table: HOSPITALROOM                                          */
-/*==============================================================*/
-create table HOSPITALROOM (
-   ID_R                 INT4                 not null,
-   ID_H                 INT4                 not null,
-   ROOM_ID              INT4                 null,
-   NAMEROOM             VARCHAR(200)         null,
-   NUMBEROFBEDS         INT4                 null,
-   constraint PK_HOSPITALROOM primary key (ID_R)
-);
-
-/*==============================================================*/
-/* Index: HOSPITALROOM_PK                                       */
-/*==============================================================*/
-create unique index HOSPITALROOM_PK on HOSPITALROOM (
-ID_R
-);
-
-/*==============================================================*/
-/* Index: RELATIONSHIP_2_FK                                     */
-/*==============================================================*/
-create  index RELATIONSHIP_2_FK on HOSPITALROOM (
 ID_H
 );
 
@@ -156,7 +128,7 @@ ID_L
 /*==============================================================*/
 create table LABTEST (
    ID_LT                INT4                 not null,
-   ID_H                 INT4                 not null,
+   ID_S                 INT4                 not null,
    ID_L                 INT4                 not null,
    LABTEST_ID           INT4                 null,
    SERVICEDESCRIPTION   VARCHAR(200)         null,
@@ -182,7 +154,7 @@ ID_L
 /* Index: RELATIONSHIP_5_FK                                     */
 /*==============================================================*/
 create  index RELATIONSHIP_5_FK on LABTEST (
-ID_H
+ID_S
 );
 
 /*==============================================================*/
@@ -216,14 +188,68 @@ create  index RELATIONSHIP_8_FK on PATIENT (
 ID_R
 );
 
+/*==============================================================*/
+/* Table: SUCURSAL                                              */
+/*==============================================================*/
+create table SUCURSAL (
+   ID_S                 INT4                 not null,
+   ID_H                 INT4                 not null,
+   SUCURSAL_ID          INT4                 null,
+   NAME                 VARCHAR(100)         null,
+   ADDRESS              VARCHAR(200)         null,
+   PHONE                NUMERIC              null,
+   NUMBEROFROOMS        INT4                 null,
+   constraint PK_SUCURSAL primary key (ID_S)
+);
+
+/*==============================================================*/
+/* Index: SUCURSAL_PK                                           */
+/*==============================================================*/
+create unique index SUCURSAL_PK on SUCURSAL (
+ID_S
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_9_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_9_FK on SUCURSAL (
+ID_H
+);
+
+/*==============================================================*/
+/* Table: SUCURSALROOM                                          */
+/*==============================================================*/
+create table SUCURSALROOM (
+   ID_R                 INT4                 not null,
+   ID_S                 INT4                 not null,
+   ROOM_ID              INT4                 null,
+   NAMEROOM             VARCHAR(200)         null,
+   NUMBEROFBEDS         INT4                 null,
+   constraint PK_SUCURSALROOM primary key (ID_R)
+);
+
+/*==============================================================*/
+/* Index: SUCURSALROOM_PK                                       */
+/*==============================================================*/
+create unique index SUCURSALROOM_PK on SUCURSALROOM (
+ID_R
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_2_FK                                     */
+/*==============================================================*/
+create  index RELATIONSHIP_2_FK on SUCURSALROOM (
+ID_S
+);
+
 alter table DIAGNOSIS
    add constraint FK_DIAGNOSI_RELATIONS_PATIENT foreign key (ID_P)
       references PATIENT (ID_P)
       on delete restrict on update restrict;
 
 alter table DOCTOR
-   add constraint FK_DOCTOR_RELATIONS_HOSPITAL foreign key (ID_H)
-      references HOSPITAL (ID_H)
+   add constraint FK_DOCTOR_RELATIONS_SUCURSAL foreign key (ID_S)
+      references SUCURSAL (ID_S)
       on delete restrict on update restrict;
 
 alter table DOCTORVISIT
@@ -236,22 +262,27 @@ alter table DOCTORVISIT
       references PATIENT (ID_P)
       on delete restrict on update restrict;
 
-alter table HOSPITALROOM
-   add constraint FK_HOSPITAL_RELATIONS_HOSPITAL foreign key (ID_H)
-      references HOSPITAL (ID_H)
-      on delete restrict on update restrict;
-
 alter table LABTEST
    add constraint FK_LABTEST_RELATIONS_LAB foreign key (ID_L)
       references LAB (ID_L)
       on delete restrict on update restrict;
 
 alter table LABTEST
-   add constraint FK_LABTEST_RELATIONS_HOSPITAL foreign key (ID_H)
-      references HOSPITAL (ID_H)
+   add constraint FK_LABTEST_RELATIONS_SUCURSAL foreign key (ID_S)
+      references SUCURSAL (ID_S)
       on delete restrict on update restrict;
 
 alter table PATIENT
-   add constraint FK_PATIENT_RELATIONS_HOSPITAL foreign key (ID_R)
-      references HOSPITALROOM (ID_R)
+   add constraint FK_PATIENT_RELATIONS_SUCURSAL foreign key (ID_R)
+      references SUCURSALROOM (ID_R)
+      on delete restrict on update restrict;
+
+alter table SUCURSAL
+   add constraint FK_SUCURSAL_RELATIONS_HOSPITAL foreign key (ID_H)
+      references HOSPITAL (ID_H)
+      on delete restrict on update restrict;
+
+alter table SUCURSALROOM
+   add constraint FK_SUCURSAL_RELATIONS_SUCURSAL foreign key (ID_S)
+      references SUCURSAL (ID_S)
       on delete restrict on update restrict;
