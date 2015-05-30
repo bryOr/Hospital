@@ -6,6 +6,13 @@
 
 package view.Hospital;
 
+import control.Hospital.ControllerSucursal;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author master
@@ -15,8 +22,11 @@ public class SucursalFinder extends javax.swing.JFrame {
     /**
      * Creates new form SucursalFinder
      */
+    private ControllerSucursal ctrlS;
     public SucursalFinder() {
         initComponents();
+        ctrlS=new ControllerSucursal();
+        generateInfo();
     }
 
     /**
@@ -73,6 +83,32 @@ public class SucursalFinder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public void generateInfo(){
+        String[] columnas={"#","Nombre","Direccion"};
+        Object[][] info=ctrlS.getSucursalInformation();
+        DefaultTableModel table=new DefaultTableModel(info, columnas){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }  
+        };
+        this.tabSucursals.setModel(table);
+        modifyTableStructure();
+    }
+    public void modifyTableStructure(){
+        TableColumnModel column=tabSucursals.getColumnModel();
+        column.getColumn(0).setPreferredWidth(2);
+        
+        DefaultTableCellRenderer t=new DefaultTableCellRenderer();
+        t.setHorizontalAlignment(SwingConstants.CENTER);
+        for(int c=0;c<3;c++){
+            tabSucursals.getColumnModel().getColumn(c).setCellRenderer(t);
+        }
+        tabSucursals.setShowHorizontalLines(false);
+        tabSucursals.setShowVerticalLines(false);
+    }
     /**
      * @param args the command line arguments
      */

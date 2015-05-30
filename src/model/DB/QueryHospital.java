@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.Caracteristics.Hospital;
 
@@ -21,6 +23,7 @@ import model.Caracteristics.Hospital;
  * @author Oscar
  */
 public class QueryHospital {
+    
     public boolean registerHospital(Hospital h){
         boolean res=false;
         PreparedStatement stmt=null;
