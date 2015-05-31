@@ -7,6 +7,10 @@
 package view.Hospital;
 
 import control.Hospital.ControllerSucursal;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +29,16 @@ public class SucursalFinder extends javax.swing.JFrame {
     private ControllerSucursal ctrlS;
     public SucursalFinder() {
         initComponents();
+        ((JPanel) getContentPane()).setOpaque(false);
+        ImageIcon imagen = new ImageIcon(this.getClass().getResource("/imagenes/Sucursals.jpg"));
+        JLabel fondo = new JLabel();
+        fondo.setIcon(imagen);
+        getLayeredPane().add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
+        fondo.setBounds(0, 0, imagen.getIconWidth(), imagen.getIconHeight());
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         ctrlS=new ControllerSucursal();
+        
         generateInfo();
     }
 
@@ -44,7 +57,7 @@ public class SucursalFinder extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblInfo.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        lblInfo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblInfo.setText("Haga Clic en alguna Sucursal que quiera administrar:");
 
         tabSucursals.setModel(new javax.swing.table.DefaultTableModel(
@@ -55,6 +68,11 @@ public class SucursalFinder extends javax.swing.JFrame {
 
             }
         ));
+        tabSucursals.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabSucursalsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabSucursals);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -62,26 +80,35 @@ public class SucursalFinder extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(lblInfo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblInfo)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(44, 44, 44)
                 .addComponent(lblInfo)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tabSucursalsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabSucursalsMouseClicked
+        // TODO add your handling code here:
+        int opcion=this.tabSucursals.getSelectedRow();
+        
+        String nombre=this.tabSucursals.getValueAt(opcion, 1).toString();
+        String direccion=this.tabSucursals.getValueAt(opcion, 2).toString();
+        System.out.println(nombre+" "+direccion);
+    }//GEN-LAST:event_tabSucursalsMouseClicked
 
     
     public void generateInfo(){
