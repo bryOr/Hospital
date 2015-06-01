@@ -105,9 +105,14 @@ public class SucursalFinder extends javax.swing.JFrame {
         // TODO add your handling code here:
         int opcion=this.tabSucursals.getSelectedRow();
         
-        String nombre=this.tabSucursals.getValueAt(opcion, 1).toString();
-        String direccion=this.tabSucursals.getValueAt(opcion, 2).toString();
-        System.out.println(nombre+" "+direccion);
+        String name=this.tabSucursals.getValueAt(opcion, 1).toString();
+        String address=this.tabSucursals.getValueAt(opcion, 2).toString();
+        //System.out.println(nombre+" "+direccion);
+        Sucursal s=new Sucursal();
+        s.Name=name;
+        s.address=address;
+        s.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_tabSucursalsMouseClicked
 
     

@@ -4,7 +4,6 @@ package view.Hospital;
 import java.awt.Dimension;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import view.Hospital.HospitalRegister;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,12 +15,15 @@ import view.Hospital.HospitalRegister;
  *
  * @author Oscar
  */
-public class Menu extends javax.swing.JFrame {
+public class Sucursal extends javax.swing.JFrame {
 
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public String Name;
+    public String address;
+    
+    public Sucursal() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -35,7 +37,6 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,60 +48,32 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
-        escritorio.setLayout(escritorioLayout);
-        escritorioLayout.setHorizontalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jButton1)
-                .addContainerGap(464, Short.MAX_VALUE))
-        );
-        escritorioLayout.setVerticalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jButton1)
-                .addContainerGap(262, Short.MAX_VALUE))
-        );
-        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(escritorio))
+                .addGap(60, 60, 60)
+                .addComponent(jButton1)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jButton1)
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void agregarInternalFrame(JDesktopPane desktop, JInternalFrame internal){
-        desktop.add(internal);
-        centrarInternalFrame(internal);
-        
-    }
-    public void centrarInternalFrame(JInternalFrame nombreInternal) {
-        Dimension desktopSize= escritorio.getSize();
-        Dimension internal = nombreInternal.getSize(); //se obtiene tamaÃ±o del internal frame
-        int width = (desktopSize.width - internal.width) / 2; // ancho dividido 2
-        int height = (desktopSize.height - internal.height) / 2; //alto dividido 2
-        nombreInternal.setLocation(width, height);// se posiciona
-        nombreInternal.show(); // se muestra
-    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //agregarInternalFrame(escritorio, new HospitalFinder());
-        HospitalFinder hf=new HospitalFinder();
-        hf.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -118,26 +91,25 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sucursal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Sucursal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

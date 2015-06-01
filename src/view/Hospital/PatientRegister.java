@@ -246,7 +246,7 @@ public class PatientRegister extends javax.swing.JFrame {
                 boolean confirmed=controlPatient.patient_inserted(p);
                 if(confirmed){
                     JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
-                    Menu m = new Menu();
+                    Sucursal m = new Sucursal();
                     m.setVisible(true);
                     this.dispose();
                 }
@@ -263,7 +263,7 @@ public class PatientRegister extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        Menu m=new Menu();
+        Sucursal m=new Sucursal();
         m.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
