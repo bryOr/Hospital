@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import model.Caracteristics.Hospital;
 
@@ -69,32 +67,6 @@ public class QueryHospital {
             System.out.println(ex);
         }
         return names;
-    }
-    
-    
-    public List<String> room_list(String hospital_name){
-        Connection conn=null;
-        ResultSet rs=null;
-        List<String> rooms=new ArrayList<String>();
-        try {
-            conn=Conexion.getInstance().getConnection();
-            Statement stmt=conn.createStatement();
-            String query="SELECT hr.nameroom "
-                       + "FROM hospital h,hospitalroom hr "
-                       + "WHERE h.id_h=hr.id_h AND h.name='"+hospital_name+"'";
-            rs=stmt.executeQuery(query);
-            
-            while(rs.next()){
-                String room_name=rs.getString("nameroom");
-                rooms.add(room_name);
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return rooms;
     }
     
 }

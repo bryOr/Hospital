@@ -10,12 +10,51 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author master
  */
 public class QuerySucursal {
+    
+    public ArrayList<String> getRooms(String sucursalName){
+        ArrayList<String> rooms=new ArrayList<String>();
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+        ResultSet rs2=null;
+        int id_sucursalName=0;
+        
+        try {
+            conn=Conexion.getInstance().getConnection();
+            stmt=conn.createStatement();
+            String ID="SELECT id_s "
+                    + "FROM sucursal "
+                    + "WHERE name='"+sucursalName+"'";
+            rs=stmt.executeQuery(ID);
+            rs.next();
+            id_sucursalName=rs.getInt("id_s");
+            
+            String query="SELECT nameroom "
+                    + "FROM sucursalroom "
+                    + "WHERE id_s='"+id_sucursalName+"'";
+            rs2=stmt.executeQuery(query);
+            while(rs2.next()){
+                String room_name=rs2.getString("nameroom");
+                rooms.add(room_name);
+            }
+            rs.close();
+            rs2.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return rooms;
+    }
     public Object[][] showSucursals(){
         Connection conn=null;
         ResultSet rs=null;

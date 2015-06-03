@@ -35,7 +35,6 @@ public class PatientRegister extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         
-        controlHospital=new ControllerHospital();
         controlRoom=new ControllerRoom();
         controlPatient=new ControllerPatient();
         addOptionsSex();
@@ -268,7 +267,7 @@ public class PatientRegister extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
 
-            String aux_hospName=hospitalName;
+            String sucursalName=SucName;
             String name=txtName.getText();
             String lastname=txtLastName.getText();
             int ci=Integer.parseInt(txtID.getText());

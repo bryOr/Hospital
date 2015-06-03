@@ -28,13 +28,8 @@ public class ControllerHospital {
     public ArrayList<String> getAllHospitalNames(){
         return (ArrayList)q_h.ListofHospitals();
     }
-    public int ListSize(){
-        return getAllHospitalNames().size();
-    }
     
-    public ArrayList<String> getAllHospitalRooms(String hosp_name){
-        return (ArrayList)q_h.room_list(hosp_name);
-    }
+    
     public String getHospital_Name(String hosp_name){
         return hosp_name;
     }
