@@ -20,7 +20,7 @@ public class Sucursal extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    public String Name;
+    public String name;
     public String address;
     
     public Sucursal() {
@@ -41,7 +41,7 @@ public class Sucursal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Registrar Pacientes a Hospital");
+        jButton1.setText("Registrar Pacientes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -55,7 +55,7 @@ public class Sucursal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(jButton1)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,7 +70,11 @@ public class Sucursal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+        String sucursalName=name;
+        String sucursalAddress=address;
+        PatientRegister p=new PatientRegister();
+        p.SucName=sucursalName;
+        p.SucAddress=sucursalAddress;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

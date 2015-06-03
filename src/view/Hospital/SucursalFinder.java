@@ -109,7 +109,7 @@ public class SucursalFinder extends javax.swing.JFrame {
         String address=this.tabSucursals.getValueAt(opcion, 2).toString();
         //System.out.println(nombre+" "+direccion);
         Sucursal s=new Sucursal();
-        s.Name=name;
+        s.name=name;
         s.address=address;
         s.setVisible(true);
         this.dispose();
