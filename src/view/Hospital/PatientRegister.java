@@ -282,7 +282,7 @@ public class PatientRegister extends javax.swing.JFrame {
             String room=String.valueOf(cmbRoom.getSelectedItem());
             Date date=dateSelected();
             
-            int idRoom=controlRoom.getIdRoom(aux_hospName, room);
+            int idRoom=controlRoom.getIdRoom(sucursalName, room);
             
             Patient p=new Patient(idRoom, ci, registration_number, name, lastname, bedNumber, address, date, sex);
             if(controlPatient.validate_patient(p) || room.equals("--")){
@@ -319,15 +319,14 @@ public class PatientRegister extends javax.swing.JFrame {
     
     public void getRooms(){
         
-        
         for(int c=0;c<numberOfRooms();c++){
-            String name=controlHospital.getAllHospitalRooms(hospitalName).get(c);
+            String name=controlSucursal.getRooms(SucName).get(c);
             cmbRoom.addItem(name);
         }
     }
     public int numberOfRooms(){
         
-       int number_of_rooms=controlHospital.getAllHospitalRooms(hospitalName).size();
+       int number_of_rooms=controlSucursal.getNumberOfRooms(SucName);
        return number_of_rooms;
     }
     public void addOptionsSex(){

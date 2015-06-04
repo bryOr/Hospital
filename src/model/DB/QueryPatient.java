@@ -53,7 +53,7 @@ public class QueryPatient {
         return res;
     }
     
-    public int getID_Room(String hospital,String room){
+    public int getID_Room(String sucursal,String room){
         int id=0;
         Connection conn=null;
         ResultSet rs=null;
@@ -61,13 +61,13 @@ public class QueryPatient {
         try {
             conn=Conexion.getInstance().getConnection();
             Statement stmt=conn.createStatement();
-            String query="SELECT hr.id_r "
-                       + "FROM hospitalroom hr, hospital h "
-                       + "WHERE h.id_h=hr.id_h AND hr.nameroom='"+room+"' AND h.name='"+hospital+"'";
+            String query="SELECT sr.id_r "
+                       + "FROM sucursalroom sr, sucursal s "
+                       + "WHERE s.id_s=sr.id_s AND sr.nameroom='"+room+"' AND s.name='"+sucursal+"'";
             rs=stmt.executeQuery(query);
-            while(rs.next()){
-                id=rs.getInt("id_r");
-            }
+            rs.next();
+            id=rs.getInt("id_r");
+            
             rs.close();
             stmt.close();
             conn.close();
