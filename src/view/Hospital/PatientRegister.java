@@ -10,6 +10,7 @@ import com.toedter.calendar.demo.DateChooserPanelBeanInfo;
 import control.Hospital.ControllerHospital;
 import control.Hospital.ControllerPatient;
 import control.Hospital.ControllerRoom;
+import control.Hospital.ControllerSucursal;
 
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -25,9 +26,11 @@ public class PatientRegister extends javax.swing.JFrame {
      * Creates new form PatientRegister
      */
     
-    private  ControllerHospital controlHospital;
+    
+    
     private  ControllerRoom controlRoom;
     private  ControllerPatient controlPatient;
+    private  ControllerSucursal controlSucursal;
     
     public String SucName;
     public String SucAddress;
@@ -37,6 +40,7 @@ public class PatientRegister extends javax.swing.JFrame {
         
         controlRoom=new ControllerRoom();
         controlPatient=new ControllerPatient();
+        controlSucursal=new ControllerSucursal();
         addOptionsSex();
         cmbRoom.addItem("--");
         getRooms();

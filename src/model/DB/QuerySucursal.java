@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,8 +21,8 @@ import java.util.logging.Logger;
  */
 public class QuerySucursal {
     
-    public ArrayList<String> getRooms(String sucursalName){
-        ArrayList<String> rooms=new ArrayList<String>();
+    public List<String> getRooms(String sucursalName){
+        List<String> rooms=new ArrayList<String>();
         Connection conn=null;
         Statement stmt=null;
         ResultSet rs=null;
@@ -54,6 +55,31 @@ public class QuerySucursal {
             System.out.println(ex);
         }
         return rooms;
+    }
+    public int getNumberOfRooms(String sucursalName){
+        Connection conn=null;
+        Statement stmt=null;
+        int quantity=0;
+        ResultSet rs=null;
+        
+        try {
+            conn=Conexion.getInstance().getConnection();
+            stmt=conn.createStatement();
+            String queryQuantity="SELECT count(*) as quantity "
+                               + "FROM sucursalroom "
+                               + "WHERE nameroom='"+sucursalName+"'";
+            
+            rs=stmt.executeQuery(queryQuantity);
+            rs.next();
+            quantity=rs.getInt("quantity");
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return quantity;
     }
     public Object[][] showSucursals(){
         Connection conn=null;

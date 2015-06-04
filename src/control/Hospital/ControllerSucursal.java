@@ -6,6 +6,7 @@
 
 package control.Hospital;
 
+import java.util.ArrayList;
 import model.DB.QuerySucursal;
 
 /**
@@ -20,5 +21,11 @@ public class ControllerSucursal {
     }
     public Object[][] getSucursalInformation(){
         return ctrl.showSucursals();
+    }
+    public ArrayList<String> getRooms(String sucName){
+        return (ArrayList)ctrl.getRooms(sucName);
+    }
+    public int getNumberOfRooms(String sucName){
+        return ctrl.getNumberOfRooms(sucName);
     }
 }
