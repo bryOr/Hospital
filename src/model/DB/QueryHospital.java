@@ -22,29 +22,7 @@ import model.Caracteristics.Hospital;
  */
 public class QueryHospital {
     
-    public boolean registerHospital(Hospital h){
-        boolean res=false;
-        PreparedStatement stmt=null;
-        Connection conn=null;
-        try {
-            conn=Conexion.getInstance().getConnection();
-       
-        stmt=conn.prepareStatement("INSERT INTO hospital(cod_hospital,name,address,phone,numberofbeds) "
-                                 + "VALUES "
-                                 + "(?,?,?,?,?)");
-        stmt.setInt(1, h.getCode());
-        stmt.setString(2, h.getName());
-        stmt.setString(3, h.getAddress());
-        stmt.setInt(4, h.getPhone());
-        stmt.setInt(5, h.getNumber_beds());
-        
-        stmt.executeUpdate();
-        res=true;
-        } catch (SQLException ex) {
-           System.out.println(ex);
-        }
-        return res;
-    }
+    
     public List<String> ListofHospitals(){
         Connection conn=null;
         ResultSet rs=null;

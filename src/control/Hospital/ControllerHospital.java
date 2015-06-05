@@ -21,9 +21,7 @@ public class ControllerHospital {
     public ControllerHospital(){
         q_h=new QueryHospital();
     }
-    public boolean  addHospital(Hospital h){
-        return q_h.registerHospital(h);
-    }
+    
     
     public ArrayList<String> getAllHospitalNames(){
         return (ArrayList)q_h.ListofHospitals();

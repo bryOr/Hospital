@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
+;
 import javax.swing.table.TableColumnModel;
 
 /**
@@ -30,6 +30,7 @@ public class SucursalFinder extends javax.swing.JFrame {
     
     public SucursalFinder() {
         initComponents();
+        
         ((JPanel) getContentPane()).setOpaque(false);
         ImageIcon imagen = new ImageIcon(this.getClass().getResource("/imagenes/Sucursals.jpg"));
         JLabel fondo = new JLabel();

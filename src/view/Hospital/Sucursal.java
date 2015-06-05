@@ -1,9 +1,6 @@
 package view.Hospital;
 
 
-import java.awt.Dimension;
-import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
