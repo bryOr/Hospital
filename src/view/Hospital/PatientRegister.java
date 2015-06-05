@@ -34,10 +34,12 @@ public class PatientRegister extends javax.swing.JFrame {
     
     public String SucName;
     public String SucAddress;
+    
     public PatientRegister() {
         initComponents();
         this.setResizable(false);
-        
+        this.setLocationRelativeTo(null);
+        System.out.println(SucName+" "+SucAddress);
         controlRoom=new ControllerRoom();
         controlPatient=new ControllerPatient();
         controlSucursal=new ControllerSucursal();
@@ -45,8 +47,8 @@ public class PatientRegister extends javax.swing.JFrame {
         cmbRoom.addItem("--");
         getRooms();
         
-        lblName.setName(SucName);
-        lblAddress.setName(SucAddress);
+        lblName.setText(SucName);
+        lblAddress.setText(SucAddress);
     }
 
 

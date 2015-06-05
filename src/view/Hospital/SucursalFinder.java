@@ -27,6 +27,7 @@ public class SucursalFinder extends javax.swing.JFrame {
      * Creates new form SucursalFinder
      */
     private ControllerSucursal ctrlS;
+    
     public SucursalFinder() {
         initComponents();
         ((JPanel) getContentPane()).setOpaque(false);
