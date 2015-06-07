@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
+;
 import javax.swing.table.TableColumnModel;
 
 /**
@@ -28,8 +28,10 @@ public class SucursalFinder extends javax.swing.JFrame {
      */
     private ControllerSucursal ctrlS;
     
+   
     public SucursalFinder() {
         initComponents();
+        
         ((JPanel) getContentPane()).setOpaque(false);
         ImageIcon imagen = new ImageIcon(this.getClass().getResource("/imagenes/Sucursals.jpg"));
         JLabel fondo = new JLabel();
@@ -108,11 +110,10 @@ public class SucursalFinder extends javax.swing.JFrame {
         
         String name=this.tabSucursals.getValueAt(opcion, 1).toString();
         String address=this.tabSucursals.getValueAt(opcion, 2).toString();
-        //System.out.println(nombre+" "+direccion);
-        Sucursal s=new Sucursal();
-        s.name=name;
-        s.address=address;
+        
+        Sucursal s=new Sucursal(name,address);
         s.setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_tabSucursalsMouseClicked
 

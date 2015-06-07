@@ -6,12 +6,11 @@
 
 package view.Hospital;
 
-import com.toedter.calendar.demo.DateChooserPanelBeanInfo;
-import control.Hospital.ControllerHospital;
+
 import control.Hospital.ControllerPatient;
 import control.Hospital.ControllerRoom;
 import control.Hospital.ControllerSucursal;
-
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Caracteristics.Patient;
@@ -32,23 +31,31 @@ public class PatientRegister extends javax.swing.JFrame {
     private  ControllerPatient controlPatient;
     private  ControllerSucursal controlSucursal;
     
-    public String SucName;
-    public String SucAddress;
     
-    public PatientRegister() {
+    public String name;
+    public String address;
+    
+    public PatientRegister(String name,String address) {
         initComponents();
+        this.name=name;
+        this.address=address;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        System.out.println(SucName+" "+SucAddress);
+        
+        
+        //System.out.println(name+" "+address);
         controlRoom=new ControllerRoom();
         controlPatient=new ControllerPatient();
         controlSucursal=new ControllerSucursal();
         addOptionsSex();
-        cmbRoom.addItem("--");
         getRooms();
         
-        lblName.setText(SucName);
-        lblAddress.setText(SucAddress);
+        lblName.setText(name);
+        lblAddress.setText(address);
+    }
+
+    private PatientRegister() {
+       
     }
 
 
@@ -234,11 +241,9 @@ public class PatientRegister extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(cmbSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(dateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -273,7 +278,7 @@ public class PatientRegister extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
 
-            String sucursalName=SucName;
+            String sucursalName=name;
             String name=txtName.getText();
             String lastname=txtLastName.getText();
             int ci=Integer.parseInt(txtID.getText());
@@ -291,14 +296,12 @@ public class PatientRegister extends javax.swing.JFrame {
                 boolean confirmed=controlPatient.patient_inserted(p);
                 if(confirmed){
                     JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
-                    Sucursal m = new Sucursal();
-                    m.setVisible(true);
-                    this.dispose();
+                    
                 }
             }else{
                 JOptionPane.showMessageDialog(this, "Ingreso mal los datos...");
             }
-            
+            vaciarCampos();
         /*Date date=new Date();
         DateFormat var=new SimpleDateFormat("yyyy-MM-dd");
         date=dateFecha.getDate();
@@ -308,10 +311,21 @@ public class PatientRegister extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        Sucursal m=new Sucursal();
+        Sucursal m=new Sucursal(name,address);
         m.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+    public void vaciarCampos(){
+        txtName.setText("");
+        txtLastName.setText("");
+        txtID.setText("");
+        txtAddress.setText("");
+        dateFecha.setDate(null);
+        txtRegistration.setText("");
+        txtBedNumber.setText("");
+        cmbRoom.setSelectedIndex(0);
+        cmbSex.setSelectedIndex(0);
+    }
     public Date dateSelected(){
         Date date=new Date();
         
@@ -320,17 +334,14 @@ public class PatientRegister extends javax.swing.JFrame {
     }
     
     public void getRooms(){
-        
-        for(int c=0;c<numberOfRooms();c++){
-            String name=controlSucursal.getRooms(SucName).get(c);
-            cmbRoom.addItem(name);
+        cmbRoom.addItem("--");
+        int numberOfRooms=controlSucursal.getRooms(name).size();
+        ArrayList<String> rooms=controlSucursal.getRooms(name);
+        for(int c=0;c<numberOfRooms;c++){
+            cmbRoom.addItem(rooms.get(c));
         }
     }
-    public int numberOfRooms(){
-        
-       int number_of_rooms=controlSucursal.getNumberOfRooms(SucName);
-       return number_of_rooms;
-    }
+    
     public void addOptionsSex(){
         cmbSex.addItem("Escoja una opcion");
         cmbSex.addItem("Masculino");

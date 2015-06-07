@@ -45,6 +45,7 @@ public class QuerySucursal {
             rs2=stmt.executeQuery(query);
             while(rs2.next()){
                 String room_name=rs2.getString("nameroom");
+                
                 rooms.add(room_name);
             }
             rs.close();
