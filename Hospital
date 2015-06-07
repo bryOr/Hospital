@@ -32,7 +32,6 @@ ID_P
 create table DOCTOR (
    ID_D                 INT4                 not null,
    ID_S                 INT4                 not null,
-   DOCTOR_ID            INT4                 null,
    CI                   INT4                 null,
    NAMEDOCTOR           VARCHAR(100)         null,
    SPECIALTY            VARCHAR(60)          null,
@@ -90,7 +89,7 @@ ID_P
 /* Table: HOSPITAL                                              */
 /*==============================================================*/
 create table HOSPITAL (
-   ID_H                 SERIAL not null,
+   ID_H                 INT4                 not null,
    NAME                 VARCHAR(100)         null,
    ADDRESS              VARCHAR(200)         null,
    PHONE                NUMERIC              null,
@@ -161,12 +160,12 @@ ID_S
 /* Table: PATIENT                                               */
 /*==============================================================*/
 create table PATIENT (
-   ID_P                 INT4                 not null,
+   ID_P                 SERIAL not null,
    ID_R                 INT4                 null,
-   PATIENT_ID           INT4                 null,
    CI                   INT4                 null,
    REGISTRATIONNUMBER   INT4                 null,
    NAME                 VARCHAR(100)         null,
+   LASTNAME             VARCHAR(140)         null,
    BEDNUMBER            INT4                 null,
    ADDRESS              VARCHAR(200)         null,
    DATEOFBIRTH          DATE                 null,
@@ -194,7 +193,6 @@ ID_R
 create table SUCURSAL (
    ID_S                 INT4                 not null,
    ID_H                 INT4                 not null,
-   SUCURSAL_ID          INT4                 null,
    NAME                 VARCHAR(100)         null,
    ADDRESS              VARCHAR(200)         null,
    PHONE                NUMERIC              null,
@@ -222,7 +220,6 @@ ID_H
 create table SUCURSALROOM (
    ID_R                 INT4                 not null,
    ID_S                 INT4                 not null,
-   ROOM_ID              INT4                 null,
    NAMEROOM             VARCHAR(200)         null,
    NUMBEROFBEDS         INT4                 null,
    constraint PK_SUCURSALROOM primary key (ID_R)
