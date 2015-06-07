@@ -47,9 +47,8 @@ public class QuerySucursal {
                 String room_name=rs2.getString("nameroom");
                 
                 rooms.add(room_name);
-                
+                //System.out.println(room_name);
             }
-            System.out.println(rooms);
             
             rs2.close();
             stmt.close();

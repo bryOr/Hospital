@@ -10,7 +10,7 @@ package view.Hospital;
 import control.Hospital.ControllerPatient;
 import control.Hospital.ControllerRoom;
 import control.Hospital.ControllerSucursal;
-
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Caracteristics.Patient;
@@ -31,7 +31,6 @@ public class PatientRegister extends javax.swing.JFrame {
     private  ControllerPatient controlPatient;
     private  ControllerSucursal controlSucursal;
     
-    private SucursalFinder sf;
     
     public String name;
     public String address;
@@ -44,12 +43,11 @@ public class PatientRegister extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         
-        System.out.println(name+" "+address);
+        //System.out.println(name+" "+address);
         controlRoom=new ControllerRoom();
         controlPatient=new ControllerPatient();
         controlSucursal=new ControllerSucursal();
         addOptionsSex();
-        cmbRoom.addItem("--");
         getRooms();
         
         lblName.setText(name);
@@ -327,17 +325,15 @@ public class PatientRegister extends javax.swing.JFrame {
     }
     
     public void getRooms(){
-        
-        for(int c=0;c<numberOfRooms();c++){
-            String suc_name=controlSucursal.getRooms(name).get(c);
-            cmbRoom.addItem(suc_name);
+        cmbRoom.addItem("--");
+        int numberOfRooms=controlSucursal.getRooms(name).size();
+        ArrayList<String> rooms=controlSucursal.getRooms(name);
+        for(int c=0;c<numberOfRooms;c++){
+            cmbRoom.addItem(rooms.get(c));
         }
+        System.out.println(rooms);
     }
-    public int numberOfRooms(){
-        
-       int number_of_rooms=controlSucursal.getRooms(name).size();
-       return number_of_rooms;
-    }
+    
     public void addOptionsSex(){
         cmbSex.addItem("Escoja una opcion");
         cmbSex.addItem("Masculino");
