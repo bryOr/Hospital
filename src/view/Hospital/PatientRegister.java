@@ -296,14 +296,12 @@ public class PatientRegister extends javax.swing.JFrame {
                 boolean confirmed=controlPatient.patient_inserted(p);
                 if(confirmed){
                     JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
-                    Sucursal m = new Sucursal(name,address);
-                    m.setVisible(true);
-                    this.dispose();
+                    
                 }
             }else{
                 JOptionPane.showMessageDialog(this, "Ingreso mal los datos...");
             }
-            
+            vaciarCampos();
         /*Date date=new Date();
         DateFormat var=new SimpleDateFormat("yyyy-MM-dd");
         date=dateFecha.getDate();
@@ -317,6 +315,17 @@ public class PatientRegister extends javax.swing.JFrame {
         m.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+    public void vaciarCampos(){
+        txtName.setText("");
+        txtLastName.setText("");
+        txtID.setText("");
+        txtAddress.setText("");
+        dateFecha.setDate(null);
+        txtRegistration.setText("");
+        txtBedNumber.setText("");
+        cmbRoom.setSelectedIndex(0);
+        cmbSex.setSelectedIndex(0);
+    }
     public Date dateSelected(){
         Date date=new Date();
         
@@ -331,7 +340,6 @@ public class PatientRegister extends javax.swing.JFrame {
         for(int c=0;c<numberOfRooms;c++){
             cmbRoom.addItem(rooms.get(c));
         }
-        System.out.println(rooms);
     }
     
     public void addOptionsSex(){

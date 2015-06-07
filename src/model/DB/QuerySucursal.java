@@ -38,7 +38,7 @@ public class QuerySucursal {
             rs=stmt.executeQuery(ID);
             rs.next();
             id_sucursalName=rs.getInt("id_s");
-            rs.close();
+            
             String query="SELECT nameroom "
                     + "FROM sucursalroom "
                     + "WHERE id_s='"+id_sucursalName+"'";
@@ -47,9 +47,8 @@ public class QuerySucursal {
                 String room_name=rs2.getString("nameroom");
                 
                 rooms.add(room_name);
-                //System.out.println(room_name);
             }
-            
+            rs.close();
             rs2.close();
             stmt.close();
             conn.close();
