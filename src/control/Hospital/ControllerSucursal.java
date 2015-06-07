@@ -25,7 +25,4 @@ public class ControllerSucursal {
     public ArrayList<String> getRooms(String sucName){
         return (ArrayList)ctrl.getRooms(sucName);
     }
-    public int getNumberOfRooms(String sucName){
-        return ctrl.getNumberOfRooms(sucName);
-    }
 }

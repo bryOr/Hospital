@@ -17,14 +17,22 @@ public class Sucursal extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    
+    
     public String name;
     public String address;
     
-    public Sucursal() {
+    public Sucursal(String name,String address) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.name=name;
+        this.address=address;
         System.out.println(name+" "+address);
-        
+    }
+
+    private Sucursal() {
+         
     }
 
     /**
@@ -70,13 +78,11 @@ public class Sucursal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         
-        PatientRegister p=new PatientRegister();
-        p.SucName=name;
-        p.SucAddress=address;
+        PatientRegister p=new PatientRegister(name,address);
+        
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
     
     /**
      * @param args the command line arguments

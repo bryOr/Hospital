@@ -6,8 +6,7 @@
 
 package view.Hospital;
 
-import com.toedter.calendar.demo.DateChooserPanelBeanInfo;
-import control.Hospital.ControllerHospital;
+
 import control.Hospital.ControllerPatient;
 import control.Hospital.ControllerRoom;
 import control.Hospital.ControllerSucursal;
@@ -32,14 +31,20 @@ public class PatientRegister extends javax.swing.JFrame {
     private  ControllerPatient controlPatient;
     private  ControllerSucursal controlSucursal;
     
-    public String SucName;
-    public String SucAddress;
+    private SucursalFinder sf;
     
-    public PatientRegister() {
+    public String name;
+    public String address;
+    
+    public PatientRegister(String name,String address) {
         initComponents();
+        this.name=name;
+        this.address=address;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        System.out.println(SucName+" "+SucAddress);
+        
+        
+        System.out.println(name+" "+address);
         controlRoom=new ControllerRoom();
         controlPatient=new ControllerPatient();
         controlSucursal=new ControllerSucursal();
@@ -47,8 +52,12 @@ public class PatientRegister extends javax.swing.JFrame {
         cmbRoom.addItem("--");
         getRooms();
         
-        lblName.setText(SucName);
-        lblAddress.setText(SucAddress);
+        lblName.setText(name);
+        lblAddress.setText(address);
+    }
+
+    private PatientRegister() {
+       
     }
 
 
@@ -271,7 +280,7 @@ public class PatientRegister extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
 
-            String sucursalName=SucName;
+            String sucursalName=name;
             String name=txtName.getText();
             String lastname=txtLastName.getText();
             int ci=Integer.parseInt(txtID.getText());
@@ -289,7 +298,7 @@ public class PatientRegister extends javax.swing.JFrame {
                 boolean confirmed=controlPatient.patient_inserted(p);
                 if(confirmed){
                     JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
-                    Sucursal m = new Sucursal();
+                    Sucursal m = new Sucursal(name,address);
                     m.setVisible(true);
                     this.dispose();
                 }
@@ -306,7 +315,7 @@ public class PatientRegister extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        Sucursal m=new Sucursal();
+        Sucursal m=new Sucursal(name,address);
         m.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -320,13 +329,13 @@ public class PatientRegister extends javax.swing.JFrame {
     public void getRooms(){
         
         for(int c=0;c<numberOfRooms();c++){
-            String name=controlSucursal.getRooms(SucName).get(c);
-            cmbRoom.addItem(name);
+            String suc_name=controlSucursal.getRooms(name).get(c);
+            cmbRoom.addItem(suc_name);
         }
     }
     public int numberOfRooms(){
         
-       int number_of_rooms=controlSucursal.getNumberOfRooms(SucName);
+       int number_of_rooms=controlSucursal.getRooms(name).size();
        return number_of_rooms;
     }
     public void addOptionsSex(){

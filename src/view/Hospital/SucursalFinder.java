@@ -28,6 +28,7 @@ public class SucursalFinder extends javax.swing.JFrame {
      */
     private ControllerSucursal ctrlS;
     
+   
     public SucursalFinder() {
         initComponents();
         
@@ -109,11 +110,10 @@ public class SucursalFinder extends javax.swing.JFrame {
         
         String name=this.tabSucursals.getValueAt(opcion, 1).toString();
         String address=this.tabSucursals.getValueAt(opcion, 2).toString();
-        //System.out.println(nombre+" "+direccion);
-        Sucursal s=new Sucursal();
-        s.name=name;
-        s.address=address;
+        
+        Sucursal s=new Sucursal(name,address);
         s.setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_tabSucursalsMouseClicked
 
