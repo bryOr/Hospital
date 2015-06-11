@@ -82,6 +82,28 @@ public class QuerySucursal {
         }
         return quantity;
     }
+    public List<String> showSucursalNames(){
+        List<String> sucursal=new ArrayList<String>();
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+
+        
+        try {
+            conn=Conexion.getInstance().getConnection();
+            stmt=conn.createStatement();
+            String consulta="SELECT name "
+                    + "FROM sucursal";
+            rs=stmt.executeQuery(consulta);
+            while(rs.next()){
+                sucursal.add(rs.getString("name"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return sucursal;
+    }
     public Object[][] showSucursals(){
         Connection conn=null;
         ResultSet rs=null;
