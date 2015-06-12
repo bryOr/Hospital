@@ -30,9 +30,14 @@ public class Medic {
     public String getName() {
         return name;
     }
-
+    public void setName(String name){
+        this.name=name;
+    }
     public String getLastname() {
         return lastname;
+    }
+    public void setLastName(String lastname){
+        this.lastname=lastname;
     }
 
     public int getAge() {

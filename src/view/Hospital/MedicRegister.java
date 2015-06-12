@@ -9,6 +9,7 @@ package view.Hospital;
 import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerSucursal;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Caracteristics.Medic;
 
 /**
@@ -170,9 +171,24 @@ public class MedicRegister extends javax.swing.JFrame {
         Medic m=new Medic(name, lastname, age, ci, speciality, sucursal);
         
         boolean band=ctrlM.verifyInfo(m);
+        if(band){
+            ctrlM.sendInfo(m);
+            vaciarCampos();
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Verifique la informacion a ingresar.");
+        }
         
     }//GEN-LAST:event_btnRegActionPerformed
 
+    public void vaciarCampos(){
+        txtName.setText("");
+        txtLastName.setText("");
+        txtAge.setText("");
+        txtCI.setText("");
+        txtSpeciality.setText("");
+        cmbSucursal.setSelectedIndex(0);
+    }
     /**
      * @param args the command line arguments
      */

@@ -28,9 +28,24 @@ public class ControllerMedic {
             
             res=false;
             
-        }
-                
-                
+        }        
         return res;        
     }
+    public void sendInfo(Medic m){
+        String name=m.getName();
+        String lastname=m.getLastname();
+        changeToUpperCase(name);
+        changeToUpperCase(lastname);
+        
+    }
+    public void changeToUpperCase(String x){
+        char[] caracter=x.toCharArray();
+        caracter[0]=Character.toUpperCase(caracter[0]);
+        for(int i=0;i<x.length();i++){
+            if(caracter[i]==' '){
+                caracter[i+1]=Character.toUpperCase(caracter[i+1]);
+            }
+        }
+    }
+    
 }
