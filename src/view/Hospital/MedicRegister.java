@@ -6,8 +6,10 @@
 
 package view.Hospital;
 
+import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerSucursal;
 import java.util.ArrayList;
+import model.Caracteristics.Medic;
 
 /**
  *
@@ -19,9 +21,12 @@ public class MedicRegister extends javax.swing.JFrame {
      * Creates new form MedicRegister
      */
     private ControllerSucursal ctrlS;
+    private ControllerMedic ctrlM;
+    
     public MedicRegister() {
         initComponents();
         ctrlS=new ControllerSucursal();
+        ctrlM=new ControllerMedic();
         getSucursals();
     }
 
@@ -162,6 +167,9 @@ public class MedicRegister extends javax.swing.JFrame {
         int ci=Integer.parseInt(txtCI.getText());
         String speciality=txtSpeciality.getText();
         String sucursal=cmbSucursal.getSelectedItem().toString();
+        Medic m=new Medic(name, lastname, age, ci, speciality, sucursal);
+        
+        boolean band=ctrlM.verifyInfo(m);
         
     }//GEN-LAST:event_btnRegActionPerformed
 
