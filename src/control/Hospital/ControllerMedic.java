@@ -7,14 +7,17 @@
 package control.Hospital;
 
 import model.Caracteristics.Medic;
+import model.DB.QueryMedic;
 
 /**
  *
  * @author master
  */
 public class ControllerMedic {
+    
+    private QueryMedic ctrlM;
     public ControllerMedic(){
-        
+        ctrlM=new QueryMedic();
     }
     public boolean verifyInfo(Medic m){
         boolean res=true;
@@ -34,11 +37,18 @@ public class ControllerMedic {
     public void sendInfo(Medic m){
         String name=m.getName();
         String lastname=m.getLastname();
-        changeToUpperCase(name);
-        changeToUpperCase(lastname);
+        
+        name=changeToUpperCase(name);
+        lastname=changeToUpperCase(lastname);
+        
+        m.setName(name);
+        m.setLastName(lastname);
+        
+        ctrlM.registerMedic(m);
         
     }
-    public void changeToUpperCase(String x){
+    public String changeToUpperCase(String x){
+        String res="";
         char[] caracter=x.toCharArray();
         caracter[0]=Character.toUpperCase(caracter[0]);
         for(int i=0;i<x.length();i++){
@@ -46,6 +56,9 @@ public class ControllerMedic {
                 caracter[i+1]=Character.toUpperCase(caracter[i+1]);
             }
         }
+        res=String.valueOf(x);
+        return res;
+        
     }
     
 }
