@@ -21,11 +21,12 @@ public class MedicRegister extends javax.swing.JFrame {
     /**
      * Creates new form MedicRegister
      */
-    private ControllerSucursal ctrlS;
-    private ControllerMedic ctrlM;
+    public ControllerSucursal ctrlS;
+    public ControllerMedic ctrlM;
     
     public MedicRegister() {
         initComponents();
+        this.setLocationRelativeTo(null);
         ctrlS=new ControllerSucursal();
         ctrlM=new ControllerMedic();
         getSucursals();
@@ -158,6 +159,9 @@ public class MedicRegister extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
+        ListaMedicos list=new ListaMedicos();
+        list.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed

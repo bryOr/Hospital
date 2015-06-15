@@ -15,7 +15,7 @@ import model.DB.QueryMedic;
  */
 public class ControllerMedic {
     
-    private QueryMedic ctrlM;
+    public QueryMedic ctrlM;
     public ControllerMedic(){
         ctrlM=new QueryMedic();
     }
@@ -24,7 +24,7 @@ public class ControllerMedic {
         
         if( m.getName().isEmpty() || 
                 m.getLastname().isEmpty() ||
-                m.getAge()==0 || 
+                m.getAge()<25 || 
                 m.getCI()<10000 || 
                 m.getSpeciality().isEmpty() || 
                 m.getSucursal().isEmpty() ){
@@ -40,7 +40,8 @@ public class ControllerMedic {
         
         name=changeToUpperCase(name);
         lastname=changeToUpperCase(lastname);
-        
+        System.out.println(name);
+        System.out.println(lastname);
         m.setName(name);
         m.setLastName(lastname);
         
@@ -56,7 +57,7 @@ public class ControllerMedic {
                 caracter[i+1]=Character.toUpperCase(caracter[i+1]);
             }
         }
-        res=String.valueOf(x);
+        res=String.valueOf(caracter);
         return res;
         
     }

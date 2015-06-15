@@ -12,8 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import model.Caracteristics.Medic;
 
 /**
@@ -21,11 +20,8 @@ import model.Caracteristics.Medic;
  * @author master
  */
 public class QueryMedic {
-    private ControllerMedic ctrlM;
     
-    public QueryMedic(){
-        ctrlM=new ControllerMedic();
-    }
+    
     
     public void registerMedic(Medic m){
         Connection conn=null;
@@ -42,7 +38,7 @@ public class QueryMedic {
             rs=stmt.executeQuery(firstQuery);
             rs.next();
             id_s=rs.getInt("id_s");
-            String secondQuery="INSERT INTO medic (id_s,name,edad,ci,specialty,lastname) "
+            String secondQuery="INSERT INTO doctor (id_s,name,edad,ci,specialty,lastname) "
                             + "VALUES "
                             + "(?,?,?,?,?,?)";
             
@@ -56,6 +52,11 @@ public class QueryMedic {
             
             ptmt.executeUpdate();
             
+            ptmt.close();
+            rs.close();
+            stmt.close();
+            
+            conn.close();
             
         } catch (SQLException ex) {
            System.out.println(ex);
