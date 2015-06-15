@@ -12,7 +12,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Caracteristics.Medic;
 
 /**
@@ -23,6 +26,38 @@ public class QueryMedic {
     
     
     
+    public List<String> showMedics(String sucursalName){
+        List<String> doctors=new ArrayList<String>();
+        String name="",lastname="";
+        String fullname="";
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+        
+        try {
+            conn=Conexion.getInstance().getConnection();
+            stmt=conn.createStatement();
+            String query="SELECT name, lastname "
+                        + "FROM  doctor "
+                        + "WHERE id_s=(SELECT id_s "
+                                    + "FROM sucursal "
+                                    + "WHERE name='"+sucursalName+"')";
+            rs=stmt.executeQuery(query);
+            while(rs.next()){
+                name=rs.getString("name");
+                lastname=rs.getString("lastname");
+                fullname=name+" "+lastname;
+                doctors.add(fullname);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+                
+        return doctors;
+    }
     public void registerMedic(Medic m){
         Connection conn=null;
         PreparedStatement ptmt=null;

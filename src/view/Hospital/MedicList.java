@@ -8,6 +8,7 @@ package view.Hospital;
 
 import control.Hospital.ControllerSucursal;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -39,7 +40,7 @@ public class MedicList extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cmbSucursal = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        medicsLIst = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -53,7 +54,7 @@ public class MedicList extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(medicsLIst);
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,8 +86,8 @@ public class MedicList extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(cmbSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,6 +131,16 @@ public class MedicList extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    
+    public void setListNames(String sucursalName){
+        DefaultListModel doctorsList=new DefaultListModel();
+        ArrayList<String> names=ctrlM.getRooms(sucursalName);
+        for(String n: names){
+            doctorsList.addElement(n);
+        }
+        medicsLIst.setModel(doctorsList);
+        
+    }
     public void getSucursals(){
         cmbSucursal.addItem("Seleccione Sucursal");
         ArrayList<String> sucursalList=ctrlM.getSucursalName();
@@ -177,7 +188,7 @@ public class MedicList extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList medicsLIst;
     // End of variables declaration//GEN-END:variables
 }

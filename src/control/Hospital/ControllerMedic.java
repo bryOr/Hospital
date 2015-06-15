@@ -6,6 +6,7 @@
 
 package control.Hospital;
 
+import java.util.ArrayList;
 import model.Caracteristics.Medic;
 import model.DB.QueryMedic;
 
@@ -18,6 +19,9 @@ public class ControllerMedic {
     public QueryMedic ctrlM;
     public ControllerMedic(){
         ctrlM=new QueryMedic();
+    }
+    public ArrayList<String> giveDoctorNames(String sucursalName){
+        return (ArrayList)ctrlM.showMedics(sucursalName);
     }
     public boolean verifyInfo(Medic m){
         boolean res=true;
@@ -40,8 +44,7 @@ public class ControllerMedic {
         
         name=changeToUpperCase(name);
         lastname=changeToUpperCase(lastname);
-        System.out.println(name);
-        System.out.println(lastname);
+        
         m.setName(name);
         m.setLastName(lastname);
         
