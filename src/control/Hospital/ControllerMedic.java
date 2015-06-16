@@ -21,7 +21,11 @@ public class ControllerMedic {
         ctrlM=new QueryMedic();
     }
     public ArrayList<String> giveDoctorNames(String sucursalName){
-        return (ArrayList)ctrlM.showMedics(sucursalName);
+        ArrayList medics=new ArrayList<String>();
+        if(!(sucursalName.equals("Seleccione Sucursal"))){
+            medics=(ArrayList)ctrlM.showMedics(sucursalName);
+        }
+        return medics;
     }
     public boolean verifyInfo(Medic m){
         boolean res=true;

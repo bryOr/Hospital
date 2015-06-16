@@ -6,7 +6,7 @@
 
 package model.DB;
 
-import control.Hospital.ControllerMedic;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,8 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import model.Caracteristics.Medic;
 
 /**
@@ -28,27 +27,28 @@ public class QueryMedic {
     
     public List<String> showMedics(String sucursalName){
         List<String> doctors=new ArrayList<String>();
-        String name="",lastname="";
-        String fullname="";
+        
         Connection conn=null;
-        Statement stmt=null;
         ResultSet rs=null;
         
         try {
             conn=Conexion.getInstance().getConnection();
-            stmt=conn.createStatement();
-            String query="SELECT name, lastname "
-                        + "FROM  doctor "
-                        + "WHERE id_s=(SELECT id_s "
-                                    + "FROM sucursal "
-                                    + "WHERE name='"+sucursalName+"')";
+            Statement stmt=conn.createStatement();
+            String query="SELECT d.name as doctor_name, d.lastname as doctor_lastname "
+                        + "FROM sucursal s, doctor d "
+                        + "WHERE s.id_s=d.id_s AND s.name='"+sucursalName+"'";
             rs=stmt.executeQuery(query);
+            
             while(rs.next()){
-                name=rs.getString("name");
-                lastname=rs.getString("lastname");
-                fullname=name+" "+lastname;
-                doctors.add(fullname);
+                String name=rs.getString("doctor_name");
+                String lastname=rs.getString("doctor_lastname");
+                String fullName=name+" "+lastname;
+                //System.out.println(name+" "+lastname);
+                
+                doctors.add(fullName);
             }
+            //System.out.println(doctors);
+            
             rs.close();
             stmt.close();
             conn.close();

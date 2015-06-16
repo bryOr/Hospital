@@ -6,9 +6,13 @@
 
 package view.Hospital;
 
+import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerSucursal;
+import java.awt.ItemSelectable;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+
 
 /**
  *
@@ -19,10 +23,12 @@ public class MedicList extends javax.swing.JFrame {
     /**
      * Creates new form ListaMedicos
      */
-    private ControllerSucursal ctrlM;
+    private ControllerSucursal ctrlS;
+    private ControllerMedic ctrlM;
     public MedicList() {
         initComponents();
-        ctrlM=new ControllerSucursal();
+        ctrlS=new ControllerSucursal();
+        ctrlM=new ControllerMedic();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.getSucursals();
@@ -48,6 +54,11 @@ public class MedicList extends javax.swing.JFrame {
 
         jLabel1.setText("Seleccione Sucursal:");
 
+        cmbSucursal.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbSucursalItemStateChanged(evt);
+            }
+        });
         cmbSucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbSucursalActionPerformed(evt);
@@ -114,6 +125,7 @@ public class MedicList extends javax.swing.JFrame {
 
     private void cmbSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSucursalActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_cmbSucursalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -131,19 +143,32 @@ public class MedicList extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
-    public void setListNames(String sucursalName){
-        DefaultListModel doctorsList=new DefaultListModel();
-        ArrayList<String> names=ctrlM.getRooms(sucursalName);
-        for(String n: names){
-            doctorsList.addElement(n);
-        }
-        medicsLIst.setModel(doctorsList);
+    private void cmbSucursalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSucursalItemStateChanged
+        // TODO add your handling code here:
         
+        if(evt.getStateChange()==ItemEvent.SELECTED){
+            
+            //System.out.println("ITEM: "+evt.getItem());
+            String name=evt.getItem().toString();
+            //ctrlM.giveDoctorNames(nombre);
+            setMedicList(name);
+            
+        }
+        
+    }//GEN-LAST:event_cmbSucursalItemStateChanged
+    public void setMedicList(String doctorName){
+        ArrayList<String> list=ctrlM.giveDoctorNames(doctorName);
+        DefaultListModel new_list=new DefaultListModel();
+        for(int c=0;c<list.size();c++){
+            new_list.addElement(list.get(c));
+        }
+        medicsLIst.setModel(new_list);
     }
+    
+    
     public void getSucursals(){
         cmbSucursal.addItem("Seleccione Sucursal");
-        ArrayList<String> sucursalList=ctrlM.getSucursalName();
+        ArrayList<String> sucursalList=ctrlS.getSucursalName();
         for(String name: sucursalList){
             cmbSucursal.addItem(name);
         }
