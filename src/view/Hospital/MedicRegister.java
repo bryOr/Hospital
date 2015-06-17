@@ -9,7 +9,11 @@ package view.Hospital;
 import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerSucursal;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import model.Caracteristics.Medic;
 
 /**
@@ -26,6 +30,13 @@ public class MedicRegister extends javax.swing.JFrame {
     
     public MedicRegister() {
         initComponents();
+        ((JPanel) getContentPane()).setOpaque(false);
+        ImageIcon imagen = new ImageIcon(this.getClass().getResource("/imagenes/fondoRegistroMedico.jpg"));
+        JLabel fondo = new JLabel();
+        fondo.setIcon(imagen);
+        getLayeredPane().add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
+        fondo.setBounds(0, 0, imagen.getIconWidth(), imagen.getIconHeight());
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         ctrlS=new ControllerSucursal();
         ctrlM=new ControllerMedic();
