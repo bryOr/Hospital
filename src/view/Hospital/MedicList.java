@@ -77,6 +77,11 @@ public class MedicList extends javax.swing.JFrame {
             }
         });
 
+        medicsLIst.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                medicsLIstMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(medicsLIst);
 
         jButton1.setText("Agregar");
@@ -169,6 +174,14 @@ public class MedicList extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_cmbSucursalItemStateChanged
+
+    private void medicsLIstMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medicsLIstMouseClicked
+        // TODO add your handling code here:
+        String nombre=medicsLIst.getSelectedValue().toString();
+        System.out.println(nombre);
+        HistorialMedico historial=new HistorialMedico();
+        historial.setVisible(true);
+    }//GEN-LAST:event_medicsLIstMouseClicked
     public void setMedicList(String doctorName){
         ArrayList<String> list=ctrlM.giveDoctorNames(doctorName);
         DefaultListModel new_list=new DefaultListModel();
