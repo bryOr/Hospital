@@ -165,10 +165,8 @@ public class MedicList extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if(evt.getStateChange()==ItemEvent.SELECTED){
-            
-            //System.out.println("ITEM: "+evt.getItem());
             String name=evt.getItem().toString();
-            //ctrlM.giveDoctorNames(nombre);
+            
             setMedicList(name);
             
         }
@@ -178,9 +176,11 @@ public class MedicList extends javax.swing.JFrame {
     private void medicsLIstMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medicsLIstMouseClicked
         // TODO add your handling code here:
         String nombre=medicsLIst.getSelectedValue().toString();
-        System.out.println(nombre);
-        HistorialMedico historial=new HistorialMedico();
+        
+        HistorialMedico historial=new HistorialMedico(nombre);
         historial.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_medicsLIstMouseClicked
     public void setMedicList(String doctorName){
         ArrayList<String> list=ctrlM.giveDoctorNames(doctorName);

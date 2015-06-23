@@ -36,4 +36,15 @@ public class ControllerPatient {
         }
         return res;
     }
+    public boolean checkCI(String x){
+        boolean res=true;
+        char[] character=x.toCharArray();
+        for(int c=0;c<character.length;c++){
+            if( !(Character.isDigit(character[c])) ){
+                res=false;
+                break;
+            }
+        }
+        return res;
+    }
 }
