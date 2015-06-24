@@ -35,7 +35,7 @@ public class QueryPatient {
         try {
             conn=Conexion.getInstance().getConnection();
             stmt=conn.createStatement();
-            String query="SELECT count(*) as total "
+            /*String query="SELECT count(*) as total "
                         + "FROM patient "
                         + "WHERE ci='"+ci+"'";
             rs=stmt.executeQuery(query);
@@ -43,8 +43,10 @@ public class QueryPatient {
             total=rs.getInt("total");
             rs.close();
             p=new Object[total];
-            query="SELECT name, lastname "
-                + "FROM patient";
+            */
+            String query="SELECT name, lastname "
+                + "FROM patient "
+                + "WHERE ci LIKE '%"+ci+"%'";
             rs=stmt.executeQuery(query);
             while(rs.next()){
                 name=rs.getString("name");

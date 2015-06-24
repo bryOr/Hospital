@@ -45,6 +45,10 @@ public class ControllerPatient {
                 break;
             }
         }
+        
         return res;
+    }
+    public Object[] obtainPatientNames(int ci){
+        return q_p.findPatiend(ci);
     }
 }

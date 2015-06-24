@@ -7,6 +7,7 @@
 package view.Hospital;
 
 import control.Hospital.ControllerPatient;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,7 +48,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listPatient = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
         txtCI = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -63,7 +64,7 @@ public class HistorialMedico extends javax.swing.JFrame {
 
         jLabel3.setText("SELECCION DE PACIENTE PARA PODER REGISTRAR LA ATENCION MEDICA:");
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listPatient);
 
         jLabel4.setText("Ingrese CI del paciente:");
 
@@ -191,11 +192,24 @@ public class HistorialMedico extends javax.swing.JFrame {
     private void txtCIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCIKeyPressed
         // TODO add your handling code here:
         String ci=txtCI.getText();
-        ///System.out.println(ci);
-        if(!ctrlP.checkCI(ci)){
+        boolean val=ctrlP.checkCI(ci);
+        
+        if(!val){
             JOptionPane.showMessageDialog(null, "ERROR! \nIngrese de manera correcta el CI.");
             txtCI.setText("");
+            ci="";
         }
+        int aux_ci=Integer.parseInt(ci);
+        DefaultListModel nuevaLista=new DefaultListModel();
+        int lim=ctrlP.obtainPatientNames(aux_ci).length;
+        Object names[]=ctrlP.obtainPatientNames(aux_ci);
+        for(int c=0;c<lim;c++){
+            nuevaLista.addElement(names[c]);
+        }
+        listPatient.setModel(nuevaLista);
+        //System.out.println(ci);
+        
+        
         
     }//GEN-LAST:event_txtCIKeyPressed
 
@@ -244,11 +258,11 @@ public class HistorialMedico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDoctorName;
+    private javax.swing.JList listPatient;
     private javax.swing.JTextField txtCI;
     // End of variables declaration//GEN-END:variables
 }
