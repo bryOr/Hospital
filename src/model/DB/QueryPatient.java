@@ -23,47 +23,8 @@ import model.Caracteristics.Patient;
  */
 public class QueryPatient {
 
-    public Object[] findPatiend(int ci){
-        Object[] p=null;
-        Connection conn=null;
-        Statement stmt=null;
-        ResultSet rs=null;
-        int total=0;
-        int contador=0;
-        String name="",address="";
-        String fullName="";
-        try {
-            conn=Conexion.getInstance().getConnection();
-            stmt=conn.createStatement();
-            /*String query="SELECT count(*) as total "
-                        + "FROM patient "
-                        + "WHERE ci='"+ci+"'";
-            rs=stmt.executeQuery(query);
-            rs.next();
-            total=rs.getInt("total");
-            rs.close();
-            p=new Object[total];
-            */
-            String query="SELECT name, lastname "
-                + "FROM patient "
-                + "WHERE ci LIKE '%"+ci+"%'";
-            rs=stmt.executeQuery(query);
-            while(rs.next()){
-                name=rs.getString("name");
-                address=rs.getString("lastname");
-                fullName=(contador+1)+" "+name+" "+address;
-                p[contador]=fullName;
-                contador++;
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        
-        return p;
-    }
+    
+    
     public boolean insertPatient(Patient p){
         boolean res=false;
         PreparedStatement stmt=null;

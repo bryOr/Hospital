@@ -191,23 +191,6 @@ public class HistorialMedico extends javax.swing.JFrame {
 
     private void txtCIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCIKeyPressed
         // TODO add your handling code here:
-        String ci=txtCI.getText();
-        boolean val=ctrlP.checkCI(ci);
-        
-        if(!val){
-            JOptionPane.showMessageDialog(null, "ERROR! \nIngrese de manera correcta el CI.");
-            txtCI.setText("");
-            ci="";
-        }
-        int aux_ci=Integer.parseInt(ci);
-        DefaultListModel nuevaLista=new DefaultListModel();
-        int lim=ctrlP.obtainPatientNames(aux_ci).length;
-        Object names[]=ctrlP.obtainPatientNames(aux_ci);
-        for(int c=0;c<lim;c++){
-            nuevaLista.addElement(names[c]);
-        }
-        listPatient.setModel(nuevaLista);
-        //System.out.println(ci);
         
         
         

@@ -48,7 +48,5 @@ public class ControllerPatient {
         
         return res;
     }
-    public Object[] obtainPatientNames(int ci){
-        return q_p.findPatiend(ci);
-    }
+    
 }
