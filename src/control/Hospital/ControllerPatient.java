@@ -36,17 +36,16 @@ public class ControllerPatient {
         }
         return res;
     }
-    public boolean checkCI(String x){
-        boolean res=true;
-        char[] character=x.toCharArray();
-        for(int c=0;c<character.length;c++){
-            if( !(Character.isDigit(character[c])) ){
-                res=false;
-                break;
+    
+    
+    public boolean verifyName(String x){
+        boolean res=false;
+        char[] caracteres=x.toCharArray();
+        for(int c=0;c<caracteres.length;c++){
+            if(caracteres[c]==' '){
+                res=true;
             }
         }
-        
         return res;
     }
-    
 }

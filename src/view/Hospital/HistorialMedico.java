@@ -50,7 +50,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listPatient = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
-        txtCI = new javax.swing.JTextField();
+        txtFullName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -68,14 +68,14 @@ public class HistorialMedico extends javax.swing.JFrame {
 
         jLabel4.setText("Ingrese CI del paciente:");
 
-        txtCI.addActionListener(new java.awt.event.ActionListener() {
+        txtFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCIActionPerformed(evt);
+                txtFullNameActionPerformed(evt);
             }
         });
-        txtCI.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtFullName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCIKeyPressed(evt);
+                txtFullNameKeyPressed(evt);
             }
         });
 
@@ -118,7 +118,7 @@ public class HistorialMedico extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5))))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
@@ -130,7 +130,7 @@ public class HistorialMedico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,16 +185,16 @@ public class HistorialMedico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCIActionPerformed
+    private void txtFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCIActionPerformed
+    }//GEN-LAST:event_txtFullNameActionPerformed
 
-    private void txtCIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCIKeyPressed
+    private void txtFullNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFullNameKeyPressed
         // TODO add your handling code here:
         
         
         
-    }//GEN-LAST:event_txtCIKeyPressed
+    }//GEN-LAST:event_txtFullNameKeyPressed
 
     /**
      * @param args the command line arguments
@@ -246,6 +246,6 @@ public class HistorialMedico extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDoctorName;
     private javax.swing.JList listPatient;
-    private javax.swing.JTextField txtCI;
+    private javax.swing.JTextField txtFullName;
     // End of variables declaration//GEN-END:variables
 }
