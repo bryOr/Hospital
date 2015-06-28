@@ -7,13 +7,14 @@
 package model.DB;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Caracteristics.Patient;
 
 
@@ -77,5 +78,31 @@ public class QueryPatient {
             
         }
         return id;
+    }
+    public List<String> getPatients(String lastName){
+        List<String> list=new ArrayList<String>();
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+        int contador=0;
+        try {
+            conn=Conexion.getInstance().getConnection();
+            stmt=conn.createStatement();
+            String query="SELECT name,lastname "
+                         + "FROM patient "
+                         + "WHERE lastname LIKE '%"+lastName+"%'";
+            rs=stmt.executeQuery(query);
+            while(rs.next()){
+                String fullName=rs.getString("name")+" "+rs.getString("lastname");
+                list.add((contador+1)+" "+fullName);
+                contador++;
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return list;
     }
 }

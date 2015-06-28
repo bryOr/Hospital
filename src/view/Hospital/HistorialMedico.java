@@ -7,6 +7,7 @@
 package view.Hospital;
 
 import control.Hospital.ControllerPatient;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -50,7 +51,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listPatient = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
-        txtFullName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -66,16 +67,16 @@ public class HistorialMedico extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(listPatient);
 
-        jLabel4.setText("Ingrese CI del paciente:");
+        jLabel4.setText("Apellido del Paciente:");
 
-        txtFullName.addActionListener(new java.awt.event.ActionListener() {
+        txtLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFullNameActionPerformed(evt);
+                txtLastNameActionPerformed(evt);
             }
         });
-        txtFullName.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtLastName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtFullNameKeyPressed(evt);
+                txtLastNameKeyPressed(evt);
             }
         });
 
@@ -118,7 +119,7 @@ public class HistorialMedico extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5))))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
@@ -130,7 +131,7 @@ public class HistorialMedico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,16 +186,25 @@ public class HistorialMedico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullNameActionPerformed
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFullNameActionPerformed
+    }//GEN-LAST:event_txtLastNameActionPerformed
 
-    private void txtFullNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFullNameKeyPressed
+    private void txtLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyPressed
         // TODO add your handling code here:
+        String lastname=txtLastName.getText();
+        boolean flag=ctrlP.verifyLastName(lastname);
+        if(!flag){
+            JOptionPane.showMessageDialog(this, "No incluya numeros en este campo de texto");
+            txtLastName.setText("");
+        }else{
+            DefaultListModel list=new DefaultListModel();
+            ArrayList<String> lastnameList;
+        }
         
         
         
-    }//GEN-LAST:event_txtFullNameKeyPressed
+    }//GEN-LAST:event_txtLastNameKeyPressed
 
     /**
      * @param args the command line arguments
@@ -246,6 +256,6 @@ public class HistorialMedico extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDoctorName;
     private javax.swing.JList listPatient;
-    private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtLastName;
     // End of variables declaration//GEN-END:variables
 }

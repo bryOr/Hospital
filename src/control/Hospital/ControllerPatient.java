@@ -6,6 +6,7 @@
 
 package control.Hospital;
 
+import java.util.ArrayList;
 import model.Caracteristics.Patient;
 import model.DB.QueryPatient;
 
@@ -37,15 +38,17 @@ public class ControllerPatient {
         return res;
     }
     
-    
-    public boolean verifyName(String x){
-        boolean res=false;
+    public boolean verifyLastName(String x){
+        boolean res=true;
         char[] caracteres=x.toCharArray();
         for(int c=0;c<caracteres.length;c++){
-            if(caracteres[c]==' '){
-                res=true;
+            if(Character.isDigit(caracteres[c])){
+                return false;
             }
         }
         return res;
+    }
+    public ArrayList<String> getPatients(String x){
+        return (ArrayList)q_p.getPatients(x);
     }
 }
