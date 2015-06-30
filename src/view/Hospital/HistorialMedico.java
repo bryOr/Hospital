@@ -199,7 +199,12 @@ public class HistorialMedico extends javax.swing.JFrame {
             txtLastName.setText("");
         }else{
             DefaultListModel list=new DefaultListModel();
-            ArrayList<String> lastnameList;
+            ArrayList<String> lastnameList=ctrlP.getPatients(lastname);
+            for(int c=0;c<lastnameList.size();c++){
+                list.addElement(lastnameList.get(c));
+            }
+            listPatient.setModel(list);
+            
         }
         
         
