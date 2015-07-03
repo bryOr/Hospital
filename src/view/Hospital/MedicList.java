@@ -177,7 +177,7 @@ public class MedicList extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombre=medicsLIst.getSelectedValue().toString();
         
-        HistorialMedico historial=new HistorialMedico(nombre);
+        Historial historial=new Historial(nombre);
         historial.setVisible(true);
         
         this.dispose();
