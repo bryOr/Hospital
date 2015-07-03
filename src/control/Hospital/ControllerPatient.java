@@ -51,4 +51,5 @@ public class ControllerPatient {
     public ArrayList<String> getPatients(String x){
         return (ArrayList)q_p.getPatients(x);
     }
+    
 }

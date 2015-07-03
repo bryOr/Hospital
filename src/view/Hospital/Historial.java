@@ -75,6 +75,11 @@ public class Historial extends javax.swing.JFrame {
 
         jLabel3.setText("SELECCION DE PACIENTE PARA PODER REGISTRAR LA ATENCION MEDICA:");
 
+        listPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listPatientMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listPatient);
 
         jLabel4.setText("Apellido del Paciente:");
@@ -95,6 +100,11 @@ public class Historial extends javax.swing.JFrame {
         jLabel6.setText("Seleccionar Fecha de Atencion:");
 
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -254,6 +264,18 @@ public class Historial extends javax.swing.JFrame {
         DefaultListModel emptyList=new DefaultListModel();
         listPatient.setModel(emptyList);
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void listPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPatientMouseClicked
+        // TODO add your handling code here:
+        String patient=listPatient.getSelectedValue().toString();
+        txtPatientName.setText(patient);
+    }//GEN-LAST:event_listPatientMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int id_P;
+        int id_D;
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

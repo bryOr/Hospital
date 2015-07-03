@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.Caracteristics.Medic;
 
@@ -97,5 +99,29 @@ public class QueryMedic {
            System.out.println(ex);
         }
         
+    }
+    public int obtainMedicID(String name,String lastname){
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+        int id=0;
+        try {
+            conn=Conexion.getInstance().getConnection();
+            stmt=conn.createStatement();
+            String query="SELECT id_d "
+                    + "FROM doctor "
+                    + "WHERE name='"+name+"' and lastname='"+lastname+"'";
+            rs=stmt.executeQuery(query);
+            rs.next();
+            id=rs.getInt("id_d");
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return id;
     }
 }
