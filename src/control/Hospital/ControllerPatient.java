@@ -7,6 +7,7 @@
 package control.Hospital;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import model.Caracteristics.Patient;
 import model.DB.QueryPatient;
 
@@ -51,5 +52,26 @@ public class ControllerPatient {
     public ArrayList<String> getPatients(String x){
         return (ArrayList)q_p.getPatients(x);
     }
-    
+    public int obtainID(String fullName){
+        String arr1[]={},arr2[]={};
+        int i=0,tam;
+        int id=0;
+        StringTokenizer st=new StringTokenizer(fullName);
+        while(st.hasMoreElements()){
+            arr1[i]=st.nextElement().toString();
+        }
+        tam=arr1.length;
+        switch(tam){
+            case 3:
+                arr2[0]=arr1[0];
+                arr2[1]=arr1[1]+" "+arr1[2];
+                break;
+            case 4:
+                arr2[0]=arr1[0]+" "+arr1[1];
+                arr2[1]=arr2[2]+" "+arr2[3];
+                break;
+        }
+        id=q_p.getID(arr2[0], arr2[1]);
+        return id;
+    }
 }

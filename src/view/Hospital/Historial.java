@@ -6,9 +6,11 @@
 
 package view.Hospital;
 
+import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerPatient;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -24,11 +26,12 @@ public class Historial extends javax.swing.JFrame {
     public String doctorName;
     
     private ControllerPatient ctrlP;
-    
+    private ControllerMedic ctrlM;
     public Historial(String doctorName) {
         initComponents();
         
         ctrlP=new ControllerPatient();
+        ctrlM=new ControllerMedic();
         this.doctorName=doctorName;
         lblDoctorName.setText(doctorName);
         txtPatientName.setEnabled(false);
@@ -273,8 +276,10 @@ public class Historial extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int id_P;
-        int id_D;
+        int id_P=ctrlP.obtainID(txtPatientName.getText());
+        int id_D=ctrlM.obtainID(lblDoctorName.getText());
+        Date date=new Date();
+        date=dateAtenttion.getDate();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

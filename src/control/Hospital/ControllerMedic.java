@@ -7,8 +7,10 @@
 package control.Hospital;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import model.Caracteristics.Medic;
 import model.DB.QueryMedic;
+import sun.util.locale.StringTokenIterator;
 
 /**
  *
@@ -67,6 +69,27 @@ public class ControllerMedic {
         res=String.valueOf(caracter);
         return res;
         
+    }
+    public int obtainID(String fullName){
+        String arr1[]={},arr2[]={};
+        int id=0,counter=0,num;
+        StringTokenizer st=new StringTokenizer(fullName);
+        num=st.countTokens();
+        while(st.hasMoreElements()){
+            arr1[counter]=st.nextElement().toString();
+        }
+        switch(num){
+            case 3:
+                arr2[0]=arr1[0];
+                arr2[1]=arr1[1]+" "+arr1[2];
+                break;
+            case 4:
+                arr2[0]=arr1[0]+" "+arr1[1];
+                arr2[1]=arr1[2]+" "+arr1[3];
+                break;
+        }
+        id=ctrlM.obtainMedicID(arr2[0], arr2[1]);
+        return id;
     }
     
 }
