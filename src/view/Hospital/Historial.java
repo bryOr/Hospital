@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import model.Caracteristics.Visit;
 
 /**
  *
@@ -280,7 +281,9 @@ public class Historial extends javax.swing.JFrame {
         int id_D=ctrlM.obtainID(lblDoctorName.getText());
         Date date=new Date();
         date=dateAtenttion.getDate();
-        System.out.println(id_P+" "+id_D);
+        //System.out.println(id_P+" "+id_D);
+        Visit v=new Visit(id_D, id_P, date);
+        ctrlM.takeVisit(v);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

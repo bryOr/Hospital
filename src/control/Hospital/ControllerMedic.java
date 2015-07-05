@@ -9,6 +9,7 @@ package control.Hospital;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import model.Caracteristics.Medic;
+import model.Caracteristics.Visit;
 import model.DB.QueryMedic;
 import sun.util.locale.StringTokenIterator;
 
@@ -79,7 +80,7 @@ public class ControllerMedic {
         
         arr2=new String[2];
         switch(tam){
-            case 2:
+            
             case 3:
                 arr2[0]=arr1[0];
                 arr2[1]=arr1[1]+" "+arr1[2];
@@ -92,6 +93,9 @@ public class ControllerMedic {
         }
         id=ctrlM.obtainMedicID(arr2[0], arr2[1]);
         return id;
+    }
+    public void takeVisit(Visit v){
+        ctrlM.addVisit(v);
     }
     
 }

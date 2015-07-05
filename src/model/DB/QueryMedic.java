@@ -8,6 +8,7 @@ package model.DB;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import model.Caracteristics.Medic;
+import model.Caracteristics.Visit;
+import view.Hospital.Historial;
 
 /**
  *
@@ -124,5 +127,28 @@ public class QueryMedic {
             System.out.println(ex);
         }
         return id;
+    }
+    public void addVisit(Visit V){
+        Connection conn=null;
+        PreparedStatement ptmt=null;
+        
+        
+        try{
+            conn=Conexion.getInstance().getConnection();
+            String sql="INSERT INTO "
+                    + "visit(id_p,id_d,visitdate) "
+                    + "VALUES (?,?,?)";
+            ptmt=conn.prepareStatement(sql);
+            
+            ptmt.setInt(1, V.getId_d());
+            ptmt.setInt(2, V.getId_p());
+            ptmt.setDate(3, (Date) V.getD());
+            
+            ptmt.executeUpdate();
+            
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
     }
 }
