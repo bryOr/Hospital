@@ -116,6 +116,7 @@ public class QueryMedic {
             id=rs.getInt("id_d");
             
             rs.close();
+            
             stmt.close();
             conn.close();
             

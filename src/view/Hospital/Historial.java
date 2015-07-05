@@ -280,6 +280,7 @@ public class Historial extends javax.swing.JFrame {
         int id_D=ctrlM.obtainID(lblDoctorName.getText());
         Date date=new Date();
         date=dateAtenttion.getDate();
+        System.out.println(id_P+" "+id_D);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

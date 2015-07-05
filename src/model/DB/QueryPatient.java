@@ -114,7 +114,7 @@ public class QueryPatient {
             stmt=conn.createStatement();
             String query="SELECT id_p "
                     + "FROM patient "
-                    + "WHERE name='"+name+"' lastname='"+lastname+"'";
+                    + "WHERE name='"+name+"' and lastname='"+lastname+"'";
             rs=stmt.executeQuery(query);
             rs.next();
             id=rs.getInt("id_p");
