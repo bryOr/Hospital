@@ -284,6 +284,7 @@ public class Historial extends javax.swing.JFrame {
         //System.out.println(id_P+" "+id_D);
         Visit v=new Visit(id_D, id_P, date);
         ctrlM.takeVisit(v);
+        JOptionPane.showMessageDialog(this, "Atencion Registrada");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

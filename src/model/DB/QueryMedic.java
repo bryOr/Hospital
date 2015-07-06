@@ -142,7 +142,7 @@ public class QueryMedic {
             
             ptmt.setInt(1, V.getId_d());
             ptmt.setInt(2, V.getId_p());
-            ptmt.setDate(3, (Date) V.getD());
+            ptmt.setDate(3, new java.sql.Date(V.getD().getTime()));
             
             ptmt.executeUpdate();
             
