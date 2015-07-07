@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 import model.Caracteristics.Medic;
 import model.Caracteristics.Visit;
-import view.Hospital.Historial;
+import view.Hospital.Medic.Historial;
 
 /**
  *

@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package view.Hospital;
+package view.Hospital.Medic;
 
+import view.Hospital.Medic.MedicList;
 import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerSucursal;
 import java.util.ArrayList;

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package view.Hospital;
+package view.Hospital.Patient;
 
 
 import control.Hospital.ControllerPatient;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Caracteristics.Patient;
+import view.Hospital.Sucursal.Sucursal;
 
 /**
  *

@@ -6,6 +6,8 @@
 
 package view.Hospital;
 
+import view.Hospital.Sucursal.SucursalFinder;
+import view.Hospital.Medic.MedicList;
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

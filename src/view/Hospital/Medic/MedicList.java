@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package view.Hospital;
+package view.Hospital.Medic;
 
 import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerSucursal;
@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import view.Hospital.PrincipalMenu;
 
 
 /**

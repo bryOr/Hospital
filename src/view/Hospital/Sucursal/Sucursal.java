@@ -1,4 +1,6 @@
-package view.Hospital;
+package view.Hospital.Sucursal;
+
+import view.Hospital.Patient.PatientRegister;
 
 
 

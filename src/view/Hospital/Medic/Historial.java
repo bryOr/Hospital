@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package view.Hospital;
+package view.Hospital.Medic;
 
 import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerPatient;

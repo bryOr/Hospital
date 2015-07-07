@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package view.Hospital;
+package view.Hospital.Sucursal;
 
+import view.Hospital.Sucursal.Sucursal;
 import control.Hospital.ControllerSucursal;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
