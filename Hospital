@@ -3,9 +3,8 @@
 /* Table: DIAGNOSIS                                             */
 /*==============================================================*/
 create table DIAGNOSIS (
-   ID_DIAG              INT4                 not null,
-   ID_P                 INT4                 not null,
-   DIAGNOSIS_ID         INT4                 null,
+   ID_DIAG              SERIAL not null,
+   ID_V                 INT4                 not null,
    DIAGNOSISTYPE        VARCHAR(200)         null,
    COMPLICATIONS        VARCHAR(300)         null,
    DIAGNOSISDATE        DATE                 null,
@@ -20,10 +19,10 @@ ID_DIAG
 );
 
 /*==============================================================*/
-/* Index: RELATIONSHIP_6_FK                                     */
+/* Index: RELATIONSHIP_10_FK                                    */
 /*==============================================================*/
-create  index RELATIONSHIP_6_FK on DIAGNOSIS (
-ID_P
+create  index RELATIONSHIP_10_FK on DIAGNOSIS (
+ID_V
 );
 
 /*==============================================================*/
@@ -32,7 +31,8 @@ ID_P
 create table DOCTOR (
    ID_D                 SERIAL not null,
    ID_S                 INT4                 not null,
-   NAMEDOCTOR           VARCHAR(100)         null,
+   NAME                 VARCHAR(100)         null,
+   LASTNAME             VARCHAR(140)         null,
    EDAD                 INT4                 null,
    CI                   INT4                 null,
    SPECIALTY            VARCHAR(60)          null,
@@ -75,19 +75,18 @@ ID_H
 /* Table: LAB                                                   */
 /*==============================================================*/
 create table LAB (
-   ID_L                 INT4                 not null,
-   LAB_ID               INT4                 null,
+   ID_LAB               INT4                 not null,
    NAME_LAB             VARCHAR(150)         null,
    ADDRESS_LAB          VARCHAR(150)         null,
    PHONE_LAB            INT4                 null,
-   constraint PK_LAB primary key (ID_L)
+   constraint PK_LAB primary key (ID_LAB)
 );
 
 /*==============================================================*/
 /* Index: LAB_PK                                                */
 /*==============================================================*/
 create unique index LAB_PK on LAB (
-ID_L
+ID_LAB
 );
 
 /*==============================================================*/
@@ -96,8 +95,7 @@ ID_L
 create table LABTEST (
    ID_LT                INT4                 not null,
    ID_S                 INT4                 not null,
-   ID_L                 INT4                 not null,
-   LABTEST_ID           INT4                 null,
+   ID_LAB               INT4                 not null,
    SERVICEDESCRIPTION   VARCHAR(200)         null,
    TESTDATE             DATE                 null,
    constraint PK_LABTEST primary key (ID_LT)
@@ -114,7 +112,7 @@ ID_LT
 /* Index: RELATIONSHIP_4_FK                                     */
 /*==============================================================*/
 create  index RELATIONSHIP_4_FK on LABTEST (
-ID_L
+ID_LAB
 );
 
 /*==============================================================*/
@@ -159,7 +157,7 @@ ID_R
 /* Table: SUCURSAL                                              */
 /*==============================================================*/
 create table SUCURSAL (
-   ID_S                 SERIAL not null,
+   ID_S                 INT4                 not null,
    ID_H                 INT4                 not null,
    NAME                 VARCHAR(100)         null,
    ADDRESS              VARCHAR(200)         null,
@@ -187,7 +185,7 @@ ID_H
 /*==============================================================*/
 create table SUCURSALROOM (
    ID_R                 INT4                 not null,
-   ID_S                 INT4                 null,
+   ID_S                 INT4                 not null,
    NAMEROOM             VARCHAR(200)         null,
    NUMBEROFBEDS         INT4                 null,
    constraint PK_SUCURSALROOM primary key (ID_R)
@@ -215,6 +213,7 @@ create table VISIT (
    ID_P                 INT4                 not null,
    ID_D                 INT4                 not null,
    VISITDATE            DATE                 null,
+   DIAGNOSIS            VARCHAR(500)         null,
    constraint PK_VISIT primary key (ID_V)
 );
 
@@ -240,8 +239,8 @@ ID_P
 );
 
 alter table DIAGNOSIS
-   add constraint FK_DIAGNOSI_RELATIONS_PATIENT foreign key (ID_P)
-      references PATIENT (ID_P)
+   add constraint FK_DIAGNOSI_RELATIONS_VISIT foreign key (ID_V)
+      references VISIT (ID_V)
       on delete restrict on update restrict;
 
 alter table DOCTOR
@@ -250,8 +249,8 @@ alter table DOCTOR
       on delete restrict on update restrict;
 
 alter table LABTEST
-   add constraint FK_LABTEST_RELATIONS_LAB foreign key (ID_L)
-      references LAB (ID_L)
+   add constraint FK_LABTEST_RELATIONS_LAB foreign key (ID_LAB)
+      references LAB (ID_LAB)
       on delete restrict on update restrict;
 
 alter table LABTEST
