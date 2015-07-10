@@ -16,13 +16,18 @@ public class Visit {
     private int id_d;
     private int id_p;
     private Date d;
+    private String diagnosis;
     
-    public Visit(int id1,int id2,Date d){
+    public Visit(int id1,int id2,Date d,String diag){
         id_d=id1;
         id_p=id2;
         this.d=d;
+        diagnosis=diag;
     }
 
+    public String getDiagnosis(){
+        return diagnosis;
+    }
     public int getId_d() {
         return id_d;
     }

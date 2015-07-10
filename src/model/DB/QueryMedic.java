@@ -8,19 +8,16 @@ package model.DB;
 
 
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import model.Caracteristics.Medic;
 import model.Caracteristics.Visit;
-import view.Hospital.Medic.Historial;
+
 
 /**
  *
@@ -143,7 +140,7 @@ public class QueryMedic {
             ptmt.setInt(1, V.getId_d());
             ptmt.setInt(2, V.getId_p());
             ptmt.setDate(3, new java.sql.Date(V.getD().getTime()));
-            
+            ptmt.setString(4, V.getDiagnosis());
             ptmt.executeUpdate();
             
         }
