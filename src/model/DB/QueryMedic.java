@@ -133,8 +133,8 @@ public class QueryMedic {
         try{
             conn=Conexion.getInstance().getConnection();
             String sql="INSERT INTO "
-                    + "visit(id_p,id_d,visitdate) "
-                    + "VALUES (?,?,?)";
+                    + "visit(id_p,id_d,visitdate,diagnosis) "
+                    + "VALUES (?,?,?,?)";
             ptmt=conn.prepareStatement(sql);
             
             ptmt.setInt(1, V.getId_d());
