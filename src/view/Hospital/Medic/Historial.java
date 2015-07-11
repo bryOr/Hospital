@@ -36,6 +36,7 @@ public class Historial extends javax.swing.JFrame {
         this.doctorName=doctorName;
         lblDoctorName.setText(doctorName);
         txtPatientName.setEnabled(false);
+        textDiagnosis.setLineWrap(true);
         
         Calendar cal=Calendar.getInstance();
         cal.set(Calendar.YEAR, 2000);
