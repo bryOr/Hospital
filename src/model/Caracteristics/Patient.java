@@ -22,9 +22,9 @@ public class Patient {
     private  int bednumber;
     private String address;
     private Date dateofBirth;
-    private String sex;
+    private char sex;
     
-    public Patient(int id_r,int CI, int registrationNumber, String name, String lastname, int bednumber, String address, Date dateofBirth, String sex) {
+    public Patient(int id_r,int CI, int registrationNumber, String name, String lastname, int bednumber, String address, Date dateofBirth, char sex) {
         this.id_r=id_r;
         
         this.CI = CI;
@@ -72,18 +72,13 @@ public class Patient {
     public String getLastname() {
         return lastname;
     }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+    
 
     public int getBednumber() {
         return bednumber;
     }
 
-    public void setBednumber(int bednumber) {
-        this.bednumber = bednumber;
-    }
+    
 
     public String getAddress() {
         return address;
@@ -97,17 +92,13 @@ public class Patient {
         return dateofBirth;
     }
 
-    public void setDateofBirth(Date dateofBirth) {
-        this.dateofBirth = dateofBirth;
-    }
-
-    public String isSex() {
+    
+    
+    public char isSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
+    
     
     
 }

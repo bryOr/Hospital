@@ -11,6 +11,7 @@ import control.Hospital.ControllerPatient;
 import control.Hospital.ControllerRoom;
 import control.Hospital.ControllerSucursal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Caracteristics.Patient;
@@ -48,8 +49,16 @@ public class PatientRegister extends javax.swing.JFrame {
         controlRoom=new ControllerRoom();
         controlPatient=new ControllerPatient();
         controlSucursal=new ControllerSucursal();
-        addOptionsSex();
-        getRooms();
+        
+        this.addOptionsSex();
+        this.getRooms();
+        
+        Calendar cal=Calendar.getInstance();
+        cal.set(Calendar.YEAR,2000);
+        cal.set(Calendar.MONTH, 01);
+        cal.set(Calendar.DATE, 01);
+        dateFecha.setCalendar(cal);
+        
         
         lblName.setText(name);
         lblAddress.setText(address);
@@ -284,7 +293,7 @@ public class PatientRegister extends javax.swing.JFrame {
             String lastname=txtLastName.getText();
             int ci=Integer.parseInt(txtID.getText());
             String address=txtAddress.getText();
-            String sex=String.valueOf(cmbSex.getSelectedItem());
+            char sex=giveOption(String.valueOf(cmbSex.getSelectedItem()));
             int registration_number=Integer.parseInt(txtRegistration.getText());
             int bedNumber=Integer.parseInt(txtBedNumber.getText());
             String room=String.valueOf(cmbRoom.getSelectedItem());
@@ -316,6 +325,19 @@ public class PatientRegister extends javax.swing.JFrame {
         m.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+    public char giveOption(String x){
+        char res = 0;
+        switch(x){
+            case "Masculino":
+                res='M';
+                break;
+            case "Femenino":
+                res='F';
+                break;
+                
+        }
+        return res;
+    }
     public void vaciarCampos(){
         txtName.setText("");
         txtLastName.setText("");

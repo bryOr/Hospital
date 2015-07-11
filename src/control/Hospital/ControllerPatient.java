@@ -33,7 +33,7 @@ public class ControllerPatient {
                 p.getCI()<10000 || 
                 p.getRegistrationNumber()<0 || 
                 p.getBednumber()<0 || 
-                p.isSex().equals("Escoja una opcion")){
+                p.isSex()==0){
             res=false;
         }
         return res;
