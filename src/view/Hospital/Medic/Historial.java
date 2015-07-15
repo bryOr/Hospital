@@ -13,7 +13,10 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import model.Caracteristics.Visit;
 
 /**
@@ -260,6 +263,11 @@ public class Historial extends javax.swing.JFrame {
 
             }
         ));
+        tabData.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                tabDataMouseMoved(evt);
+            }
+        });
         jScrollPane3.setViewportView(tabData);
 
         jLabel8.setText("Nombre Paciente:");
@@ -331,7 +339,7 @@ public class Historial extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(jLabel9)
@@ -402,6 +410,7 @@ public class Historial extends javax.swing.JFrame {
             }
             listPatient.setModel(list);
             
+            
         }
         
         
@@ -463,7 +472,7 @@ public class Historial extends javax.swing.JFrame {
         // TODO add your handling code here:
         String fullName=txtFullName.getText();
         Object[][] res=ctrlP.obtainInformation(fullName);
-        String titles[]={"#","Nombre","Apellido","CI","Diagnostico"};
+        String titles[]={"Persona","Diagnostico"};
         DefaultTableModel newTable=new DefaultTableModel(res,titles){
 
             @Override
@@ -473,11 +482,36 @@ public class Historial extends javax.swing.JFrame {
             
         };
         tabData.setModel(newTable);
-        
+        configureTable();
     }//GEN-LAST:event_txtFullNameKeyPressed
 
+    private void tabDataMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDataMouseMoved
+        // TODO add your handling code here:
+        int rowIndex=tabData.rowAtPoint(evt.getPoint());
+        int columnIndex=tabData.columnAtPoint(evt.getPoint());
+        if(columnIndex==1){
+            try{
+                String info=tabData.getValueAt(rowIndex, columnIndex).toString();
+                tabData.setToolTipText(info);
+        
+            }
+            catch(Exception E){}
+        }
+    }//GEN-LAST:event_tabDataMouseMoved
+
+    
+    public void configureTable(){
+        TableColumnModel newTab=tabData.getColumnModel();
+        
+        newTab.getColumn(0).setPreferredWidth(2);
+        
+        tabData.setShowHorizontalLines(false);
+        tabData.setShowVerticalLines(false);
+        
+        
+    }
     public void showDiagnosis(){
-        String diagnosis[]={"Generico","Nosologico","Patogenetico","Lesional, anatomico o topografico",
+        String diagnosis[]={"Seleccionar","Generico","Nosologico","Patogenetico","Lesional, anatomico o topografico",
                             "Sintomatico","Sindromico y Funcional","Individual o clinico","Diferencial","Presuntivo","Certeza"};
         for(String d: diagnosis){
             cmbDiagnosisType.addItem(d);

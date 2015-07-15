@@ -34,21 +34,21 @@ public class QueryPatient {
         try {
             conn=Conexion.getInstance().getConnection();
             stmt=conn.createStatement();
-            String query="SELECT p.name, p.lastname, p.ci, v.diagnosis "
-                        + "FROM patient p, visit v "
-                        + "WHERE p.name LIKE '%"+fullName+"%' OR p.lastname LIKE '%"+fullName+"%'";
+            String query="SELECT p.name, p.lastname, v.diagnosis "
+                        + "FROM patient p, visit v, doctor d "
+                        + "WHERE d.id_d=v.id_d and p.id_p=v.id_p AND p.name LIKE '%"+fullName+"%'";
             
             rs=stmt.executeQuery(query);
-            res=new Object[2][5];
-            int x=0;
-            while(rs.next()){
-                res[x][0]=x+1;
-                res[x][1]=rs.getString("name");
-                res[x][2]=rs.getString("lastname");
-                res[x][3]=rs.getString("ci");
-                res[x][4]=rs.getString("diagnosis");
-                x++;
-            }
+            res=new Object[16][2];
+            try{
+                while(rs.next()){
+                    
+                    res[filas][0]=rs.getString("name")+" "+rs.getString("lastname");
+                    res[filas][1]=rs.getString("diagnosis");
+                    filas++;
+                }
+            }catch(Exception e){}
+            
             rs.close();
             stmt.close();
             conn.close();

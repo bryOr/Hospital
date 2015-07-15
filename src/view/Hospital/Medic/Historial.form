@@ -375,7 +375,7 @@
                                   <Component id="txtFullName" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="286" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="276" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -415,6 +415,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="tabDataMouseMoved"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
