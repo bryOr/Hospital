@@ -24,7 +24,40 @@ import model.Caracteristics.Patient;
 public class QueryPatient {
 
     
-    
+
+    public Object[][] obtainInfo(String fullName){
+        Object[][] res=null;
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+        int filas=0;
+        try {
+            conn=Conexion.getInstance().getConnection();
+            stmt=conn.createStatement();
+            String query="SELECT p.name, p.lastname, p.ci, v.diagnosis "
+                        + "FROM patient p, visit v "
+                        + "WHERE p.name LIKE '%"+fullName+"%' OR p.lastname LIKE '%"+fullName+"%'";
+            
+            rs=stmt.executeQuery(query);
+            res=new Object[2][5];
+            int x=0;
+            while(rs.next()){
+                res[x][0]=x+1;
+                res[x][1]=rs.getString("name");
+                res[x][2]=rs.getString("lastname");
+                res[x][3]=rs.getString("ci");
+                res[x][4]=rs.getString("diagnosis");
+                x++;
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return res;
+    }
     public boolean insertPatient(Patient p){
         boolean res=false;
         PreparedStatement stmt=null;

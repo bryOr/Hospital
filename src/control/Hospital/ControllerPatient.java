@@ -73,4 +73,7 @@ public class ControllerPatient {
         id=q_p.getID(arr2[0], arr2[1]);
         return id;
     }
+    public Object[][] obtainInformation(String x){
+        return q_p.obtainInfo(x);
+    }
 }
