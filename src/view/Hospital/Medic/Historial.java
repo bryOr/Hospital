@@ -49,6 +49,10 @@ public class Historial extends javax.swing.JFrame {
         dateAtenttion.setCalendar(cal);
         
         showDiagnosis();
+        
+        this.cmbDiagnosisType.setEnabled(false);
+        this.txtComplications.setEnabled(false);
+        this.btnReg.setEnabled(false);
     }
 
     private Historial() {
@@ -91,8 +95,8 @@ public class Historial extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
+        txtComplications = new javax.swing.JTextArea();
+        btnReg = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblDoctorName = new javax.swing.JLabel();
 
@@ -268,6 +272,11 @@ public class Historial extends javax.swing.JFrame {
                 tabDataMouseMoved(evt);
             }
         });
+        tabData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabDataMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tabData);
 
         jLabel8.setText("Nombre Paciente:");
@@ -290,14 +299,14 @@ public class Historial extends javax.swing.JFrame {
 
         jLabel10.setText("Complicaciones:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        txtComplications.setColumns(20);
+        txtComplications.setRows(5);
+        jScrollPane4.setViewportView(txtComplications);
 
-        jButton2.setText("REGISTRAR DIAGNOSTICO");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnReg.setText("REGISTRAR DIAGNOSTICO");
+        btnReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnRegActionPerformed(evt);
             }
         });
 
@@ -322,7 +331,7 @@ public class Historial extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jButton2)
+                            .addComponent(btnReg)
                             .addGap(21, 21, 21))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,7 +359,7 @@ public class Historial extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(jButton2)))
+                        .addComponent(btnReg)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -460,9 +469,9 @@ public class Historial extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnRegActionPerformed
 
     private void cmbDiagnosisTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDiagnosisTypeActionPerformed
         // TODO add your handling code here:
@@ -499,6 +508,13 @@ public class Historial extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tabDataMouseMoved
 
+    private void tabDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDataMouseClicked
+        // TODO add your handling code here:
+        this.cmbDiagnosisType.setEnabled(true);
+        this.txtComplications.setEnabled(true);
+        this.btnReg.setEnabled(true);
+    }//GEN-LAST:event_tabDataMouseClicked
+
     
     public void configureTable(){
         TableColumnModel newTab=tabData.getColumnModel();
@@ -506,7 +522,7 @@ public class Historial extends javax.swing.JFrame {
         newTab.getColumn(0).setPreferredWidth(2);
         
         tabData.setShowHorizontalLines(false);
-        tabData.setShowVerticalLines(false);
+        //tabData.setShowVerticalLines(false);
         
         
     }
@@ -562,10 +578,10 @@ public class Historial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnReg;
     private javax.swing.JComboBox cmbDiagnosisType;
     private com.toedter.calendar.JDateChooser dateAtenttion;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -584,11 +600,11 @@ public class Historial extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblDoctorName;
     private javax.swing.JList listPatient;
     private javax.swing.JTable tabData;
     private javax.swing.JTextArea textDiagnosis;
+    private javax.swing.JTextArea txtComplications;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtPatientName;

@@ -7,14 +7,15 @@
 package model.DB;
 
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Caracteristics.Diagnosis;
 import model.Caracteristics.Medic;
 import model.Caracteristics.Visit;
 
@@ -145,6 +146,26 @@ public class QueryMedic {
             
         }
         catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    public void confirmDiagnosis(Diagnosis d){
+        Connection conn=null;
+        PreparedStatement ptmt=null;
+        
+        try{
+            conn=Conexion.getInstance().getConnection();
+            String sql="INSERT INTO diagnosis (id_v,diagnosysType,complications,diagnosisdate) "
+                    + "VALUES "
+                    + "(?,?,?,?)";
+            ptmt=conn.prepareStatement(sql);
+            
+            ptmt.setInt(1, d.getId_visita());
+            ptmt.setString(2, d.getType());
+            ptmt.setString(3, d.getComplications());
+            ptmt.setDate(4, new java.sql.Date(d.getDate().getTime()));
+            
+        }catch(SQLException e){
             System.out.println(e);
         }
     }

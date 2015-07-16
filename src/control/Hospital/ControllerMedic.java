@@ -7,11 +7,10 @@
 package control.Hospital;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+import model.Caracteristics.Diagnosis;
 import model.Caracteristics.Medic;
 import model.Caracteristics.Visit;
 import model.DB.QueryMedic;
-import sun.util.locale.StringTokenIterator;
 
 /**
  *
@@ -97,5 +96,13 @@ public class ControllerMedic {
     public void takeVisit(Visit v){
         ctrlM.addVisit(v);
     }
-    
+    public boolean addDiagnosis(Diagnosis d){
+        boolean res=true;
+        if(d.getType().equals("Seleccionar")){
+            res=false;
+        }else{
+            ctrlM.confirmDiagnosis(d);
+        }
+        return res;
+    }
 }
