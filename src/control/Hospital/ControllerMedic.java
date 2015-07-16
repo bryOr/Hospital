@@ -98,7 +98,7 @@ public class ControllerMedic {
     }
     public boolean addDiagnosis(Diagnosis d){
         boolean res=true;
-        if(d.getType().equals("Seleccionar")){
+        if(d.getType().equals("Seleccionar") || d.getComplications().isEmpty()){
             res=false;
         }else{
             ctrlM.confirmDiagnosis(d);

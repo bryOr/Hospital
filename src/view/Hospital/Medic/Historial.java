@@ -8,15 +8,18 @@ package view.Hospital.Medic;
 
 import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerPatient;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import model.Caracteristics.Diagnosis;
 import model.Caracteristics.Visit;
 
 /**
@@ -470,7 +473,29 @@ public class Historial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
+        int id_D=ctrlM.obtainID(lblDoctorName.getText());
+        String diagnosisType=cmbDiagnosisType.getSelectedItem().toString();
+        String complication=txtComplications.getText();
         
+        Calendar date=new GregorianCalendar();
+        int year=date.get(Calendar.YEAR);
+        int month=date.get(Calendar.MONTH);
+        int day=date.get(Calendar.DATE);
+        Date date_=new Date();
+        try{
+            String aux_date=day+" "+month+" "+year;
+            SimpleDateFormat sdf=new SimpleDateFormat("dd/M/yyyy");
+            date_=sdf.parse(aux_date);
+        }catch(Exception e){}
+        
+        Diagnosis d=new Diagnosis(id_D, complication, diagnosisType, date_);
+        boolean band=ctrlM.addDiagnosis(d); 
+        if(band){
+            System.out.println(id_D+" "+diagnosisType+" "+complication+" "+date_);
+            JOptionPane.showMessageDialog(this, "Diagnostico Confirmado");
+        }else{
+            JOptionPane.showMessageDialog(this, "Verifique su informacion nuevamente.");
+        }
     }//GEN-LAST:event_btnRegActionPerformed
 
     private void cmbDiagnosisTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDiagnosisTypeActionPerformed

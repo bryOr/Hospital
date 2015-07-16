@@ -155,7 +155,7 @@ public class QueryMedic {
         
         try{
             conn=Conexion.getInstance().getConnection();
-            String sql="INSERT INTO diagnosis (id_v,diagnosysType,complications,diagnosisdate) "
+            String sql="INSERT INTO diagnosis (id_v,diagnosystype,complications,diagnosisdate) "
                     + "VALUES "
                     + "(?,?,?,?)";
             ptmt=conn.prepareStatement(sql);
@@ -164,9 +164,13 @@ public class QueryMedic {
             ptmt.setString(2, d.getType());
             ptmt.setString(3, d.getComplications());
             ptmt.setDate(4, new java.sql.Date(d.getDate().getTime()));
+        
             
+            ptmt.close();
+            conn.close();
         }catch(SQLException e){
             System.out.println(e);
         }
+        
     }
 }
