@@ -7,7 +7,7 @@
 package model.DB;
 
 
-import java.lang.reflect.Array;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -155,7 +155,7 @@ public class QueryMedic {
         
         try{
             conn=Conexion.getInstance().getConnection();
-            String sql="INSERT INTO diagnosis (id_v,diagnosystype,complications,diagnosisdate) "
+            String sql="INSERT INTO diagnosis (id_v,diagnosistype,complications,diagnosisdate) "
                     + "VALUES "
                     + "(?,?,?,?)";
             ptmt=conn.prepareStatement(sql);
@@ -164,10 +164,9 @@ public class QueryMedic {
             ptmt.setString(2, d.getType());
             ptmt.setString(3, d.getComplications());
             ptmt.setDate(4, new java.sql.Date(d.getDate().getTime()));
-        
+            ptmt.executeUpdate();
             
-            ptmt.close();
-            conn.close();
+            //System.out.println("SE HIZO REGISTRO");
         }catch(SQLException e){
             System.out.println(e);
         }
