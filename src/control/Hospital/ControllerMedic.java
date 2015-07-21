@@ -33,7 +33,6 @@ public class ControllerMedic {
         boolean res=true;
         
         if( m.getName().isEmpty() || 
-                m.getLastname().isEmpty() ||
                 m.getAge()<25 || 
                 m.getCI()<10000 || 
                 m.getSpeciality().isEmpty() || 
@@ -46,13 +45,8 @@ public class ControllerMedic {
     }
     public void sendInfo(Medic m){
         String name=m.getName();
-        String lastname=m.getLastname();
-        
         name=changeToUpperCase(name);
-        lastname=changeToUpperCase(lastname);
-        
         m.setName(name);
-        m.setLastName(lastname);
         
         ctrlM.registerMedic(m);
         

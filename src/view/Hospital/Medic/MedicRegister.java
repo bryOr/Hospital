@@ -180,15 +180,17 @@ public class MedicRegister extends javax.swing.JFrame {
         // TODO add your handling code here:
         String name=txtName.getText();
         String lastname=txtLastName.getText();
+        String fullName=name+" "+lastname;
         int age=Integer.parseInt(txtAge.getText());
         int ci=Integer.parseInt(txtCI.getText());
         String speciality=txtSpeciality.getText();
         String sucursal=cmbSucursal.getSelectedItem().toString();
-        Medic m=new Medic(name, lastname, age, ci, speciality, sucursal);
+        Medic m=new Medic(fullName, age, ci, speciality, sucursal);
         
         boolean band=ctrlM.verifyInfo(m);
         if(band){
             ctrlM.sendInfo(m);
+            JOptionPane.showMessageDialog(this, "Medico ha sido registrado con exito");
             vaciarCampos();
             
         }else{

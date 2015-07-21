@@ -76,9 +76,9 @@ public class QueryMedic {
             rs=stmt.executeQuery(firstQuery);
             rs.next();
             id_s=rs.getInt("id_s");
-            String secondQuery="INSERT INTO doctor (id_s,name,edad,ci,specialty,lastname) "
+            String secondQuery="INSERT INTO doctor (id_s,name,edad,ci,specialty) "
                             + "VALUES "
-                            + "(?,?,?,?,?,?)";
+                            + "(?,?,?,?,?);";
             
             ptmt=conn.prepareStatement(secondQuery);
             ptmt.setInt(1, id_s);
@@ -86,7 +86,6 @@ public class QueryMedic {
             ptmt.setInt(3, m.getAge());
             ptmt.setInt(4, m.getCI());
             ptmt.setString(5, m.getSpeciality());
-            ptmt.setString(6, m.getLastname());
             
             ptmt.executeUpdate();
             
