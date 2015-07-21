@@ -28,7 +28,6 @@ public class ControllerPatient {
     public boolean validate_patient(Patient p){
         boolean res=true;
         if(p.getName().isEmpty() || 
-                p.getLastname().isEmpty() || 
                 p.getAddress().isEmpty() || 
                 p.getCI()<10000 || 
                 p.getRegistrationNumber()<0 || 

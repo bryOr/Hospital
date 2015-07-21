@@ -282,6 +282,7 @@ public class PatientRegister extends javax.swing.JFrame {
             String sucursalName=name;
             String name=txtName.getText();
             String lastname=txtLastName.getText();
+            String fullName=name+" "+lastname;
             int ci=Integer.parseInt(txtID.getText());
             String address=txtAddress.getText();
             String sex=String.valueOf(cmbSex.getSelectedItem());
@@ -292,7 +293,7 @@ public class PatientRegister extends javax.swing.JFrame {
             
             int idRoom=controlRoom.getIdRoom(sucursalName, room);
             
-            Patient p=new Patient(idRoom, ci, registration_number, name, lastname, bedNumber, address, date, sex);
+            Patient p=new Patient(idRoom, ci, registration_number, fullName, bedNumber, address, date, sex);
             if(controlPatient.validate_patient(p) || room.equals("--")){
                 boolean confirmed=controlPatient.patient_inserted(p);
                 if(confirmed){

@@ -32,18 +32,17 @@ public class QueryPatient {
         
         try {
             conn=Conexion.getInstance().getConnection();
-            stmt=conn.prepareStatement("INSERT INTO patient(id_r,ci,registrationnumber,name,lastname,bednumber,address,dateofbirth,sex)"
+            stmt=conn.prepareStatement("INSERT INTO patient(id_r,ci,registrationnumber,name,bednumber,address,dateofbirth,sex)"
                     + " VALUES "
-                    + "(?,?,?,?,?,?,?,?,?)");
+                    + "(?,?,?,?,?,?,?,?)");
             stmt.setInt(1, p.getId_r());
             stmt.setInt(2, p.getCI());
             stmt.setInt(3, p.getRegistrationNumber());
             stmt.setString(4, p.getName());
-            stmt.setString(5, p.getLastname());
-            stmt.setInt(6, p.getBednumber());
-            stmt.setString(7, p.getAddress());
-            stmt.setDate(8, new java.sql.Date(p.getDateofBirth().getTime()));
-            stmt.setString(9, p.isSex());
+            stmt.setInt(5, p.getBednumber());
+            stmt.setString(6, p.getAddress());
+            stmt.setDate(7, new java.sql.Date(p.getDateofBirth().getTime()));
+            stmt.setString(8, p.isSex());
             
             stmt.executeUpdate();
             res=true;
