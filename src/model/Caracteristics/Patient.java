@@ -18,19 +18,16 @@ public class Patient {
     private int CI;
     private int registrationNumber;
     private String name;
-    private String lastname;
     private  int bednumber;
     private String address;
     private Date dateofBirth;
     private char sex;
     
-    public Patient(int id_r,int CI, int registrationNumber, String name, String lastname, int bednumber, String address, Date dateofBirth, char sex) {
-        this.id_r=id_r;
-        
+    public Patient(int id_r,int CI, int registrationNumber, String name, int bednumber, String address, Date dateofBirth, char sex) {
+        this.id_r=id_r;    
         this.CI = CI;
         this.registrationNumber = registrationNumber;
         this.name = name;
-        this.lastname = lastname;
         this.bednumber = bednumber;
         this.address = address;
         this.dateofBirth = dateofBirth;
@@ -69,9 +66,7 @@ public class Patient {
         this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
+    
     
 
     public int getBednumber() {
