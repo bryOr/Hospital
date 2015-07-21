@@ -43,7 +43,7 @@ public class QueryPatient {
             stmt.setInt(6, p.getBednumber());
             stmt.setString(7, p.getAddress());
             stmt.setDate(8, new java.sql.Date(p.getDateofBirth().getTime()));
-            stmt.setString(9, String.valueOf(p.isSex()));
+            stmt.setString(9, p.isSex());
             
             stmt.executeUpdate();
             res=true;
