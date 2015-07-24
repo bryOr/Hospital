@@ -6,6 +6,7 @@
 
 package view.Hospital.Medic;
 
+import com.sun.jmx.snmp.BerDecoder;
 import view.Hospital.Medic.MedicList;
 import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerSucursal;
@@ -178,11 +179,19 @@ public class MedicRegister extends javax.swing.JFrame {
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         // TODO add your handling code here:
+        int age;
+        int ci;
+        try{
+            age=Integer.parseInt(txtAge.getText());
+            ci=Integer.parseInt(txtCI.getText());
+        }catch(Exception e){
+            age=0;
+            ci=0;
+        }
         String name=txtName.getText();
         String lastname=txtLastName.getText();
         String fullName=name+" "+lastname;
-        int age=Integer.parseInt(txtAge.getText());
-        int ci=Integer.parseInt(txtCI.getText());
+        
         String speciality=txtSpeciality.getText();
         String sucursal=cmbSucursal.getSelectedItem().toString();
         Medic m=new Medic(fullName, age, ci, speciality, sucursal);
