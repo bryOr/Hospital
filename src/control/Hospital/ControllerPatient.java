@@ -7,7 +7,7 @@
 package control.Hospital;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+
 import model.Caracteristics.Patient;
 import model.DB.QueryPatient;
 
@@ -21,20 +21,22 @@ public class ControllerPatient {
     public ControllerPatient(){
         q_p=new QueryPatient();
     }
-    public boolean patient_inserted(Patient p){
-        boolean res=q_p.insertPatient(p);
-        return res;
+    public void patient_inserted(Patient p){
+        q_p.insertPatient(p);
     }
     public boolean validate_patient(Patient p){
         boolean res=true;
         if(p.getName().isEmpty() || 
                 p.getAddress().isEmpty() || 
-                p.getCI()<10000 || 
-                p.getRegistrationNumber()<0 || 
-                p.getBednumber()<0 || 
-                p.isSex()==0){
+                p.getCI()<1000000 || 
+                p.getRegistrationNumber()<=0  ||
+                p.getBednumber()<=0 ||
+                p.isSex()==0 ||
+                p.getDateofBirth()==null){
             res=false;
+            
         }
+        System.out.println(res);
         return res;
     }
     
