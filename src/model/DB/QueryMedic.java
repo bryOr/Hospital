@@ -37,20 +37,17 @@ public class QueryMedic {
         try {
             conn=Conexion.getInstance().getConnection();
             Statement stmt=conn.createStatement();
-            String query="SELECT d.name as doctor_name, d.lastname as doctor_lastname "
+            String query="SELECT d.name as doctor_name "
                         + "FROM sucursal s, doctor d "
                         + "WHERE s.id_s=d.id_s AND s.name='"+sucursalName+"'";
             rs=stmt.executeQuery(query);
             
             while(rs.next()){
-                String name=rs.getString("doctor_name");
-                String lastname=rs.getString("doctor_lastname");
-                String fullName=name+" "+lastname;
-                //System.out.println(name+" "+lastname);
+                String docName=rs.getString("doctor_name");
                 
-                doctors.add(fullName);
+                
+                doctors.add(docName);
             }
-            //System.out.println(doctors);
             
             rs.close();
             stmt.close();
