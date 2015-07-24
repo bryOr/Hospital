@@ -58,8 +58,8 @@ public class QueryPatient {
         
         return res;
     }
-    public boolean insertPatient(Patient p){
-        boolean res=false;
+    public void insertPatient(Patient p){
+        
         PreparedStatement stmt=null;
         Connection conn=null;
         
@@ -78,12 +78,12 @@ public class QueryPatient {
             stmt.setString(8, String.valueOf(p.isSex()));
             
             stmt.executeUpdate();
-            res=true;
+            
             
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return res;
+        
     }
     
     public int getID_Room(String sucursal,String room){
