@@ -100,7 +100,7 @@ public class QueryMedic {
         }
         
     }
-    public int obtainMedicID(String name,String lastname){
+    public int obtainMedicID(String patName){
         Connection conn=null;
         Statement stmt=null;
         ResultSet rs=null;
@@ -110,7 +110,7 @@ public class QueryMedic {
             stmt=conn.createStatement();
             String query="SELECT id_d "
                     + "FROM doctor "
-                    + "WHERE name='"+name+"' and lastname='"+lastname+"'";
+                    + "WHERE name='"+patName+"'";
             rs=stmt.executeQuery(query);
             rs.next();
             id=rs.getInt("id_d");

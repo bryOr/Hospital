@@ -25,7 +25,7 @@ public class QueryPatient {
 
     
 
-    public Object[][] obtainInfo(String fullName){
+    public Object[][] obtainInfo(String patName){
         Object[][] res=null;
         Connection conn=null;
         Statement stmt=null;
@@ -34,16 +34,16 @@ public class QueryPatient {
         try {
             conn=Conexion.getInstance().getConnection();
             stmt=conn.createStatement();
-            String query="SELECT p.name, p.lastname, v.diagnosis "
+            String query="SELECT p.name, v.diagnosis "
                         + "FROM patient p, visit v, doctor d "
-                        + "WHERE d.id_d=v.id_d and p.id_p=v.id_p AND p.name LIKE '%"+fullName+"%'";
+                        + "WHERE d.id_d=v.id_d and p.id_p=v.id_p AND p.name LIKE '%"+patName+"%'";
             
             rs=stmt.executeQuery(query);
             res=new Object[16][2];
             try{
                 while(rs.next()){
                     
-                    res[filas][0]=rs.getString("name")+" "+rs.getString("lastname");
+                    res[filas][0]=rs.getString("name");
                     res[filas][1]=rs.getString("diagnosis");
                     filas++;
                 }
@@ -110,7 +110,7 @@ public class QueryPatient {
         }
         return id;
     }
-    public List<String> getPatients(String lastName){
+    public List<String> getPatients(String patientName){
         List<String> list=new ArrayList<String>();
         Connection conn=null;
         Statement stmt=null;
@@ -119,13 +119,13 @@ public class QueryPatient {
         try {
             conn=Conexion.getInstance().getConnection();
             stmt=conn.createStatement();
-            String query="SELECT name,lastname "
+            String query="SELECT name "
                          + "FROM patient "
-                         + "WHERE lastname LIKE '%"+lastName+"%'";
+                         + "WHERE name LIKE '%"+patientName+"%'";
             rs=stmt.executeQuery(query);
             while(rs.next()){
-                String fullName=rs.getString("name")+" "+rs.getString("lastname");
-                list.add(fullName);
+                String patName=rs.getString("name");
+                list.add(patName);
             }
             rs.close();
             stmt.close();
@@ -135,7 +135,7 @@ public class QueryPatient {
         }
         return list;
     }
-    public int getID(String name,String lastname){
+    public int getID(String patName){
         Connection conn=null;
         Statement stmt=null;
         ResultSet rs=null;
@@ -145,7 +145,7 @@ public class QueryPatient {
             stmt=conn.createStatement();
             String query="SELECT id_p "
                     + "FROM patient "
-                    + "WHERE name='"+name+"' and lastname='"+lastname+"'";
+                    + "WHERE name='"+patName+"'";
             rs=stmt.executeQuery(query);
             rs.next();
             id=rs.getInt("id_p");

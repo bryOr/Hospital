@@ -204,7 +204,7 @@
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Apellido del Paciente:"/>
+                <Property name="text" type="java.lang.String" value="Nombre del Paciente:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLastName">

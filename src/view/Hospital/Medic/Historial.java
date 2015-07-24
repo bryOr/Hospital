@@ -8,15 +8,14 @@ package view.Hospital.Medic;
 
 import control.Hospital.ControllerMedic;
 import control.Hospital.ControllerPatient;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import model.Caracteristics.Diagnosis;
@@ -115,7 +114,7 @@ public class Historial extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listPatient);
 
-        jLabel4.setText("Apellido del Paciente:");
+        jLabel4.setText("Nombre del Paciente:");
 
         txtLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -410,7 +409,7 @@ public class Historial extends javax.swing.JFrame {
     private void txtLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyPressed
         // TODO add your handling code here:
         String lastname=txtLastName.getText();
-        boolean flag=ctrlP.verifyLastName(lastname);
+        boolean flag=ctrlP.verifyPatientName(lastname);
         if(!flag){
             JOptionPane.showMessageDialog(this, "No incluya numeros en este campo de texto");
             txtLastName.setText("");
