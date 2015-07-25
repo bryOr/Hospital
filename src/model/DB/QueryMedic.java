@@ -162,7 +162,6 @@ public class QueryMedic {
             ptmt.setDate(4, new java.sql.Date(d.getDate().getTime()));
             ptmt.executeUpdate();
             
-            //System.out.println("SE HIZO REGISTRO");
         }catch(SQLException e){
             System.out.println(e);
         }
