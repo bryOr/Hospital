@@ -290,17 +290,32 @@ public class PatientRegister extends javax.swing.JFrame {
         int ci;
         int registration_number;
         int bedNumber;
+        int idRoom;
         try {
+            String sucursalName=name;
+            
+            String name=txtName.getText()+" "+txtLastName.getText();
+            String address=txtAddress.getText();
+            
+            char sex=giveOption(String.valueOf(cmbSex.getSelectedItem()));
+            String room=String.valueOf(cmbRoom.getSelectedItem());
+            
+            Date date=dateSelected();
             
             ci=Integer.parseInt(txtID.getText());
             registration_number=Integer.parseInt(txtRegistration.getText());
             bedNumber=Integer.parseInt(txtBedNumber.getText());
-            
+            idRoom=controlRoom.getIdRoom(sucursalName, room);
+            Patient p=new Patient(idRoom, ci, registration_number, name, bedNumber, address, date, sex);
+            controlPatient.patient_inserted(p);
+            JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
         } catch (Exception e) {
             ci=0;
             registration_number=0;
             bedNumber=0;
-        }
+            idRoom=0;
+            JOptionPane.showMessageDialog(this, "Ingreso mal los datos");
+        }/*
             String sucursalName=name;
             String name=txtName.getText();
             String lastname=txtLastName.getText();
@@ -321,6 +336,7 @@ public class PatientRegister extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(this, "Ingreso mal los datos...");
             }
+        */
             vaciarCampos();
             
         /*Date date=new Date();
