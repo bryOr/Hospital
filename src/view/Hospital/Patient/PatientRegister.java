@@ -315,35 +315,9 @@ public class PatientRegister extends javax.swing.JFrame {
             bedNumber=0;
             idRoom=0;
             JOptionPane.showMessageDialog(this, "Ingreso mal los datos");
-        }/*
-            String sucursalName=name;
-            String name=txtName.getText();
-            String lastname=txtLastName.getText();
-            String fullName=name+" "+lastname;
-            
-            String address=txtAddress.getText();
-            char sex=giveOption(String.valueOf(cmbSex.getSelectedItem()));
-            
-            String room=String.valueOf(cmbRoom.getSelectedItem());
-            Date date=dateSelected();
-            
-            int idRoom=controlRoom.getIdRoom(sucursalName, room);
-            
-            Patient p=new Patient(idRoom, ci, registration_number, fullName, bedNumber, address, date, sex);
-            if(controlPatient.validate_patient(p) || room.equals("--") || cmbSex.equals("Escoja una opcion")){
-                controlPatient.patient_inserted(p);
-                JOptionPane.showMessageDialog(this, "Paciente ha sido registrado a la habitacion");
-            }else{
-                JOptionPane.showMessageDialog(this, "Ingreso mal los datos...");
-            }
-        */
-            vaciarCampos();
-            
-        /*Date date=new Date();
-        DateFormat var=new SimpleDateFormat("yyyy-MM-dd");
-        date=dateFecha.getDate();
-        String aux_date=var.format(date);
-        */
+        }
+        vaciarCampos();
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

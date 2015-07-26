@@ -1,6 +1,6 @@
 package view.Hospital.Sucursal;
 
-import Principal.Principal;
+
 import view.Hospital.Patient.PatientRegister;
 import view.Hospital.PrincipalMenu;
 
