@@ -56,6 +56,7 @@ public class Historial extends javax.swing.JFrame {
         this.cmbDiagnosisType.setEnabled(false);
         this.txtComplications.setEnabled(false);
         this.btnReg.setEnabled(false);
+        
     }
 
     private Historial() {
@@ -492,6 +493,10 @@ public class Historial extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Verifique su informacion nuevamente.");
         }
+        
+        txtComplications.setEnabled(false);
+        txtComplications.setText("");
+        txtFullName.setText("");
     }//GEN-LAST:event_btnRegActionPerformed
 
     private void cmbDiagnosisTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDiagnosisTypeActionPerformed
@@ -500,6 +505,7 @@ public class Historial extends javax.swing.JFrame {
 
     private void txtFullNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFullNameKeyPressed
         // TODO add your handling code here:
+        txtComplications.setEnabled(true);
         String fullName=txtFullName.getText();
         Object[][] res=ctrlP.obtainInformation(fullName);
         String titles[]={"Persona","Diagnostico"};
