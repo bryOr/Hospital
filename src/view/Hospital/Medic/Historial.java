@@ -56,6 +56,10 @@ public class Historial extends javax.swing.JFrame {
         this.cmbDiagnosisType.setEnabled(false);
         this.txtComplications.setEnabled(false);
         this.btnReg.setEnabled(false);
+        
+        this.textDiagnosis.setEnabled(false);
+        this.btnVisitReg.setEnabled(false);
+        this.btnClean.setEnabled(false);
     }
 
     private Historial() {
@@ -81,9 +85,9 @@ public class Historial extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         dateAtenttion = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnVisitReg = new javax.swing.JButton();
+        btnClean = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtPatientName = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -132,39 +136,39 @@ public class Historial extends javax.swing.JFrame {
 
         jLabel6.setText("Fecha de Atencion:");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonAgregar.png"))); // NOI18N
-        jButton1.setText("Registrar");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVisitReg.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnVisitReg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonAgregar.png"))); // NOI18N
+        btnVisitReg.setText("Registrar");
+        btnVisitReg.setBorder(null);
+        btnVisitReg.setBorderPainted(false);
+        btnVisitReg.setContentAreaFilled(false);
+        btnVisitReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVisitRegActionPerformed(evt);
             }
         });
 
-        btnLimpiar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.setBorder(null);
-        btnLimpiar.setBorderPainted(false);
-        btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        btnClean.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
+        btnClean.setText("Limpiar");
+        btnClean.setBorder(null);
+        btnClean.setBorderPainted(false);
+        btnClean.setContentAreaFilled(false);
+        btnClean.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
+                btnCleanActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton3.setText("Cancelar");
-        jButton3.setBorder(null);
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        btnBack.setText("Cancelar");
+        btnBack.setBorder(null);
+        btnBack.setBorderPainted(false);
+        btnBack.setContentAreaFilled(false);
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -199,13 +203,13 @@ public class Historial extends javax.swing.JFrame {
                 .addGap(18, 47, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnVisitReg)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnClean, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -244,11 +248,11 @@ public class Historial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnVisitReg)
                         .addGap(18, 18, 18)
-                        .addComponent(btnLimpiar)
+                        .addComponent(btnClean)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
+                        .addComponent(btnBack))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -429,10 +433,11 @@ public class Historial extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtLastNameKeyPressed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
         // TODO add your handling code here:
         txtLastName.setText("");
         txtPatientName.setText("");
+        textDiagnosis.setText("");
         
         Calendar c=Calendar.getInstance();
         c.set(Calendar.YEAR, 2000);
@@ -442,35 +447,51 @@ public class Historial extends javax.swing.JFrame {
         
         DefaultListModel emptyList=new DefaultListModel();
         listPatient.setModel(emptyList);
-    }//GEN-LAST:event_btnLimpiarActionPerformed
+        
+        textDiagnosis.setEnabled(false);
+        btnClean.setEnabled(false);
+        btnVisitReg.setEnabled(false);
+        
+    }//GEN-LAST:event_btnCleanActionPerformed
 
     private void listPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listPatientMouseClicked
         // TODO add your handling code here:
         String patient=listPatient.getSelectedValue().toString();
         txtPatientName.setText(patient);
+        textDiagnosis.setEnabled(true);
+        btnVisitReg.setEnabled(true);
+        btnClean.setEnabled(true);
+        
     }//GEN-LAST:event_listPatientMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVisitRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisitRegActionPerformed
         // TODO add your handling code here:
-        int id_P=ctrlP.obtainID(txtPatientName.getText());
-        int id_D=ctrlM.obtainID(lblDoctorName.getText());
-        Date date=new Date();
-        date=dateAtenttion.getDate();
-        String diagnosis=textDiagnosis.getText();
-        
-        Visit v=new Visit(id_P, id_D, date,diagnosis);
-        ctrlM.takeVisit(v);
-        JOptionPane.showMessageDialog(this, "Atencion Registrada");
-        vaciarCampos();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try{
+            int id_P=ctrlP.obtainID(txtPatientName.getText());
+            int id_D=ctrlM.obtainID(lblDoctorName.getText());
+            Date date=new Date();
+            date=dateAtenttion.getDate();
+            String diagnosis=textDiagnosis.getText();
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+            Visit v=new Visit(id_P, id_D, date,diagnosis);
+           
+            ctrlM.takeVisit(v);
+            JOptionPane.showMessageDialog(this, "Atencion Registrada");
+            
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(this, "Error al ingresar Datos");
+        }
+        vaciarCampos();
+    }//GEN-LAST:event_btnVisitRegActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         MedicList ml=new MedicList();
         ml.setVisible(true);
         this.setVisible(false);
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         int id_D=ctrlM.obtainID(lblDoctorName.getText());
@@ -598,12 +619,12 @@ public class Historial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnClean;
     private javax.swing.JButton btnReg;
+    private javax.swing.JButton btnVisitReg;
     private javax.swing.JComboBox cmbDiagnosisType;
     private com.toedter.calendar.JDateChooser dateAtenttion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
