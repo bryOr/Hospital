@@ -56,13 +56,11 @@ public class Historial extends javax.swing.JFrame {
         this.cmbDiagnosisType.setEnabled(false);
         this.txtComplications.setEnabled(false);
         this.btnReg.setEnabled(false);
-        
-<<<<<<< HEAD
-=======
+
         this.textDiagnosis.setEnabled(false);
         this.btnVisitReg.setEnabled(false);
         this.btnClean.setEnabled(false);
->>>>>>> Historial_de_Atencion
+
     }
 
     private Historial() {
