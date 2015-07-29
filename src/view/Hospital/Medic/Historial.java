@@ -484,6 +484,8 @@ public class Historial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al ingresar Datos");
         }
         vaciarCampos();
+        textDiagnosis.setText("");
+        textDiagnosis.setEnabled(false);
     }//GEN-LAST:event_btnVisitRegActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
