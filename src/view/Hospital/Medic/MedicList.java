@@ -194,8 +194,8 @@ public class MedicList extends javax.swing.JFrame {
     private void medicsLIstMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medicsLIstMouseClicked
         // TODO add your handling code here:
         String nombre=medicsLIst.getSelectedValue().toString();
-        
-        Historial historial=new Historial(nombre);
+        String sucursalName=cmbSucursal.getSelectedItem().toString();
+        Historial historial=new Historial(nombre,sucursalName);
         historial.setVisible(true);
         
         this.dispose();

@@ -31,10 +31,11 @@ public class Historial extends javax.swing.JFrame {
      * Creates new form HistorialMedico
      */
     public String doctorName;
+    public String sucursalName;
     
     private ControllerPatient ctrlP;
     private ControllerMedic ctrlM;
-    public Historial(String doctorName) {
+    public Historial(String doctorName,String sucursalName) {
         initComponents();
         
         ctrlP=new ControllerPatient();
@@ -511,7 +512,6 @@ public class Historial extends javax.swing.JFrame {
         Diagnosis d=new Diagnosis(id_D, complication, diagnosisType, date_);
         boolean band=ctrlM.addDiagnosis(d); 
         if(band){
-            System.out.println(id_D+" "+diagnosisType+" "+complication+" "+date_);
             JOptionPane.showMessageDialog(this, "Diagnostico Confirmado");
         }else{
             JOptionPane.showMessageDialog(this, "Verifique su informacion nuevamente.");
@@ -520,6 +520,9 @@ public class Historial extends javax.swing.JFrame {
         txtComplications.setEnabled(false);
         txtComplications.setText("");
         txtFullName.setText("");
+        DefaultTableModel emptyTable=new DefaultTableModel();
+        tabData.setModel(emptyTable);
+        cmbDiagnosisType.setEnabled(false);
     }//GEN-LAST:event_btnRegActionPerformed
 
     private void cmbDiagnosisTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDiagnosisTypeActionPerformed
