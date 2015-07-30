@@ -110,7 +110,7 @@ public class QueryPatient {
         }
         return id;
     }
-    public List<String> getPatients(String patientName){
+    public List<String> getPatients(String patientName,String sucName){
         List<String> list=new ArrayList<String>();
         Connection conn=null;
         Statement stmt=null;
@@ -119,9 +119,10 @@ public class QueryPatient {
         try {
             conn=Conexion.getInstance().getConnection();
             stmt=conn.createStatement();
-            String query="SELECT name "
-                         + "FROM patient "
-                         + "WHERE name LIKE '%"+patientName+"%'";
+            String query="SELECT p.name "
+                         + "FROM patient p, sucursal s, sucursalroom sr "
+                         + "WHERE sr.id_r=p.id_r AND sr.id_s=s.id_s AND  "
+                         + "s.name='"+sucName+"' AND p.name LIKE '%"+patientName+"%'";
             rs=stmt.executeQuery(query);
             while(rs.next()){
                 String patName=rs.getString("name");

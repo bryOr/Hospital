@@ -36,7 +36,6 @@ public class ControllerPatient {
             res=false;
             
         }
-        System.out.println(res);
         return res;
     }
     
@@ -50,8 +49,8 @@ public class ControllerPatient {
         }
         return res;
     }
-    public ArrayList<String> getPatients(String x){
-        return (ArrayList)q_p.getPatients(x);
+    public ArrayList<String> getPatients(String x,String y){
+        return (ArrayList)q_p.getPatients(x,y);
     }
     public int obtainID(String fullName){
         int id=0;

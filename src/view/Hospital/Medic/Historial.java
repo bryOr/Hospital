@@ -41,6 +41,7 @@ public class Historial extends javax.swing.JFrame {
         ctrlP=new ControllerPatient();
         ctrlM=new ControllerMedic();
         this.doctorName=doctorName;
+        this.sucursalName=sucursalName;
         lblDoctorName.setText(doctorName);
         txtPatientName.setEnabled(false);
         textDiagnosis.setLineWrap(true);
@@ -83,7 +84,7 @@ public class Historial extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listPatient = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
-        txtLastName = new javax.swing.JTextField();
+        patientName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         dateAtenttion = new com.toedter.calendar.JDateChooser();
@@ -123,14 +124,14 @@ public class Historial extends javax.swing.JFrame {
 
         jLabel4.setText("Nombre del Paciente:");
 
-        txtLastName.addActionListener(new java.awt.event.ActionListener() {
+        patientName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLastNameActionPerformed(evt);
+                patientNameActionPerformed(evt);
             }
         });
-        txtLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+        patientName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtLastNameKeyPressed(evt);
+                patientNameKeyPressed(evt);
             }
         });
 
@@ -224,7 +225,7 @@ public class Historial extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(patientName, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -240,7 +241,7 @@ public class Historial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(patientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6))
                     .addComponent(dateAtenttion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -409,20 +410,20 @@ public class Historial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+    private void patientNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLastNameActionPerformed
+    }//GEN-LAST:event_patientNameActionPerformed
 
-    private void txtLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyPressed
+    private void patientNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientNameKeyPressed
         // TODO add your handling code here:
-        String lastname=txtLastName.getText();
-        boolean flag=ctrlP.verifyPatientName(lastname);
+        String patName=patientName.getText();
+        boolean flag=ctrlP.verifyPatientName(patName);
         if(!flag){
             JOptionPane.showMessageDialog(this, "No incluya numeros en este campo de texto");
-            txtLastName.setText("");
+            patientName.setText("");
         }else{
             DefaultListModel list=new DefaultListModel();
-            ArrayList<String> lastnameList=ctrlP.getPatients(lastname);
+            ArrayList<String> lastnameList=ctrlP.getPatients(patName,sucursalName);
             for(int c=0;c<lastnameList.size();c++){
                 list.addElement(lastnameList.get(c));
             }
@@ -433,11 +434,11 @@ public class Historial extends javax.swing.JFrame {
         
         
         
-    }//GEN-LAST:event_txtLastNameKeyPressed
+    }//GEN-LAST:event_patientNameKeyPressed
 
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
         // TODO add your handling code here:
-        txtLastName.setText("");
+        patientName.setText("");
         txtPatientName.setText("");
         textDiagnosis.setText("");
         
@@ -589,7 +590,7 @@ public class Historial extends javax.swing.JFrame {
     }
     public void vaciarCampos(){
         txtPatientName.setText("");
-        txtLastName.setText("");
+        patientName.setText("");
         DefaultListModel emptyList=new DefaultListModel();
         listPatient.setModel(emptyList);
         dateAtenttion.setDate(null);
@@ -655,11 +656,11 @@ public class Historial extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDoctorName;
     private javax.swing.JList listPatient;
+    private javax.swing.JTextField patientName;
     private javax.swing.JTable tabData;
     private javax.swing.JTextArea textDiagnosis;
     private javax.swing.JTextArea txtComplications;
     private javax.swing.JTextField txtFullName;
-    private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtPatientName;
     // End of variables declaration//GEN-END:variables
 }
