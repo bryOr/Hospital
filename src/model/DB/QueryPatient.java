@@ -58,6 +58,37 @@ public class QueryPatient {
         
         return res;
     }
+    public Object[][] recieveHistorial(int id){
+        Object[][] matriz=null;
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+        int filas=0;
+        try{
+            conn=Conexion.getInstance().getConnection();
+            stmt=conn.createStatement();
+            String query="SELECT p.name, p.ci, sr.nameroom, v.visitdate "
+                        + "FROM patient p, visit v, sucursalroom sr, sucursal s "
+                        + "WHERE sr.id_r=p.id_r AND s.id_s=sr.id_s AND p.id_p=v.id_p "
+                        + "AND p.ci='"+id+"'";
+            rs=stmt.executeQuery(query);
+            
+            while(rs.next()){
+                matriz[filas][0]=filas+1;
+                matriz[filas][1]=rs.getString("name");
+                matriz[filas][2]=rs.getInt("ci");
+                matriz[filas][3]=rs.getString("nameroom");
+                matriz[filas][4]=rs.getDate("visitdate");
+                filas++;
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.err.print(e);
+        }
+        return matriz;
+    }
     public void insertPatient(Patient p){
         
         PreparedStatement stmt=null;

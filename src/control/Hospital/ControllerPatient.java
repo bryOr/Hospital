@@ -28,7 +28,7 @@ public class ControllerPatient {
         boolean res=true;
         if(p.getName().isEmpty() || 
                 p.getAddress().isEmpty() || 
-                p.getCI()<1000000 || 
+                p.getCI()<10000000 || 
                 p.getRegistrationNumber()<=0  ||
                 p.getBednumber()<=0 ||
                 p.isSex()==0 ||
@@ -48,6 +48,16 @@ public class ControllerPatient {
             }
         }
         return res;
+    }
+    public boolean verifyID(int x){
+        boolean res=false;
+        if(x>1000000 && x<10000000){
+            res=true;
+        }
+        return res;
+    }
+    public Object[][] showPatHist(int id){
+        return q_p.recieveHistorial(id);
     }
     public ArrayList<String> getPatients(String x,String y){
         return (ArrayList)q_p.getPatients(x,y);

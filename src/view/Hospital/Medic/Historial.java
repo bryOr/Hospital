@@ -107,6 +107,12 @@ public class Historial extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         txtComplications = new javax.swing.JTextArea();
         btnReg = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        txtPatCI = new javax.swing.JTextField();
+        btnMostrarInfo = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tableInformationVisit = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         lblDoctorName = new javax.swing.JLabel();
 
@@ -375,6 +381,60 @@ public class Historial extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Diagnostico", jPanel2);
 
+        jLabel11.setText("CI del Paciente:");
+
+        btnMostrarInfo.setText("Buscar");
+        btnMostrarInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarInfoActionPerformed(evt);
+            }
+        });
+
+        tableInformationVisit.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane5.setViewportView(tableInformationVisit);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPatCI, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnMostrarInfo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtPatCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrarInfo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Historial Visitas", jPanel3);
+
         jLabel1.setText("MEDICO:");
 
         lblDoctorName.setText("x");
@@ -569,6 +629,30 @@ public class Historial extends javax.swing.JFrame {
         this.btnReg.setEnabled(true);
     }//GEN-LAST:event_tabDataMouseClicked
 
+    private void btnMostrarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarInfoActionPerformed
+        // TODO add your handling code here:
+        
+            int id=Integer.parseInt(txtPatCI.getText());
+            boolean flag=ctrlP.verifyID(id);
+            if(flag){
+                Object[][] historial=ctrlP.showPatHist(id);
+                String columns[]={"#","Paciente","ID","Cuarto","Visita a Medico"};
+                DefaultTableModel info=new DefaultTableModel(historial,columns){
+
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                    
+                };
+                tableInformationVisit.setModel(info);
+            }else{
+                JOptionPane.showMessageDialog(this, "ID incorrecto, Intentelo de nuevo");
+                txtPatCI.setText("");
+            }
+        
+    }//GEN-LAST:event_btnMostrarInfoActionPerformed
+
     
     public void configureTable(){
         TableColumnModel newTab=tabData.getColumnModel();
@@ -633,12 +717,14 @@ public class Historial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnClean;
+    private javax.swing.JButton btnMostrarInfo;
     private javax.swing.JButton btnReg;
     private javax.swing.JButton btnVisitReg;
     private javax.swing.JComboBox cmbDiagnosisType;
     private com.toedter.calendar.JDateChooser dateAtenttion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -649,18 +735,22 @@ public class Historial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDoctorName;
     private javax.swing.JList listPatient;
     private javax.swing.JTextField patientName;
     private javax.swing.JTable tabData;
+    private javax.swing.JTable tableInformationVisit;
     private javax.swing.JTextArea textDiagnosis;
     private javax.swing.JTextArea txtComplications;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtPatCI;
     private javax.swing.JTextField txtPatientName;
     // End of variables declaration//GEN-END:variables
 }
