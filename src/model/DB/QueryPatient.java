@@ -58,12 +58,37 @@ public class QueryPatient {
         
         return res;
     }
-    public Object[][] recieveHistorial(int id){
+    public int giveNumberOfVisits(int id){
+        int filas=0;
+        Connection conn=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+        try{
+            conn=Conexion.getInstance().getConnection();
+            stmt=conn.createStatement();
+            String query="SELECT  count(*) as numero_filas "
+                        + "FROM patient p,visit v, sucursalroom sr, sucursal s "
+                        + "WHERE sr.id_r=p.id_r AND s.id_s=sr.id_s AND p.id_p=v.id_p "
+                        + "AND p.ci='"+id+"'";
+            rs=stmt.executeQuery(query);
+            rs.next();
+            filas=rs.getInt("numero_filas");
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.err.println(e);
+        }
+        return filas;
+    }
+    public Object[][] recieveHistorial(int id,int filas){
         Object[][] matriz=null;
         Connection conn=null;
         Statement stmt=null;
         ResultSet rs=null;
-        int filas=0;
+        int x=0;
+        
         try{
             conn=Conexion.getInstance().getConnection();
             stmt=conn.createStatement();
@@ -72,14 +97,14 @@ public class QueryPatient {
                         + "WHERE sr.id_r=p.id_r AND s.id_s=sr.id_s AND p.id_p=v.id_p "
                         + "AND p.ci='"+id+"'";
             rs=stmt.executeQuery(query);
-            
+            matriz=new Object[filas][5];
             while(rs.next()){
-                matriz[filas][0]=filas+1;
-                matriz[filas][1]=rs.getString("name");
-                matriz[filas][2]=rs.getInt("ci");
-                matriz[filas][3]=rs.getString("nameroom");
-                matriz[filas][4]=rs.getDate("visitdate");
-                filas++;
+                matriz[x][0]=x+1;
+                matriz[x][1]=rs.getString("name");
+                matriz[x][2]=rs.getInt("ci");
+                matriz[x][3]=rs.getString("nameroom");
+                matriz[x][4]=rs.getDate("visitdate");
+                x++;
             }
             rs.close();
             stmt.close();

@@ -57,7 +57,8 @@ public class ControllerPatient {
         return res;
     }
     public Object[][] showPatHist(int id){
-        return q_p.recieveHistorial(id);
+        int filas=q_p.giveNumberOfVisits(id);
+        return q_p.recieveHistorial(id,filas);
     }
     public ArrayList<String> getPatients(String x,String y){
         return (ArrayList)q_p.getPatients(x,y);
