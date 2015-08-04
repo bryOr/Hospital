@@ -656,12 +656,19 @@ public class Historial extends javax.swing.JFrame {
                     }
                     
                 };
+                
                 tableInformationVisit.setModel(info);
+                int numRows=tableInformationVisit.getRowCount();
+                for(int i=1;i<numRows;i++){
+                    tableInformationVisit.getModel().setValueAt(" ", i, 1);
+                    tableInformationVisit.getModel().setValueAt(" ", i, 2);
+                }
             }else{
                 JOptionPane.showMessageDialog(this, "ID incorrecto, Intentelo de nuevo");
                 txtPatCI.setText("");
             }
             configureTableVisits();
+        
     }//GEN-LAST:event_btnMostrarInfoActionPerformed
 
     
@@ -681,6 +688,8 @@ public class Historial extends javax.swing.JFrame {
         tableInformationVisit.getColumnModel().getColumn(2).setCellRenderer(t);
         tableInformationVisit.getColumnModel().getColumn(3).setCellRenderer(t);
         tableInformationVisit.getColumnModel().getColumn(4).setCellRenderer(t);
+        
+        
         
         
     }
