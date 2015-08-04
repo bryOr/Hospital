@@ -39,6 +39,8 @@ public class Historial extends javax.swing.JFrame {
     private ControllerMedic ctrlM;
     public Historial(String doctorName,String sucursalName) {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         
         ctrlP=new ControllerPatient();
         ctrlM=new ControllerMedic();
